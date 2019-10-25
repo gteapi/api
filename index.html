@@ -201,7 +201,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -212,9 +212,6 @@
       <img src="images/logo.png" class="logo" alt="Logo" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
-              <a href="#" data-language-name="javascript">javascript</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -233,59 +230,40 @@
             <a href="#185368440e" class="toc-h1 toc-link" data-title="更新日志">更新日志</a>
           </li>
           <li>
-            <a href="#2d07d50c97" class="toc-h1 toc-link" data-title="接入说明">接入说明</a>
+            <a href="#b122f813d5" class="toc-h1 toc-link" data-title="基本信息">基本信息</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#urls" class="toc-h2 toc-link" data-title="接入URLs">接入URLs</a>
+                    <a href="#baseurl" class="toc-h2 toc-link" data-title="BaseUrl">BaseUrl</a>
                   </li>
                   <li>
-                    <a href="#c1fd2fc5ac" class="toc-h2 toc-link" data-title="限频规则">限频规则</a>
-                  </li>
-                  <li>
-                    <a href="#c64cd15fdc" class="toc-h2 toc-link" data-title="签名认证">签名认证</a>
-                  </li>
-                  <li>
-                    <a href="#21d67c3c4c" class="toc-h2 toc-link" data-title="请求格式">请求格式</a>
-                  </li>
-                  <li>
-                    <a href="#dac673286f" class="toc-h2 toc-link" data-title="返回格式">返回格式</a>
-                  </li>
-                  <li>
-                    <a href="#a38a81c9d5" class="toc-h2 toc-link" data-title="错误信息">错误信息</a>
-                  </li>
-                  <li>
-                    <a href="#sdk" class="toc-h2 toc-link" data-title="SDK与代码示例">SDK与代码示例</a>
-                  </li>
-                  <li>
-                    <a href="#q-amp-a" class="toc-h2 toc-link" data-title="常见问题 Q&amp;A">常见问题 Q&amp;A</a>
+                    <a href="#api-2" class="toc-h2 toc-link" data-title="API签名说明">API签名说明</a>
                   </li>
               </ul>
           </li>
           <li>
-            <a href="#41654e0268" class="toc-h1 toc-link" data-title="基础信息">基础信息</a>
-          </li>
-          <li>
-            <a href="#5bf19eee5a" class="toc-h1 toc-link" data-title="合约交易">合约交易</a>
+            <a href="#http-restful" class="toc-h1 toc-link" data-title="Http Restful">Http Restful</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#fd6ce2a756" class="toc-h2 toc-link" data-title="下单">下单</a>
+                    <a href="#ed913b7357" class="toc-h2 toc-link" data-title="行情接口">行情接口</a>
                   </li>
                   <li>
-                    <a href="#a1128a972d" class="toc-h2 toc-link" data-title="深度">深度</a>
+                    <a href="#2bf0a92d60" class="toc-h2 toc-link" data-title="深度接口">深度接口</a>
                   </li>
                   <li>
-                    <a href="#8e4b902c12" class="toc-h2 toc-link" data-title="行情">行情</a>
+                    <a href="#5601b3d8e3" class="toc-h2 toc-link" data-title="创建委托">创建委托</a>
+                  </li>
+                  <li>
+                    <a href="#3a8264c8e2" class="toc-h2 toc-link" data-title="撤销委托">撤销委托</a>
+                  </li>
+                  <li>
+                    <a href="#6f17b241c4" class="toc-h2 toc-link" data-title="查询委托">查询委托</a>
                   </li>
               </ul>
           </li>
           <li>
-            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+            <a href="#cf68bca02a" class="toc-h1 toc-link" data-title="错误代码">错误代码</a>
           </li>
       </ul>
-        <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
-            <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
-        </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
@@ -304,18 +282,257 @@
 </tr>
 </thead><tbody>
 <tr>
-<td>2019.10.24 18：00</td>
-<td>-GTE 委托</td>
+<td>2019.10.25 12：00</td>
+<td>委托、深度、行情</td>
 <td>新增</td>
-<td>-新增委托接口</td>
+<td>-新增委托、深度、行情接口</td>
 </tr>
 </tbody></table>
-<h1 id='2d07d50c97'>接入说明</h1><h2 id='urls'>接入URLs</h2><h2 id='c1fd2fc5ac'>限频规则</h2><h2 id='c64cd15fdc'>签名认证</h2><h2 id='21d67c3c4c'>请求格式</h2><h2 id='dac673286f'>返回格式</h2><h2 id='a38a81c9d5'>错误信息</h2><h2 id='sdk'>SDK与代码示例</h2><h2 id='q-amp-a'>常见问题 Q&amp;A</h2><h1 id='41654e0268'>基础信息</h1><h1 id='5bf19eee5a'>合约交易</h1><h2 id='fd6ce2a756'>下单</h2>
-<p><strong>HTTP请求</strong></p>
+<h1 id='b122f813d5'>基本信息</h1><h2 id='baseurl'>BaseUrl</h2>
+<ul>
+<li><code>http://{ip}:port</code></li>
+</ul>
+<h2 id='api-2'>API签名说明</h2>
+<ul>
+<li><p>部分api请求需要在请求头携带签名</p></li>
+<li><p>请求头说明</p>
 
 <ul>
-<li>baseUrl/v1/api/pc/order/create</li>
+<li>api-key ：交易所用户在api管理页面创建的apiKey</li>
+<li>api-expires : 当前时间的时间戳(毫秒)</li>
+<li>api-signature ： api签名</li>
+</ul></li>
+<li><p>签名规则</p>
+
+<ul>
+<li> 构建签名的明文message分三部分</li>
 </ul>
+
+<p>1 api-key:请求头携带</p>
+
+<p>2 api-expires：请求头携带</p>
+
+<p>3 请求参数组成的字符串</p>
+
+<p>* 请求参数根据参数名称按照ascii值排序,</p>
+
+<p>* 例如查询委托,排序后的字符串为 {&quot;count&quot;:&quot;20&quot;,&quot;end_time&quot;:&quot;1570701726000&quot;,&quot;filter&quot;:&quot;{&quot;status&quot;:&quot;1&quot;,&quot;order_id&quot;:&quot;123000001&quot;}&quot;,&quot;start_time&quot;:&quot;1570788306000&quot;,&quot;symbol&quot;:&quot;BTC_USD&quot;}</p>
+
+<p>* 如果参数count为空或为null,不需要加入排序</p>
+
+<p>* filter字段 {key:value} json类型字符串,filter字段参加排序,字段内容不需要排序
+* 秘钥
+   * apiSecret为创建api-key时显示的对应秘钥
+* 加密成api签名
+  * message等于api-key+api-expires+请求参数排序后的字符串
+  * hmacSha256（apiSecret,message） 加密成api签名,由api-signature携带</p></li>
+</ul>
+<h1 id='http-restful'>Http Restful</h1><h2 id='ed913b7357'>行情接口</h2>
+<p><strong>查询行情数据</strong></p>
+
+<p><strong>示例</strong></p>
+
+<ul>
+<li>GTE <code>baseUrl/v1/api/pc/ticker/query</code></li>
+</ul>
+
+<p><strong>请求参数</strong></p>
+
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>YES</td>
+<td>交易对</td>
+</tr>
+</tbody></table>
+<pre class="highlight shell tab-shell"><code><span class="c"># Response</span>
+<span class="o">{</span>
+  <span class="s2">"code"</span>: 0,
+  <span class="s2">"data"</span>: <span class="o">{</span>
+    <span class="s2">"time"</span>: <span class="s2">"1568636015342"</span>,
+    <span class="s2">"symbol"</span>: <span class="s2">"BTC_USD"</span>,           //交易对
+    <span class="s2">"best_ask"</span>: <span class="s2">"10001"</span>,         //卖一价
+    <span class="s2">"best_bid"</span>: <span class="s2">"10000"</span>,         //买一价
+    <span class="s2">"last_price"</span>: <span class="s2">"10000"</span>,       //最新成交价
+    <span class="s2">"low_24h"</span>: <span class="s2">"9999"</span>,           //24小时最低价
+    <span class="s2">"high_24h"</span>: <span class="s2">"10400"</span>,         //24小时最高价
+    <span class="s2">"volume_24h"</span>: <span class="s2">"0.003997"</span>     //24小时成交量
+  <span class="o">}</span>,
+  <span class="s2">"input"</span>: null,
+  <span class="s2">"traceId"</span>: <span class="s2">""</span>,
+  <span class="s2">"cost"</span>: 0,
+  <span class="s2">"error"</span>: null,
+  <span class="s2">"msg"</span>: null,
+  <span class="s2">"time"</span>: 1568636015343
+<span class="o">}</span>
+</code></pre><h2 id='2bf0a92d60'>深度接口</h2>
+<p><strong>查询永续合约信息</strong></p>
+
+<p><strong>示例</strong></p>
+
+<ul>
+<li>GTE <code>baseUrl/v1/api/pc/depth/query</code></li>
+</ul>
+
+<p><strong>请求参数</strong></p>
+
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>YES</td>
+<td>交易对</td>
+</tr>
+</tbody></table>
+<pre class="highlight shell tab-shell"><code><span class="c"># Response</span>
+<span class="o">{</span>
+  <span class="s2">"code"</span>: 0,
+  <span class="s2">"data"</span>: <span class="o">{</span>
+    <span class="s2">"time"</span>: <span class="s2">"1568635734093"</span>,
+    <span class="s2">"ssymbol"</span>: <span class="s2">"BTC_USD"</span>,      //交易对
+    <span class="s2">"bids"</span>: <span class="o">[</span>
+      <span class="o">[</span>
+        <span class="s2">"10000"</span>,   //价格
+        <span class="s2">"2848"</span>     //数量
+      <span class="o">]</span>,
+      <span class="o">[</span>
+        <span class="s2">"9999"</span>,
+        <span class="s2">"1"</span>
+      <span class="o">]</span>,
+      <span class="o">[</span>
+        <span class="s2">"9998"</span>,
+        <span class="s2">"30"</span>
+      <span class="o">]</span>
+    <span class="o">]</span>,
+    <span class="s2">"asks"</span>: <span class="o">[</span>
+      <span class="o">[</span>
+        <span class="s2">"10001"</span>,
+        <span class="s2">"59"</span>
+      <span class="o">]</span>,
+      <span class="o">[</span>
+        <span class="s2">"10002"</span>,
+        <span class="s2">"1"</span>
+      <span class="o">]</span>,
+      <span class="o">[</span>
+        <span class="s2">"10003"</span>,
+        <span class="s2">"3"</span>
+      <span class="o">]</span>
+    <span class="o">]</span>
+  <span class="o">}</span>,
+  <span class="s2">"input"</span>: null,
+  <span class="s2">"traceId"</span>: <span class="s2">""</span>,
+  <span class="s2">"cost"</span>: 0,
+  <span class="s2">"error"</span>: null,
+  <span class="s2">"msg"</span>: null,
+  <span class="s2">"time"</span>: 1568635734093
+<span class="o">}</span>
+</code></pre><h2 id='5601b3d8e3'>创建委托</h2>
+<p><strong>创建活动委托</strong></p>
+
+<p><strong>示例</strong></p>
+
+<ul>
+<li>POST <code>baseUrl/v1/api/pc/order/create</code></li>
+</ul>
+
+<p><strong>请求头</strong></p>
+
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>api-key</td>
+<td>string</td>
+<td>YES</td>
+<td>apiKey</td>
+</tr>
+<tr>
+<td>api-expires</td>
+<td>string</td>
+<td>YES</td>
+<td>当前时间戳毫秒</td>
+</tr>
+<tr>
+<td>api-signature</td>
+<td>string</td>
+<td>YES</td>
+<td>api签名</td>
+</tr>
+</tbody></table>
+
+<p><strong>请求参数</strong></p>
+
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>client_oid</td>
+<td>string</td>
+<td>NO</td>
+<td>客户端订单Id,由您设置的订单id来唯一标识您的订单,字符串,长度40</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>YES</td>
+<td>交易对</td>
+</tr>
+<tr>
+<td>side</td>
+<td>string</td>
+<td>YES</td>
+<td>买入1,卖出0</td>
+</tr>
+<tr>
+<td>close_flag</td>
+<td>string</td>
+<td>YES</td>
+<td>0开仓,1平仓</td>
+</tr>
+<tr>
+<td>price</td>
+<td>string</td>
+<td>NO</td>
+<td>价格</td>
+</tr>
+<tr>
+<td>qty</td>
+<td>string</td>
+<td>YES</td>
+<td>张数</td>
+</tr>
+<tr>
+<td>order_type</td>
+<td>string</td>
+<td>YES</td>
+<td>委托类型,1:限价</td>
+</tr>
+</tbody></table>
 <pre class="highlight shell tab-shell"><code><span class="c"># Response</span>
 <span class="o">{</span>
   <span class="s2">"code"</span>: 0,
@@ -330,62 +547,269 @@
   <span class="s2">"msg"</span>: null,
   <span class="s2">"time"</span>: 1568639111359
 <span class="o">}</span>
-</code></pre><h2 id='a1128a972d'>深度</h2><h2 id='8e4b902c12'>行情</h2><h1 id='errors'>Errors</h1>
-<aside class="notice">
-This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
-</aside>
+</code></pre><h2 id='3a8264c8e2'>撤销委托</h2>
+<p><strong>撤销活动委托</strong></p>
 
-<p>The Kittn API uses the following error codes:</p>
+<p><strong>示例</strong></p>
+
+<ul>
+<li>POST <code>baseUrl/v1/api/pc/order/cancel</code></li>
+</ul>
+
+<p><strong>请求头</strong></p>
 
 <table><thead>
 <tr>
-<th>Error Code</th>
-<th>Meaning</th>
+<th>名称</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>描述</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>400</td>
-<td>Bad Request -- Your request is invalid.</td>
+<td>api-key</td>
+<td>string</td>
+<td>YES</td>
+<td>apiKey</td>
 </tr>
 <tr>
-<td>401</td>
-<td>Unauthorized -- Your API key is wrong.</td>
+<td>api-expires</td>
+<td>string</td>
+<td>YES</td>
+<td>当前时间戳毫秒</td>
 </tr>
 <tr>
-<td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
+<td>api-signature</td>
+<td>string</td>
+<td>YES</td>
+<td>api签名</td>
+</tr>
+</tbody></table>
+
+<p><strong>请求参数</strong></p>
+
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>YES</td>
+<td>委托id</td>
 </tr>
 <tr>
-<td>404</td>
-<td>Not Found -- The specified kitten could not be found.</td>
+<td>symbol</td>
+<td>string</td>
+<td>YES</td>
+<td>交易对</td>
+</tr>
+</tbody></table>
+<pre class="highlight shell tab-shell"><code><span class="c"># Response</span>
+<span class="o">{</span>
+  <span class="s2">"code"</span>: 0,
+  <span class="s2">"data"</span>: <span class="o">{</span>
+    <span class="s2">"time"</span>: <span class="s2">"1568639111357"</span>,
+    <span class="s2">"order_id"</span>: <span class="s2">"93814490360972800"</span>   //委托id
+  <span class="o">}</span>,
+  <span class="s2">"input"</span>: null,
+  <span class="s2">"traceId"</span>: <span class="s2">""</span>,
+  <span class="s2">"cost"</span>: 0,
+  <span class="s2">"error"</span>: null,
+  <span class="s2">"msg"</span>: null,
+  <span class="s2">"time"</span>: 1568639111359
+<span class="o">}</span>
+</code></pre><h2 id='6f17b241c4'>查询委托</h2>
+<p><strong>查询活动委托</strong></p>
+
+<p><strong>示例</strong></p>
+
+<ul>
+<li>GTE <code>baseUrl/v1/api/pc/order/query</code></li>
+</ul>
+
+<p><strong>请求头</strong></p>
+
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>api-key</td>
+<td>string</td>
+<td>YES</td>
+<td>apiKey</td>
 </tr>
 <tr>
-<td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
+<td>api-expires</td>
+<td>string</td>
+<td>YES</td>
+<td>当前时间戳毫秒</td>
 </tr>
 <tr>
-<td>406</td>
-<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
+<td>api-signature</td>
+<td>string</td>
+<td>YES</td>
+<td>api签名</td>
+</tr>
+</tbody></table>
+
+<p><strong>请求参数</strong></p>
+
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>NO</td>
+<td>交易对</td>
 </tr>
 <tr>
-<td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers.</td>
+<td>filter</td>
+<td>string</td>
+<td>NO</td>
+<td>过滤器, json格式的字符串</td>
 </tr>
 <tr>
-<td>418</td>
-<td>I&#39;m a teapot.</td>
+<td>start_time</td>
+<td>string</td>
+<td>NO</td>
+<td>时间戳毫秒,不填为当前时间</td>
 </tr>
 <tr>
-<td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
+<td>end_time</td>
+<td>string</td>
+<td>NO</td>
+<td>时间戳毫秒</td>
 </tr>
 <tr>
-<td>500</td>
-<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
+<td>reverse</td>
+<td>string</td>
+<td>NO</td>
+<td>1.时间倒序,0.时间顺序,不填为倒序</td>
 </tr>
 <tr>
-<td>503</td>
-<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+<td>count</td>
+<td>string</td>
+<td>NO</td>
+<td>返回条数最大100条</td>
+</tr>
+</tbody></table>
+
+<p><strong>查询逻辑</strong></p>
+
+<ul>
+<li><p>reverse 等于1时,按照时间倒序排列, 返回小于等于start_time和大于等于end_time的活动委托</p></li>
+<li><p>reverse 等于0时,按照时间程序排列, 返回大于等于start_time和小于等于end_time的活动委托</p></li>
+</ul>
+
+<p><strong>filter</strong></p>
+
+<ul>
+<li><p>json格式的字符串</p></li>
+<li><p>支持 key status(委托状态) , 类型 字符串数组</p></li>
+<li><p>例如{&quot;status&quot;:[&quot;1&quot;,&quot;8&quot;]}</p></li>
+</ul>
+<pre class="highlight shell tab-shell"><code><span class="c"># Response</span>
+<span class="o">{</span>
+    <span class="s2">"code"</span>:0,
+    <span class="s2">"data"</span>:<span class="o">{</span>
+        <span class="s2">"time"</span>:<span class="s2">"1568639823340"</span>,
+        <span class="s2">"orders"</span>:[
+            <span class="o">{</span>
+                <span class="s2">"id"</span>:<span class="s2">"93800123938637312"</span>,   //委托id
+                <span class="s2">"fee"</span>:<span class="s2">"0"</span>,                  //手续费
+                <span class="s2">"price"</span>:<span class="s2">"10000"</span>,            //价格
+                <span class="s2">"qty"</span>:<span class="s2">"2"</span>,                  //张数
+                <span class="s2">"leverage"</span>:<span class="s2">"10"</span>,            //杠杆
+                <span class="s2">"symbol"</span>:<span class="s2">"BTC_USD"</span>,           //交易对
+                <span class="s2">"ctime"</span>:<span class="s2">"1568635692270"</span>,    //创建时间
+                <span class="s2">"client_oid"</span>:null,          //客户端id
+                <span class="s2">"avg_price"</span>:<span class="s2">"0"</span>,            //成交均价
+                <span class="s2">"filled_qty"</span>:<span class="s2">"1"</span>,           //已经成交张数
+                <span class="s2">"close_flag"</span>:<span class="s2">"0"</span>,           //0开仓,1平仓        
+                <span class="s2">"side"</span>:<span class="s2">"1"</span>,                  //买入1,卖出0
+                <span class="s2">"order_margin"</span>:<span class="s2">"0.00001"</span>,   //委托保证金
+                <span class="s2">"order_type"</span>:<span class="s2">"1"</span>,            //委托类型
+                <span class="s2">"status"</span>:<span class="s2">"2"</span>                //委托状态  1:已创建未匹配 2:新建未成交 4:待取消 8:已取消 16:部分成交 32:全部成交     
+            <span class="o">}</span>
+        <span class="o">]</span>
+    <span class="o">}</span>,
+    <span class="s2">"input"</span>:null,
+    <span class="s2">"traceId"</span>:<span class="s2">""</span>,
+    <span class="s2">"cost"</span>:0,
+    <span class="s2">"error"</span>:null,
+    <span class="s2">"msg"</span>:null,
+    <span class="s2">"time"</span>:1568639823342
+<span class="o">}</span>
+</code></pre><h1 id='cf68bca02a'>错误代码</h1>
+<aside class="notice">
+Errors consist of two parts: an error code and a message.
+Codes are universal,but messages can vary.
+</aside>
+
+<p>The GTE API uses the following error codes:</p>
+<pre class="highlight plaintext"><code>{
+  "code": -10012,
+  "error": {
+    "patternName": "VALIDATE_PARAM_TYPE_ERROR",
+    "data": {
+      "paramName": "size"
+    }
+  }
+}
+</code></pre>
+<table><thead>
+<tr>
+<th>错误码</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>-10011</td>
+<td>参数不能为空异常</td>
+</tr>
+<tr>
+<td>-10012</td>
+<td>参数类型异常</td>
+</tr>
+<tr>
+<td>-10013</td>
+<td>参数值异常</td>
+</tr>
+<tr>
+<td>-10051</td>
+<td>api请求签名错误</td>
+</tr>
+<tr>
+<td>-10052</td>
+<td>api请求过期</td>
+</tr>
+<tr>
+<td>-10053</td>
+<td>api请求太频繁</td>
+</tr>
+<tr>
+<td>-10054</td>
+<td>apiKey不存在</td>
+</tr>
+<tr>
+<td>-10055</td>
+<td>api请求权限错误</td>
 </tr>
 </tbody></table>
 
@@ -393,9 +817,6 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
       <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
-                <a href="#" data-language-name="javascript">javascript</a>
           </div>
       </div>
     </div>
