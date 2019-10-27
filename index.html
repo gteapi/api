@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+    <title>GTE API 文档</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -239,16 +239,16 @@
                     <a href="#30fd4ed55b" class="toc-h2 toc-link" data-title="示例">示例</a>
                   </li>
                   <li>
-                    <a href="#2cf55a2464" class="toc-h2 toc-link" data-title="连接地址">连接地址</a>
-                  </li>
-                  <li>
-                    <a href="#authentication" class="toc-h2 toc-link" data-title="签名Authentication">签名Authentication</a>
-                  </li>
-                  <li>
-                    <a href="#e9fd6497ed" class="toc-h2 toc-link" data-title="所有命令">所有命令</a>
+                    <a href="#7328deebb5" class="toc-h2 toc-link" data-title="连接">连接</a>
                   </li>
                   <li>
                     <a href="#subscriptions" class="toc-h2 toc-link" data-title="订阅Subscriptions">订阅Subscriptions</a>
+                  </li>
+                  <li>
+                    <a href="#authentication" class="toc-h2 toc-link" data-title="权鉴Authentication">权鉴Authentication</a>
+                  </li>
+                  <li>
+                    <a href="#heartbeating" class="toc-h2 toc-link" data-title="心跳Heartbeating">心跳Heartbeating</a>
                   </li>
                   <li>
                     <a href="#19b61b1c63" class="toc-h2 toc-link" data-title="消息格式">消息格式</a>
@@ -315,9 +315,66 @@
 <td>-新增委托、深度、行情接口</td>
 </tr>
 </tbody></table>
-<h1 id='b122f813d5'>基本信息</h1><h1 id='websocket'>Websocket 接口</h1><h2 id='30fd4ed55b'>示例</h2><h2 id='2cf55a2464'>连接地址</h2>
+<h1 id='b122f813d5'>基本信息</h1><h1 id='websocket'>Websocket 接口</h1><h2 id='30fd4ed55b'>示例</h2><h2 id='7328deebb5'>连接</h2><h3 id='67d2d7970f'>地址</h3>
 <p>将ws客户端连接到wss://testnet.gte.com/realtime</p>
-<h2 id='authentication'>签名Authentication</h2>
+<h3 id='b114b91547'>命令</h3>
+<p>命令的基本形式<code>{&quot;op&quot;: &quot;&lt;command&gt;&quot;, &quot;args&quot;: [&quot;arg1&quot;, &quot;arg2&quot;, &quot;arg3&quot;]}</code><br>
+&lt;command&gt;值见命令目录<br>
+<code>args</code>数组在某些命令中是可选项  </p>
+
+<p>命令目录
+- 订阅Subscriptions
+  - subscribe
+  - unsubscribe
+- 权鉴Authentication
+- 心跳Heartbeating<br>
+  - raw ping
+  - cancelAllAfter</p>
+<h2 id='subscriptions'>订阅Subscriptions</h2>
+<p>连上ws后，订阅行情数据的推送，发送消息 <code>{&quot;op&quot;: &quot;subscribe&quot;, &quot;args&quot;: [&lt;SubscriptionTopic&gt;]}</code><br>
+你可以通过<code>args</code>数组同时订阅多个主题  </p>
+
+<p>无需权鉴的主题：<br>
+<code>
+&quot;announcement&quot;,        // Site announcements  
+&quot;chat&quot;,                // Trollbox chat  
+&quot;connected&quot;,           // Statistics of connected users/bots
+&quot;funding&quot;,             // Updates of swap funding rates. Sent every funding interval (usually 8hrs)
+&quot;instrument&quot;,          // Instrument updates including turnover and bid/ask
+&quot;insurance&quot;,           // Daily Insurance Fund updates
+&quot;liquidation&quot;,         // Liquidation orders as they&#39;re entered into the book
+&quot;orderBookL2_25&quot;,      // Top 25 levels of level 2 order book
+&quot;orderBookL2&quot;,         // Full level 2 order book
+&quot;orderBook10&quot;,         // Top 10 levels using traditional full book push
+&quot;publicNotifications&quot;, // System-wide notifications (used for short-lived messages)
+&quot;quote&quot;,               // Top level of the book
+&quot;quoteBin1m&quot;,          // 1-minute quote bins
+&quot;quoteBin5m&quot;,          // 5-minute quote bins
+&quot;quoteBin1h&quot;,          // 1-hour quote bins
+&quot;quoteBin1d&quot;,          // 1-day quote bins
+&quot;settlement&quot;,          // Settlements
+&quot;trade&quot;,               // Live trades
+&quot;tradeBin1m&quot;,          // 1-minute trade bins
+&quot;tradeBin5m&quot;,          // 5-minute trade bins
+&quot;tradeBin1h&quot;,          // 1-hour trade bins
+&quot;tradeBin1d&quot;,          // 1-day trade bins
+</code><br>
+需要权鉴的主题：<br>
+<code>
+&quot;affiliate&quot;,   // Affiliate status, such as total referred users &amp; payout %
+&quot;execution&quot;,   // Individual executions; can be multiple per order
+&quot;order&quot;,       // Live updates on your orders
+&quot;margin&quot;,      // Updates on your current account balance and margin requirements
+&quot;position&quot;,    // Updates on your positions
+&quot;privateNotifications&quot;, // Individual notifications - currently not used
+&quot;transact&quot;     // Deposit/Withdrawal updates
+&quot;wallet&quot;       // Bitcoin address balance data, including total deposits &amp; withdrawals
+</code><br>
+<code>orderBookL2</code>推送完整的L2订单簿，数据量很大；<br>
+推荐使用<code>orderBookL2_25</code>订阅行情，推送截断的25档L2订单簿<br>
+注：L2订单簿中的<code>id</code>字段，实际上是price和symbol的组合，并且在给定的价格上是唯一的。它被用于<code>update</code>和<code>delete</code>等指令。<br>
+<code>orderBook10</code>推送10档，但是包含更多数据；</p>
+<h2 id='authentication'>权鉴Authentication</h2>
 <ul>
 <li>公开的行情、订单簿、成交列表等数据流无需鉴权；</li>
 <li>账户的委托、订单、成交等账户相关数据需要鉴权；</li>
@@ -328,10 +385,43 @@
 - 在第一次请求的时候，在http head中签名，或者
 - 在ws连接建立后，发送<code>authKeyExpires</code>命令。  </p>
 
-<p>以上两种方式都是对地址<code>GET /realtime</code>的请求。</p>
-<h2 id='e9fd6497ed'>所有命令</h2>
-<p>命令的基本形式<code>{&quot;op&quot;: &quot;&lt;command&gt;&quot;, &quot;args&quot;: [&quot;arg1&quot;, &quot;arg2&quot;, &quot;arg3&quot;]}</code></p>
-<h2 id='subscriptions'>订阅Subscriptions</h2><h2 id='19b61b1c63'>消息格式</h2><h2 id='12907e94be'>访问限制</h2><h1 id='http-restful-api'>Http Restful API</h1><h2 id='baseurl'>BaseUrl</h2>
+<p>以上两种方式都是对地址<code>GET /realtime</code>的请求。  </p>
+<pre class="highlight plaintext"><code>// signature is hex(HMAC_SHA256(secret, 'GET/realtime' + expires))
+// expires must be a number, not a string.
+{"op": "authKeyExpires", "args": ["&lt;APIKey&gt;", &lt;expires&gt;, "&lt;signature&gt;"]}
+</code></pre><h2 id='heartbeating'>心跳Heartbeating</h2>
+<p>检测连接是否掉线。<br>
+如果客户端使用的库支持<code>hybi-13</code>或<code>ping/pong</code>，可以发送ping到服务端，服务端返回pong。<br>
+Due to changes in browser power-saving modes, we no longer support expectant pings via the WebSocket API.<br>
+建议的掉线检测方式：
+- 收到一条消息后，设定5秒钟的timer；
+- 如果在timer到期之前收到新的消息，reset timer；
+- 如果timer到期，发送一条ping消息（或者字符串&quot;ping&quot;）；
+- 等待服务器返回pong（或字符串&quot;pong&quot;），如果5秒钟内没有收到回复，记录错误并重连。  </p>
+<h3 id='dead-man-s-switch-auto-cancel'>Dead Man’s Switch (Auto Cancel)</h3>
+<p>某些意外情况下，例如你在GTE有较大的活动订单，但同时你的机房断电或断网了，你希望你的订单被全部取消。
+Via REST at /order/cancelAllAfter or via WebSocket via the example below, one can set a millisecond timeout. This will start a timer. If cancelAllAfter is not called again before time runs out, all of your existing orders on all symbols will be canceled.  </p>
+
+<p>To cancel this operation and keep your orders open, pass a timeout of 0.  </p>
+
+<p>Advanced users of BitMEX should use this operation. A common use pattern is to set a timeout of 60000, and call it every 15 seconds. This gives you sufficient wiggle room to keep your orders open in case of a network hiccup, while still offering significant protection in case of a larger outage. Of course, the parameters are up to you.  </p>
+
+<p>We recommend not setting a timeout of less than 5 seconds to avoid being rate limited or having your orders unexpectedly canceled in case of network congestion.  </p>
+
+<p>For example:<br>
+```
+// Places a dead man&#39;s switch at 60 seconds.</p>
+
+<blockquote>
+<p>{&quot;op&quot;: &quot;cancelAllAfter&quot;, &quot;args&quot;: 60000}
+  &lt; {&quot;now&quot;:&quot;2015-09-02T14:18:43.536Z&quot;,&quot;cancelTime&quot;:&quot;2015-09-02T14:19:43.536Z&quot;,
+     &quot;request&quot;:{&quot;op&quot;:&quot;cancelAllAfter&quot;,&quot;args&quot;:60000}}
+// Cancels the switch.
+{&quot;op&quot;: &quot;cancelAllAfter&quot;, &quot;args&quot;: 0}
+  &lt; {&quot;now&quot;:&quot;2015-09-02T14:19:11.617Z&quot;,&quot;cancelTime&quot;:0,&quot;request&quot;:{&quot;op&quot;:&quot;cancelAllAfter&quot;,&quot;args&quot;:0}}
+```</p>
+</blockquote>
+<h2 id='19b61b1c63'>消息格式</h2><h2 id='12907e94be'>访问限制</h2><h1 id='http-restful-api'>Http Restful API</h1><h2 id='baseurl'>BaseUrl</h2>
 <ul>
 <li><code>http://{ip}:port</code></li>
 </ul>
