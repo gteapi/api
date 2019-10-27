@@ -335,9 +335,10 @@
 你可以通过<code>args</code>数组同时订阅多个主题  </p>
 
 <p>无需权鉴的主题：<br>
-<code>
-&quot;announcement&quot;,        // Site announcements  
-&quot;chat&quot;,                // Trollbox chat  
+```  </p>
+
+<p>&quot;announcement&quot;,        // Site announcements<br>
+&quot;chat&quot;,                // Trollbox chat<br>
 &quot;connected&quot;,           // Statistics of connected users/bots
 &quot;funding&quot;,             // Updates of swap funding rates. Sent every funding interval (usually 8hrs)
 &quot;instrument&quot;,          // Instrument updates including turnover and bid/ask
@@ -358,9 +359,9 @@
 &quot;tradeBin5m&quot;,          // 5-minute trade bins
 &quot;tradeBin1h&quot;,          // 1-hour trade bins
 &quot;tradeBin1d&quot;,          // 1-day trade bins
-</code><br>
-需要权鉴的主题：<br>
 <code>
+需要权鉴的主题：  
+</code>
 &quot;affiliate&quot;,   // Affiliate status, such as total referred users &amp; payout %
 &quot;execution&quot;,   // Individual executions; can be multiple per order
 &quot;order&quot;,       // Live updates on your orders
@@ -369,11 +370,11 @@
 &quot;privateNotifications&quot;, // Individual notifications - currently not used
 &quot;transact&quot;     // Deposit/Withdrawal updates
 &quot;wallet&quot;       // Bitcoin address balance data, including total deposits &amp; withdrawals
-</code><br>
-<code>orderBookL2</code>推送完整的L2订单簿，数据量很大；<br>
-推荐使用<code>orderBookL2_25</code>订阅行情，推送截断的25档L2订单簿<br>
-注：L2订单簿中的<code>id</code>字段，实际上是price和symbol的组合，并且在给定的价格上是唯一的。它被用于<code>update</code>和<code>delete</code>等指令。<br>
-<code>orderBook10</code>推送10档，但是包含更多数据；</p>
+``<code>
+</code>orderBookL2<code>推送完整的L2订单簿，数据量很大；  
+推荐使用</code>orderBookL2_25<code>订阅行情，推送截断的25档L2订单簿  
+注：L2订单簿中的</code>id<code>字段，实际上是price和symbol的组合，并且在给定的价格上是唯一的。它被用于</code>update<code>和</code>delete<code>等指令。  
+</code>orderBook10`推送10档，但是包含更多数据；</p>
 <h2 id='authentication'>权鉴Authentication</h2>
 <ul>
 <li>公开的行情、订单簿、成交列表等数据流无需鉴权；</li>
