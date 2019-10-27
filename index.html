@@ -231,6 +231,12 @@
           </li>
           <li>
             <a href="#b122f813d5" class="toc-h1 toc-link" data-title="基本信息">基本信息</a>
+          </li>
+          <li>
+            <a href="#websocket" class="toc-h1 toc-link" data-title="Websocket 接口">Websocket 接口</a>
+          </li>
+          <li>
+            <a href="#http-restful-api" class="toc-h1 toc-link" data-title="Http Restful API">Http Restful API</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#baseurl" class="toc-h2 toc-link" data-title="BaseUrl">BaseUrl</a>
@@ -238,11 +244,6 @@
                   <li>
                     <a href="#api-2" class="toc-h2 toc-link" data-title="API签名说明">API签名说明</a>
                   </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#http-restful" class="toc-h1 toc-link" data-title="Http Restful">Http Restful</a>
-              <ul class="toc-list-h2">
                   <li>
                     <a href="#ed913b7357" class="toc-h2 toc-link" data-title="行情接口">行情接口</a>
                   </li>
@@ -259,6 +260,9 @@
                     <a href="#6f17b241c4" class="toc-h2 toc-link" data-title="查询委托">查询委托</a>
                   </li>
               </ul>
+          </li>
+          <li>
+            <a href="#cf68bca02a" class="toc-h1 toc-link" data-title="错误代码">错误代码</a>
           </li>
           <li>
             <a href="#cf68bca02a" class="toc-h1 toc-link" data-title="错误代码">错误代码</a>
@@ -288,7 +292,7 @@
 <td>-新增委托、深度、行情接口</td>
 </tr>
 </tbody></table>
-<h1 id='b122f813d5'>基本信息</h1><h2 id='baseurl'>BaseUrl</h2>
+<h1 id='b122f813d5'>基本信息</h1><h1 id='websocket'>Websocket 接口</h1><h1 id='http-restful-api'>Http Restful API</h1><h2 id='baseurl'>BaseUrl</h2>
 <ul>
 <li><code>http://{ip}:port</code></li>
 </ul>
@@ -327,7 +331,7 @@
   * message等于api-key+api-expires+请求参数排序后的字符串
   * hmacSha256（apiSecret,message） 加密成api签名,由api-signature携带</p></li>
 </ul>
-<h1 id='http-restful'>Http Restful</h1><h2 id='ed913b7357'>行情接口</h2>
+<h2 id='ed913b7357'>行情接口</h2>
 <p><strong>查询行情数据</strong></p>
 
 <p><strong>示例</strong></p>
@@ -756,7 +760,7 @@
     <span class="s2">"msg"</span>:null,
     <span class="s2">"time"</span>:1568639823342
 <span class="o">}</span>
-</code></pre><h1 id='cf68bca02a'>错误代码</h1>
+</code></pre><h1 id='cf68bca02a'>错误代码</h1><h1 id='cf68bca02a'>错误代码</h1>
 <aside class="notice">
 Errors consist of two parts: an error code and a message.
 Codes are universal,but messages can vary.
