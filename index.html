@@ -234,6 +234,29 @@
           </li>
           <li>
             <a href="#websocket" class="toc-h1 toc-link" data-title="Websocket 接口">Websocket 接口</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#30fd4ed55b" class="toc-h2 toc-link" data-title="示例">示例</a>
+                  </li>
+                  <li>
+                    <a href="#2cf55a2464" class="toc-h2 toc-link" data-title="连接地址">连接地址</a>
+                  </li>
+                  <li>
+                    <a href="#authentication" class="toc-h2 toc-link" data-title="签名Authentication">签名Authentication</a>
+                  </li>
+                  <li>
+                    <a href="#e9fd6497ed" class="toc-h2 toc-link" data-title="所有命令">所有命令</a>
+                  </li>
+                  <li>
+                    <a href="#subscriptions" class="toc-h2 toc-link" data-title="订阅Subscriptions">订阅Subscriptions</a>
+                  </li>
+                  <li>
+                    <a href="#19b61b1c63" class="toc-h2 toc-link" data-title="消息格式">消息格式</a>
+                  </li>
+                  <li>
+                    <a href="#12907e94be" class="toc-h2 toc-link" data-title="访问限制">访问限制</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#http-restful-api" class="toc-h1 toc-link" data-title="Http Restful API">Http Restful API</a>
@@ -292,7 +315,23 @@
 <td>-新增委托、深度、行情接口</td>
 </tr>
 </tbody></table>
-<h1 id='b122f813d5'>基本信息</h1><h1 id='websocket'>Websocket 接口</h1><h1 id='http-restful-api'>Http Restful API</h1><h2 id='baseurl'>BaseUrl</h2>
+<h1 id='b122f813d5'>基本信息</h1><h1 id='websocket'>Websocket 接口</h1><h2 id='30fd4ed55b'>示例</h2><h2 id='2cf55a2464'>连接地址</h2>
+<p>将ws客户端连接到wss://testnet.gte.com/realtime</p>
+<h2 id='authentication'>签名Authentication</h2>
+<ul>
+<li>公开的行情、订单簿、成交列表等数据流无需鉴权；</li>
+<li>账户的委托、订单、成交等账户相关数据需要鉴权；</li>
+<li>如果鉴权失败，连接将会关闭。</li>
+</ul>
+
+<p>鉴权方式：
+- 在第一次请求的时候，在http head中签名，或者
+- 在ws连接建立后，发送<code>authKeyExpires</code>命令。  </p>
+
+<p>以上两种方式都是对地址<code>GET /realtime</code>的请求。</p>
+<h2 id='e9fd6497ed'>所有命令</h2>
+<p>命令的基本形式<code>{&quot;op&quot;: &quot;&lt;command&gt;&quot;, &quot;args&quot;: [&quot;arg1&quot;, &quot;arg2&quot;, &quot;arg3&quot;]}</code></p>
+<h2 id='subscriptions'>订阅Subscriptions</h2><h2 id='19b61b1c63'>消息格式</h2><h2 id='12907e94be'>访问限制</h2><h1 id='http-restful-api'>Http Restful API</h1><h2 id='baseurl'>BaseUrl</h2>
 <ul>
 <li><code>http://{ip}:port</code></li>
 </ul>
