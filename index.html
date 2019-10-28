@@ -334,30 +334,33 @@
 <p>连上ws后，订阅行情数据的推送，发送消息 <code>{&quot;op&quot;: &quot;subscribe&quot;, &quot;args&quot;: [&lt;SubscriptionTopic&gt;]}</code><br>
 你可以通过<code>args</code>数组同时订阅多个主题  </p>
 
-<p>无需权鉴的主题：  </p>
-<pre class="highlight plaintext"><code>"announcement",        // Site announcements  &gt;
-"chat",                // Trollbox chat  &gt;
-"connected",           // Statistics of connected users/bots&lt;br&gt;
-"funding",             // Updates of swap funding rates. Sent every funding interval (usually 8hrs)
-"instrument",          // Instrument updates including turnover and bid/ask
-"insurance",           // Daily Insurance Fund updates
-"liquidation",         // Liquidation orders as they're entered into the book
-"orderBookL2_25",      // Top 25 levels of level 2 order book
-"orderBookL2",         // Full level 2 order book
-"orderBook10",         // Top 10 levels using traditional full book push
-"publicNotifications", // System-wide notifications (used for short-lived messages)
-"quote",               // Top level of the book
-"quoteBin1m",          // 1-minute quote bins
-"quoteBin5m",          // 5-minute quote bins
-"quoteBin1h",          // 1-hour quote bins
-"quoteBin1d",          // 1-day quote bins
-"settlement",          // Settlements
-"trade",               // Live trades
-"tradeBin1m",          // 1-minute trade bins
-"tradeBin5m",          // 5-minute trade bins
-"tradeBin1h",          // 1-hour trade bins
-"tradeBin1d",          // 1-day trade bins
-</code></pre>
+<p>无需权鉴的主题：<br>
+01<br>
+<code>
+&quot;announcement&quot;,        // Site announcements  &gt;
+&quot;chat&quot;,                // Trollbox chat  &gt;
+&quot;connected&quot;,           // Statistics of connected users/bots
+&quot;funding&quot;,             // Updates of swap funding rates. Sent every funding interval (usually 8hrs)
+&quot;instrument&quot;,          // Instrument updates including turnover and bid/ask
+&quot;insurance&quot;,           // Daily Insurance Fund updates
+&quot;liquidation&quot;,         // Liquidation orders as they&#39;re entered into the book
+&quot;orderBookL2_25&quot;,      // Top 25 levels of level 2 order book
+&quot;orderBookL2&quot;,         // Full level 2 order book
+&quot;orderBook10&quot;,         // Top 10 levels using traditional full book push
+&quot;publicNotifications&quot;, // System-wide notifications (used for short-lived messages)
+&quot;quote&quot;,               // Top level of the book
+&quot;quoteBin1m&quot;,          // 1-minute quote bins
+&quot;quoteBin5m&quot;,          // 5-minute quote bins
+&quot;quoteBin1h&quot;,          // 1-hour quote bins
+&quot;quoteBin1d&quot;,          // 1-day quote bins
+&quot;settlement&quot;,          // Settlements
+&quot;trade&quot;,               // Live trades
+&quot;tradeBin1m&quot;,          // 1-minute trade bins
+&quot;tradeBin5m&quot;,          // 5-minute trade bins
+&quot;tradeBin1h&quot;,          // 1-hour trade bins
+&quot;tradeBin1d&quot;,          // 1-day trade bins
+</code></p>
+
 <p>需要权鉴的主题：  </p>
 <pre class="highlight plaintext"><code>"affiliate",   // Affiliate status, such as total referred users &amp; payout %
 "execution",   // Individual executions; can be multiple per order
