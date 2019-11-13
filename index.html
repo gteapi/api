@@ -280,16 +280,19 @@
                     <a href="#6b248331a8" class="toc-h2 toc-link" data-title="账户划转">账户划转</a>
                   </li>
                   <li>
-                    <a href="#8051e284c4" class="toc-h2 toc-link" data-title="委托接口">委托接口</a>
+                    <a href="#e73d7c0566" class="toc-h2 toc-link" data-title="查询永续合约的交易对">查询永续合约的交易对</a>
                   </li>
                   <li>
-                    <a href="#instrument" class="toc-h2 toc-link" data-title="instrument接口">instrument接口</a>
+                    <a href="#instrument" class="toc-h2 toc-link" data-title="查询instrument数据">查询instrument数据</a>
                   </li>
                   <li>
-                    <a href="#2bf0a92d60" class="toc-h2 toc-link" data-title="深度接口">深度接口</a>
+                    <a href="#k" class="toc-h2 toc-link" data-title="查询永续合约的k线">查询永续合约的k线</a>
                   </li>
                   <li>
-                    <a href="#5601b3d8e3" class="toc-h2 toc-link" data-title="创建委托">创建委托</a>
+                    <a href="#orderbook" class="toc-h2 toc-link" data-title="orderBook 深度">orderBook 深度</a>
+                  </li>
+                  <li>
+                    <a href="#cf35401ecf" class="toc-h2 toc-link" data-title="创建活动委托">创建活动委托</a>
                   </li>
                   <li>
                     <a href="#3a8264c8e2" class="toc-h2 toc-link" data-title="撤销委托">撤销委托</a>
@@ -748,44 +751,14 @@ Via REST at /order/cancelAllAfter or via WebSocket via the example below, one ca
     <span class="s2">"msg"</span>:null,
     <span class="s2">"time"</span>:1573639855769
 <span class="o">}</span>
-</code></pre><h2 id='8051e284c4'>委托接口</h2>
-<p><strong>创建活动委托</strong></p>
+</code></pre><h2 id='e73d7c0566'>查询永续合约的交易对</h2>
+<p><strong>查询永续合约的交易对</strong></p>
 
 <p><strong>示例</strong></p>
 
 <ul>
-<li>POST <code>baseUrl/v1/api/pc/order/create</code></li>
+<li>GTE <code>baseUrl/v1/api/pc/contract/query</code></li>
 </ul>
-
-<p><strong>请求头</strong></p>
-
-<table><thead>
-<tr>
-<th>名称</th>
-<th>类型</th>
-<th>是否必须</th>
-<th>描述</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>api-key</td>
-<td>string</td>
-<td>YES</td>
-<td>apiKey</td>
-</tr>
-<tr>
-<td>api-expires</td>
-<td>string</td>
-<td>YES</td>
-<td>当前时间戳毫秒</td>
-</tr>
-<tr>
-<td>api-signature</td>
-<td>string</td>
-<td>YES</td>
-<td>api签名</td>
-</tr>
-</tbody></table>
 
 <p><strong>请求参数</strong></p>
 
@@ -798,63 +771,34 @@ Via REST at /order/cancelAllAfter or via WebSocket via the example below, one ca
 </tr>
 </thead><tbody>
 <tr>
-<td>client_oid</td>
+<td>asset</td>
 <td>string</td>
-<td>NO</td>
-<td>客户端订单Id,由您设置的订单id来唯一标识您的订单,字符串,长度40</td>
-</tr>
-<tr>
-<td>symbol</td>
-<td>string</td>
-<td>YES</td>
-<td>交易对</td>
-</tr>
-<tr>
-<td>side</td>
-<td>string</td>
-<td>YES</td>
-<td>买入1,卖出0</td>
-</tr>
-<tr>
-<td>close_flag</td>
-<td>string</td>
-<td>YES</td>
-<td>0开仓,1平仓</td>
-</tr>
-<tr>
-<td>price</td>
-<td>string</td>
-<td>NO</td>
-<td>价格</td>
-</tr>
-<tr>
-<td>qty</td>
-<td>string</td>
-<td>YES</td>
-<td>张数</td>
-</tr>
-<tr>
-<td>order_type</td>
-<td>string</td>
-<td>YES</td>
-<td>委托类型,1:限价</td>
+<td>yes</td>
+<td>资产</td>
 </tr>
 </tbody></table>
 <pre class="highlight shell tab-shell"><code><span class="c"># Response</span>
 <span class="o">{</span>
   <span class="s2">"code"</span>: 0,
   <span class="s2">"data"</span>: <span class="o">{</span>
-    <span class="s2">"time"</span>: <span class="s2">"1568639111357"</span>,
-    <span class="s2">"order_id"</span>: <span class="s2">"93814490360972800"</span>   //委托id
-  <span class="o">}</span>,
-  <span class="s2">"input"</span>: null,
-  <span class="s2">"traceId"</span>: <span class="s2">""</span>,
-  <span class="s2">"cost"</span>: 0,
-  <span class="s2">"error"</span>: null,
-  <span class="s2">"msg"</span>: null,
-  <span class="s2">"time"</span>: 1568639111359
+    <span class="s2">"time"</span>: <span class="s2">"1573642959704"</span>,
+    <span class="s2">"rows"</span>: <span class="o">[</span>
+      <span class="o">{</span>
+        <span class="s2">"symbol"</span>: <span class="s2">"BTC_USD"</span>,    //交易对
+        <span class="s2">"price_precision"</span>: <span class="s2">"1"</span>  //价格的最大小数位
+      <span class="o">}</span>,
+      <span class="o">{</span>
+        <span class="s2">"symbol"</span>: <span class="s2">"ETH_USD"</span>,
+        <span class="s2">"price_precision"</span>: <span class="s2">"1"</span>
+      <span class="o">}</span>,
+      <span class="o">{</span>
+        <span class="s2">"symbol"</span>: <span class="s2">"EOS_USD"</span>,
+        <span class="s2">"price_precision"</span>: <span class="s2">"6"</span>
+      <span class="o">}</span>
+    <span class="o">]</span>
+  <span class="o">}</span>
 <span class="o">}</span>
-</code></pre><h2 id='instrument'>instrument接口</h2>
+</code></pre><h2 id='instrument'>查询instrument数据</h2>
 <p><strong>查询instrument数据</strong></p>
 
 <p><strong>示例</strong></p>
@@ -882,8 +826,8 @@ Via REST at /order/cancelAllAfter or via WebSocket via the example below, one ca
 <tr>
 <td>symbol</td>
 <td>string</td>
-<td>yes</td>
-<td>交易对</td>
+<td>no</td>
+<td>交易对 不填查询全部交易对</td>
 </tr>
 </tbody></table>
 <pre class="highlight shell tab-shell"><code><span class="c"># Response</span>
@@ -918,13 +862,13 @@ Via REST at /order/cancelAllAfter or via WebSocket via the example below, one ca
   <span class="s2">"msg"</span>: null,
   <span class="s2">"time"</span>: 1573635077085
 <span class="o">}</span>
-</code></pre><h2 id='2bf0a92d60'>深度接口</h2>
-<p><strong>查询永续合约信息</strong></p>
+</code></pre><h2 id='k'>查询永续合约的k线</h2>
+<p><strong>查询永续合约的k线</strong></p>
 
 <p><strong>示例</strong></p>
 
 <ul>
-<li>GTE <code>baseUrl/v1/api/pc/depth/query</code></li>
+<li>GTE <code>baseUrl/v1/api/pc/candle/query</code></li>
 </ul>
 
 <p><strong>请求参数</strong></p>
@@ -938,55 +882,144 @@ Via REST at /order/cancelAllAfter or via WebSocket via the example below, one ca
 </tr>
 </thead><tbody>
 <tr>
+<td>asset</td>
+<td>string</td>
+<td>YES</td>
+<td>资产</td>
+</tr>
+<tr>
 <td>symbol</td>
 <td>string</td>
 <td>YES</td>
 <td>交易对</td>
 </tr>
+<tr>
+<td>start_time</td>
+<td>string</td>
+<td>NO</td>
+<td>开始时间,时间戳毫秒</td>
+</tr>
+<tr>
+<td>end_time</td>
+<td>string</td>
+<td>NO</td>
+<td>结束时间,时间戳毫秒</td>
+</tr>
+<tr>
+<td>interval</td>
+<td>string</td>
+<td>NO</td>
+<td>k线时间间隔,分钟</td>
+</tr>
+<tr>
+<td>size</td>
+<td>string</td>
+<td>NO</td>
+<td>返回条数</td>
+</tr>
 </tbody></table>
+
+<p><strong>说明</strong>
+interval值 1 5 15 30 60 120 240 360 720 1440 10080 43200
+size 最大1440</p>
 <pre class="highlight shell tab-shell"><code><span class="c"># Response</span>
 <span class="o">{</span>
   <span class="s2">"code"</span>: 0,
   <span class="s2">"data"</span>: <span class="o">{</span>
-    <span class="s2">"time"</span>: <span class="s2">"1568635734093"</span>,
-    <span class="s2">"ssymbol"</span>: <span class="s2">"BTC_USD"</span>,      //交易对
-    <span class="s2">"bids"</span>: <span class="o">[</span>
+    <span class="s2">"time"</span>: <span class="s2">"1573641132754"</span>,
+    <span class="s2">"interval"</span>: <span class="s2">"1"</span>,         
+    <span class="s2">"rows"</span>: <span class="o">[</span>
       <span class="o">[</span>
-        <span class="s2">"10000"</span>,   //价格
-        <span class="s2">"2848"</span>     //数量
-      <span class="o">]</span>,
-      <span class="o">[</span>
-        <span class="s2">"9999"</span>,
-        <span class="s2">"1"</span>
-      <span class="o">]</span>,
-      <span class="o">[</span>
-        <span class="s2">"9998"</span>,
-        <span class="s2">"30"</span>
+        <span class="s2">"1573640940000"</span>,    //k线的时间戳毫秒
+        <span class="s2">"10009"</span>,            //开盘价
+        <span class="s2">"10009"</span>,            //最高价
+        <span class="s2">"10009"</span>,            //最低价
+        <span class="s2">"10009"</span>,            //收盘价
+        <span class="s2">"2"</span>                 //量<span class="o">(</span>张数<span class="o">)</span> 
       <span class="o">]</span>
     <span class="o">]</span>,
-    <span class="s2">"asks"</span>: <span class="o">[</span>
-      <span class="o">[</span>
-        <span class="s2">"10001"</span>,
-        <span class="s2">"59"</span>
-      <span class="o">]</span>,
-      <span class="o">[</span>
-        <span class="s2">"10002"</span>,
-        <span class="s2">"1"</span>
-      <span class="o">]</span>,
-      <span class="o">[</span>
-        <span class="s2">"10003"</span>,
-        <span class="s2">"3"</span>
-      <span class="o">]</span>
-    <span class="o">]</span>
+    <span class="s2">"asset"</span>: <span class="s2">"BTC"</span>,
+    <span class="s2">"symbol"</span>: <span class="s2">"BTC_USD"</span>
   <span class="o">}</span>,
   <span class="s2">"input"</span>: null,
   <span class="s2">"traceId"</span>: <span class="s2">""</span>,
   <span class="s2">"cost"</span>: 0,
   <span class="s2">"error"</span>: null,
   <span class="s2">"msg"</span>: null,
-  <span class="s2">"time"</span>: 1568635734093
+  <span class="s2">"time"</span>: 1573641132755
 <span class="o">}</span>
-</code></pre><h2 id='5601b3d8e3'>创建委托</h2>
+</code></pre><h2 id='orderbook'>orderBook 深度</h2>
+<p><strong>查询永续合约信息</strong></p>
+
+<p><strong>示例</strong></p>
+
+<ul>
+<li>GTE <code>baseUrl/v1/api/pc/order/book/query</code></li>
+</ul>
+
+<p><strong>请求参数</strong></p>
+
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>asset</td>
+<td>string</td>
+<td>YES</td>
+<td>资产</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>YES</td>
+<td>交易对</td>
+</tr>
+<tr>
+<td>size</td>
+<td>string</td>
+<td>NO</td>
+<td>返回数量</td>
+</tr>
+</tbody></table>
+
+<p><strong>说明</strong></p>
+
+<p>size 填写15,买卖共30条,最大50</p>
+<pre class="highlight shell tab-shell"><code><span class="c"># Response</span>
+<span class="o">{</span>
+  <span class="s2">"code"</span>: 0,
+  <span class="s2">"data"</span>: <span class="o">{</span>
+    <span class="s2">"time"</span>: <span class="s2">"1573643118030"</span>,
+    <span class="s2">"bids"</span>: <span class="o">[</span>             //bid 买入
+      <span class="o">[</span>
+        <span class="s2">"8888"</span>,           //价格
+        <span class="s2">"136"</span>             //量
+      <span class="o">]</span>,
+      <span class="o">[</span>
+        <span class="s2">"8000"</span>,
+        <span class="s2">"96"</span>
+      <span class="o">]</span>
+    <span class="o">]</span>,
+    <span class="s2">"asks"</span>: <span class="o">[</span>            //ask 
+      <span class="o">[</span>
+        <span class="s2">"10009"</span>,
+        <span class="s2">"229"</span>
+      <span class="o">]</span>,
+      <span class="o">[</span>
+        <span class="s2">"10021"</span>,
+        <span class="s2">"188"</span>
+      <span class="o">]</span>
+    <span class="o">]</span>,
+    <span class="s2">"asset"</span>: <span class="s2">"BTC"</span>,          //资产
+    <span class="s2">"symbol"</span>: <span class="s2">"BTC_USD"</span>      //交易对
+  <span class="o">}</span>,
+<span class="o">}</span>
+</code></pre><h2 id='cf35401ecf'>创建活动委托</h2>
 <p><strong>创建活动委托</strong></p>
 
 <p><strong>示例</strong></p>
@@ -1042,6 +1075,12 @@ Via REST at /order/cancelAllAfter or via WebSocket via the example below, one ca
 <td>客户端订单Id,由您设置的订单id来唯一标识您的订单,字符串,长度40</td>
 </tr>
 <tr>
+<td>asset</td>
+<td>string</td>
+<td>YES</td>
+<td>资产</td>
+</tr>
+<tr>
 <td>symbol</td>
 <td>string</td>
 <td>YES</td>
@@ -1078,19 +1117,23 @@ Via REST at /order/cancelAllAfter or via WebSocket via the example below, one ca
 <td>委托类型,1:限价</td>
 </tr>
 </tbody></table>
+
+<p><strong>说明</strong>
+order_type等于1,price必填</p>
 <pre class="highlight shell tab-shell"><code><span class="c"># Response</span>
+
 <span class="o">{</span>
-  <span class="s2">"code"</span>: 0,
-  <span class="s2">"data"</span>: <span class="o">{</span>
-    <span class="s2">"time"</span>: <span class="s2">"1568639111357"</span>,
-    <span class="s2">"order_id"</span>: <span class="s2">"93814490360972800"</span>   //委托id
-  <span class="o">}</span>,
-  <span class="s2">"input"</span>: null,
-  <span class="s2">"traceId"</span>: <span class="s2">""</span>,
-  <span class="s2">"cost"</span>: 0,
-  <span class="s2">"error"</span>: null,
-  <span class="s2">"msg"</span>: null,
-  <span class="s2">"time"</span>: 1568639111359
+    <span class="s2">"code"</span>:0,
+    <span class="s2">"data"</span>:<span class="o">{</span>
+        <span class="s2">"time"</span>:<span class="s2">"1573645810154"</span>,
+        <span class="s2">"order_id"</span>:<span class="s2">"114813904143597952"</span>   //委托id
+    <span class="o">}</span>,
+    <span class="s2">"input"</span>:null,
+    <span class="s2">"traceId"</span>:<span class="s2">""</span>,
+    <span class="s2">"cost"</span>:0,
+    <span class="s2">"error"</span>:null,
+    <span class="s2">"msg"</span>:null,
+    <span class="s2">"time"</span>:1573645810155
 <span class="o">}</span>
 </code></pre><h2 id='3a8264c8e2'>撤销委托</h2>
 <p><strong>撤销活动委托</strong></p>
@@ -1148,6 +1191,12 @@ Via REST at /order/cancelAllAfter or via WebSocket via the example below, one ca
 <td>委托id</td>
 </tr>
 <tr>
+<td>asset</td>
+<td>string</td>
+<td>YES</td>
+<td>资产</td>
+</tr>
+<tr>
 <td>symbol</td>
 <td>string</td>
 <td>YES</td>
@@ -1169,7 +1218,7 @@ Via REST at /order/cancelAllAfter or via WebSocket via the example below, one ca
   <span class="s2">"time"</span>: 1568639111359
 <span class="o">}</span>
 </code></pre><h2 id='6f17b241c4'>查询委托</h2>
-<p><strong>查询活动委托</strong></p>
+<p><strong>查询委托</strong></p>
 
 <p><strong>示例</strong></p>
 
@@ -1218,6 +1267,12 @@ Via REST at /order/cancelAllAfter or via WebSocket via the example below, one ca
 </tr>
 </thead><tbody>
 <tr>
+<td>asset</td>
+<td>string</td>
+<td>YES</td>
+<td>资产</td>
+</tr>
+<tr>
 <td>symbol</td>
 <td>string</td>
 <td>NO</td>
@@ -1230,22 +1285,16 @@ Via REST at /order/cancelAllAfter or via WebSocket via the example below, one ca
 <td>过滤器, json格式的字符串</td>
 </tr>
 <tr>
-<td>start_time</td>
+<td>gt_order_id</td>
 <td>string</td>
 <td>NO</td>
-<td>时间戳毫秒,不填为当前时间</td>
+<td>order_id,请求大于order_id的数据,gt和lt都填,以gt为准</td>
 </tr>
 <tr>
-<td>end_time</td>
+<td>lt_order_id</td>
 <td>string</td>
 <td>NO</td>
-<td>时间戳毫秒</td>
-</tr>
-<tr>
-<td>reverse</td>
-<td>string</td>
-<td>NO</td>
-<td>1.时间倒序,0.时间顺序,不填为倒序</td>
+<td>order_id,请求小于order_id的数据</td>
 </tr>
 <tr>
 <td>count</td>
@@ -1255,18 +1304,16 @@ Via REST at /order/cancelAllAfter or via WebSocket via the example below, one ca
 </tr>
 </tbody></table>
 
-<p><strong>查询逻辑</strong></p>
+<p><strong>说明</strong></p>
 
-<ul>
-<li><p>reverse 等于1时,按照时间倒序排列, 返回小于等于start_time和大于等于end_time的活动委托</p></li>
-<li><p>reverse 等于0时,按照时间程序排列, 返回大于等于start_time和小于等于end_time的活动委托</p></li>
-</ul>
+<p>使用gt_order_id查询委托按照id顺序排列
+使用lt_order_id查询委托按照id倒叙排列</p>
 
 <p><strong>filter</strong></p>
 
 <ul>
 <li><p>json格式的字符串</p></li>
-<li><p>支持 key status(委托状态) , 类型 字符串数组</p></li>
+<li><p>支持 status(委托状态) , 类型 字符串数组</p></li>
 <li><p>例如{&quot;status&quot;:[&quot;1&quot;,&quot;8&quot;]}</p></li>
 </ul>
 <pre class="highlight shell tab-shell"><code><span class="c"># Response</span>
@@ -1275,22 +1322,23 @@ Via REST at /order/cancelAllAfter or via WebSocket via the example below, one ca
     <span class="s2">"data"</span>:<span class="o">{</span>
         <span class="s2">"time"</span>:<span class="s2">"1568639823340"</span>,
         <span class="s2">"orders"</span>:[
-            <span class="o">{</span>
-                <span class="s2">"id"</span>:<span class="s2">"93800123938637312"</span>,   //委托id
-                <span class="s2">"fee"</span>:<span class="s2">"0"</span>,                  //手续费
-                <span class="s2">"price"</span>:<span class="s2">"10000"</span>,            //价格
-                <span class="s2">"qty"</span>:<span class="s2">"2"</span>,                  //张数
-                <span class="s2">"leverage"</span>:<span class="s2">"10"</span>,            //杠杆
-                <span class="s2">"symbol"</span>:<span class="s2">"BTC_USD"</span>,           //交易对
-                <span class="s2">"ctime"</span>:<span class="s2">"1568635692270"</span>,    //创建时间
-                <span class="s2">"client_oid"</span>:null,          //客户端id
-                <span class="s2">"avg_price"</span>:<span class="s2">"0"</span>,            //成交均价
-                <span class="s2">"filled_qty"</span>:<span class="s2">"1"</span>,           //已经成交张数
-                <span class="s2">"close_flag"</span>:<span class="s2">"0"</span>,           //0开仓,1平仓        
+            <span class="o">{</span>    
+                <span class="s2">"id"</span>:<span class="s2">"114813904143597952"</span>, //委托id
+                <span class="s2">"status"</span>:<span class="s2">"4"</span>, //委托状态  1:已创建未匹配 2:新建未成交 4:待取消 8:已取消 16:部分成交 32:全部成交     
+                <span class="s2">"fee"</span>:<span class="s2">"0.023"</span>,    //手续费
+                <span class="s2">"price"</span>:<span class="s2">"8500"</span>,   //价格
+                <span class="s2">"qty"</span>:<span class="s2">"1"</span>,        //张数
+                <span class="s2">"leverage"</span>:<span class="s2">"5"</span>,   //杠杆
+                <span class="s2">"ctime"</span>:<span class="s2">"1573645767887"</span>,     //订单创建时间
+                <span class="s2">"client_oid"</span>:null,           //客户端id
+                <span class="s2">"avg_price"</span>:<span class="s2">"0"</span>,             //成交均价
+                <span class="s2">"filled_qty"</span>:<span class="s2">"0"</span>,            //已成交张数
+                <span class="s2">"close_flag"</span>:<span class="s2">"0"</span>,            //0开仓,1平仓       
                 <span class="s2">"side"</span>:<span class="s2">"1"</span>,                  //买入1,卖出0
-                <span class="s2">"order_margin"</span>:<span class="s2">"0.00001"</span>,   //委托保证金
-                <span class="s2">"order_type"</span>:<span class="s2">"1"</span>,            //委托类型
-                <span class="s2">"status"</span>:<span class="s2">"2"</span>                //委托状态  1:已创建未匹配 2:新建未成交 4:待取消 8:已取消 16:部分成交 32:全部成交     
+                <span class="s2">"asset"</span>:<span class="s2">"BTC"</span>,               //资产
+                <span class="s2">"symbol"</span>:<span class="s2">"BTC_USD"</span>,          //交易对
+                <span class="s2">"order_margin"</span>:<span class="s2">"0.000023"</span>,   //委托保证金
+                <span class="s2">"order_type"</span>:<span class="s2">"1"</span>             //委托类型
             <span class="o">}</span>
         <span class="o">]</span>
     <span class="o">}</span>,
