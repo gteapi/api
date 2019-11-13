@@ -268,6 +268,21 @@
                     <a href="#api-2" class="toc-h2 toc-link" data-title="API签名说明">API签名说明</a>
                   </li>
                   <li>
+                    <a href="#85b6f6572b" class="toc-h2 toc-link" data-title="查询交易所支持的资产">查询交易所支持的资产</a>
+                  </li>
+                  <li>
+                    <a href="#f8972860b8" class="toc-h2 toc-link" data-title="查询资金账户">查询资金账户</a>
+                  </li>
+                  <li>
+                    <a href="#dbc313625b" class="toc-h2 toc-link" data-title="查询永续合约账户">查询永续合约账户</a>
+                  </li>
+                  <li>
+                    <a href="#6b248331a8" class="toc-h2 toc-link" data-title="账户划转">账户划转</a>
+                  </li>
+                  <li>
+                    <a href="#8051e284c4" class="toc-h2 toc-link" data-title="委托接口">委托接口</a>
+                  </li>
+                  <li>
                     <a href="#instrument" class="toc-h2 toc-link" data-title="instrument接口">instrument接口</a>
                   </li>
                   <li>
@@ -459,7 +474,387 @@ Via REST at /order/cancelAllAfter or via WebSocket via the example below, one ca
   * message等于api-key+api-expires+请求参数排序后的字符串
   * hmacSha256（apiSecret,message） 加密成api签名,由api-signature携带</p></li>
 </ul>
-<h2 id='instrument'>instrument接口</h2>
+<h2 id='85b6f6572b'>查询交易所支持的资产</h2>
+<p><strong>查询交易所支持的资产</strong></p>
+
+<p><strong>示例</strong></p>
+
+<ul>
+<li>GET <code>baseUrl/v1/api/asset/query</code></li>
+</ul>
+
+<p><strong>请求参数</strong></p>
+<pre class="highlight shell tab-shell"><code><span class="c"># Response</span>
+<span class="o">{</span>
+  <span class="s2">"code"</span>: 0,
+  <span class="s2">"data"</span>: <span class="o">{</span>
+    <span class="s2">"rows"</span>: <span class="o">[</span>
+      <span class="o">{</span>
+        <span class="s2">"asset"</span>: <span class="s2">"BTC"</span>
+      <span class="o">}</span>,
+      <span class="o">{</span>
+        <span class="s2">"asset"</span>: <span class="s2">"ETH"</span>
+      <span class="o">}</span>
+    <span class="o">]</span>
+  <span class="o">}</span>,
+  <span class="s2">"input"</span>: null,
+  <span class="s2">"traceId"</span>: <span class="s2">""</span>,
+  <span class="s2">"cost"</span>: 0,
+  <span class="s2">"error"</span>: null,
+  <span class="s2">"msg"</span>: null,
+  <span class="s2">"time"</span>: 1573640300898
+<span class="o">}</span>
+</code></pre><h2 id='f8972860b8'>查询资金账户</h2>
+<p><strong>查询资金账户</strong></p>
+
+<p><strong>示例</strong></p>
+
+<ul>
+<li>GET <code>baseUrl/v1/api/account/fund/query</code></li>
+</ul>
+
+<p><strong>请求头</strong></p>
+
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>api-key</td>
+<td>string</td>
+<td>YES</td>
+<td>apiKey</td>
+</tr>
+<tr>
+<td>api-expires</td>
+<td>string</td>
+<td>YES</td>
+<td>当前时间戳毫秒</td>
+</tr>
+<tr>
+<td>api-signature</td>
+<td>string</td>
+<td>YES</td>
+<td>api签名</td>
+</tr>
+</tbody></table>
+
+<p><strong>请求参数</strong></p>
+
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>asset</td>
+<td>string</td>
+<td>NO</td>
+<td>资产,不填查询全部资产</td>
+</tr>
+</tbody></table>
+<pre class="highlight shell tab-shell"><code><span class="c"># Response</span>
+<span class="o">{</span>
+    <span class="s2">"code"</span>:0,
+    <span class="s2">"data"</span>:<span class="o">{</span>
+        <span class="s2">"rows"</span>:[
+            <span class="o">{</span>
+                <span class="s2">"lock"</span>:<span class="s2">"0"</span>,              //锁定的额度
+                <span class="s2">"available"</span>:<span class="s2">"9"</span>,     //余额
+                <span class="s2">"asset"</span>:<span class="s2">"BTC"</span>,           //资产
+                <span class="s2">"total"</span>:<span class="s2">"9"</span>          //总额
+            <span class="o">}</span>
+        <span class="o">]</span>
+    <span class="o">}</span>,
+    <span class="s2">"input"</span>:null,
+    <span class="s2">"traceId"</span>:<span class="s2">""</span>,
+    <span class="s2">"cost"</span>:0,
+    <span class="s2">"error"</span>:null,
+    <span class="s2">"msg"</span>:null,
+    <span class="s2">"time"</span>:1573639309095
+<span class="o">}</span>
+</code></pre><h2 id='dbc313625b'>查询永续合约账户</h2>
+<p><strong>查询永续合约账户</strong></p>
+
+<p><strong>示例</strong></p>
+
+<ul>
+<li>GET <code>baseUrl/v1/api/account/pc/query</code></li>
+</ul>
+
+<p><strong>请求头</strong></p>
+
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>api-key</td>
+<td>string</td>
+<td>YES</td>
+<td>apiKey</td>
+</tr>
+<tr>
+<td>api-expires</td>
+<td>string</td>
+<td>YES</td>
+<td>当前时间戳毫秒</td>
+</tr>
+<tr>
+<td>api-signature</td>
+<td>string</td>
+<td>YES</td>
+<td>api签名</td>
+</tr>
+</tbody></table>
+
+<p><strong>请求参数</strong></p>
+
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>asset</td>
+<td>string</td>
+<td>NO</td>
+<td>资产,不填查询全部资产</td>
+</tr>
+</tbody></table>
+<pre class="highlight shell tab-shell"><code><span class="c"># Response</span>
+<span class="o">{</span>
+    <span class="s2">"code"</span>:0,
+    <span class="s2">"data"</span>:<span class="o">{</span>
+        <span class="s2">"rows"</span>:[
+            <span class="o">{</span>
+                <span class="s2">"available"</span>:<span class="s2">"7"</span>,      //可用余额      
+                <span class="s2">"asset"</span>:<span class="s2">"BTC"</span>,        //资产
+                <span class="s2">"total"</span>:<span class="s2">"10"</span>,         //总额
+                <span class="s2">"order_margin"</span>:<span class="s2">"1"</span>,   //委托保证金
+                <span class="s2">"pos_margin"</span>:<span class="s2">"2"</span>      //仓位保证金
+            <span class="o">}</span>
+        <span class="o">]</span>
+    <span class="o">}</span>,
+    <span class="s2">"input"</span>:null,
+    <span class="s2">"traceId"</span>:<span class="s2">""</span>,
+    <span class="s2">"cost"</span>:0,
+    <span class="s2">"error"</span>:null,
+    <span class="s2">"msg"</span>:null,
+    <span class="s2">"time"</span>:1573639479143
+<span class="o">}</span>
+</code></pre><h2 id='6b248331a8'>账户划转</h2>
+<p><strong>账户划转</strong></p>
+
+<p><strong>示例</strong></p>
+
+<ul>
+<li>POST <code>baseUrl/v1/api/account/transfer</code></li>
+</ul>
+
+<p><strong>请求头</strong></p>
+
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>api-key</td>
+<td>string</td>
+<td>YES</td>
+<td>apiKey</td>
+</tr>
+<tr>
+<td>api-expires</td>
+<td>string</td>
+<td>YES</td>
+<td>当前时间戳毫秒</td>
+</tr>
+<tr>
+<td>api-signature</td>
+<td>string</td>
+<td>YES</td>
+<td>api签名</td>
+</tr>
+</tbody></table>
+
+<p><strong>请求参数</strong></p>
+
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>asset</td>
+<td>string</td>
+<td>YES</td>
+<td>资产</td>
+</tr>
+<tr>
+<td>from</td>
+<td>string</td>
+<td>YES</td>
+<td>转出账户类型</td>
+</tr>
+<tr>
+<td>to</td>
+<td>string</td>
+<td>YES</td>
+<td>转入账户类型</td>
+</tr>
+<tr>
+<td>volume</td>
+<td>string</td>
+<td>YES</td>
+<td>数量,最小8位小数点</td>
+</tr>
+</tbody></table>
+
+<p><strong>说明</strong></p>
+
+<p>账户类型 1.资金账户,2.合约账户</p>
+<pre class="highlight shell tab-shell"><code><span class="c"># Response</span>
+<span class="o">{</span>
+    <span class="s2">"code"</span>:0,
+    <span class="s2">"data"</span>:<span class="o">{</span>
+        <span class="s2">"time"</span>:null
+    <span class="o">}</span>,
+    <span class="s2">"input"</span>:null,
+    <span class="s2">"traceId"</span>:<span class="s2">""</span>,
+    <span class="s2">"cost"</span>:0,
+    <span class="s2">"error"</span>:null,
+    <span class="s2">"msg"</span>:null,
+    <span class="s2">"time"</span>:1573639855769
+<span class="o">}</span>
+</code></pre><h2 id='8051e284c4'>委托接口</h2>
+<p><strong>创建活动委托</strong></p>
+
+<p><strong>示例</strong></p>
+
+<ul>
+<li>POST <code>baseUrl/v1/api/pc/order/create</code></li>
+</ul>
+
+<p><strong>请求头</strong></p>
+
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>api-key</td>
+<td>string</td>
+<td>YES</td>
+<td>apiKey</td>
+</tr>
+<tr>
+<td>api-expires</td>
+<td>string</td>
+<td>YES</td>
+<td>当前时间戳毫秒</td>
+</tr>
+<tr>
+<td>api-signature</td>
+<td>string</td>
+<td>YES</td>
+<td>api签名</td>
+</tr>
+</tbody></table>
+
+<p><strong>请求参数</strong></p>
+
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>client_oid</td>
+<td>string</td>
+<td>NO</td>
+<td>客户端订单Id,由您设置的订单id来唯一标识您的订单,字符串,长度40</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>YES</td>
+<td>交易对</td>
+</tr>
+<tr>
+<td>side</td>
+<td>string</td>
+<td>YES</td>
+<td>买入1,卖出0</td>
+</tr>
+<tr>
+<td>close_flag</td>
+<td>string</td>
+<td>YES</td>
+<td>0开仓,1平仓</td>
+</tr>
+<tr>
+<td>price</td>
+<td>string</td>
+<td>NO</td>
+<td>价格</td>
+</tr>
+<tr>
+<td>qty</td>
+<td>string</td>
+<td>YES</td>
+<td>张数</td>
+</tr>
+<tr>
+<td>order_type</td>
+<td>string</td>
+<td>YES</td>
+<td>委托类型,1:限价</td>
+</tr>
+</tbody></table>
+<pre class="highlight shell tab-shell"><code><span class="c"># Response</span>
+<span class="o">{</span>
+  <span class="s2">"code"</span>: 0,
+  <span class="s2">"data"</span>: <span class="o">{</span>
+    <span class="s2">"time"</span>: <span class="s2">"1568639111357"</span>,
+    <span class="s2">"order_id"</span>: <span class="s2">"93814490360972800"</span>   //委托id
+  <span class="o">}</span>,
+  <span class="s2">"input"</span>: null,
+  <span class="s2">"traceId"</span>: <span class="s2">""</span>,
+  <span class="s2">"cost"</span>: 0,
+  <span class="s2">"error"</span>: null,
+  <span class="s2">"msg"</span>: null,
+  <span class="s2">"time"</span>: 1568639111359
+<span class="o">}</span>
+</code></pre><h2 id='instrument'>instrument接口</h2>
 <p><strong>查询instrument数据</strong></p>
 
 <p><strong>示例</strong></p>
