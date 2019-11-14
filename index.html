@@ -303,6 +303,9 @@
                   <li>
                     <a href="#bbd4754907" class="toc-h2 toc-link" data-title="查询成交记录">查询成交记录</a>
                   </li>
+                  <li>
+                    <a href="#4215cf81c7" class="toc-h2 toc-link" data-title="调整杠杆">调整杠杆</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -440,7 +443,8 @@ Via REST at /order/cancelAllAfter or via WebSocket via the example below, one ca
 </blockquote>
 <h2 id='19b61b1c63'>消息格式</h2><h2 id='12907e94be'>访问限制</h2><h1 id='http-restful-api'>Http Restful API</h1><h2 id='baseurl'>BaseUrl</h2>
 <ul>
-<li><code>http://{ip}:port</code></li>
+<li><p><code>http://{ip}:port</code></p></li>
+<li><p>baseUrl/v1/api/pc/asset/query v1为版本号</p></li>
 </ul>
 <h2 id='api-2'>API签名说明</h2>
 <ul>
@@ -1304,11 +1308,6 @@ order_type等于1,price必填</p>
 </tr>
 </tbody></table>
 
-<p><strong>说明</strong></p>
-
-<p>使用gt_order_id查询委托按照id顺序排列
-使用lt_order_id查询委托按照id倒叙排列</p>
-
 <p><strong>filter</strong></p>
 
 <ul>
@@ -1321,9 +1320,9 @@ order_type等于1,price必填</p>
     <span class="s2">"code"</span>:0,
     <span class="s2">"data"</span>:<span class="o">{</span>
         <span class="s2">"time"</span>:<span class="s2">"1568639823340"</span>,
-        <span class="s2">"orders"</span>:[
+        <span class="s2">"rows"</span>:[
             <span class="o">{</span>    
-                <span class="s2">"id"</span>:<span class="s2">"114813904143597952"</span>, //委托id
+                <span class="s2">"order_id"</span>:<span class="s2">"114813904143597952"</span>, //委托id
                 <span class="s2">"status"</span>:<span class="s2">"4"</span>, //委托状态  1:已创建未匹配 2:新建未成交 4:待取消 8:已取消 16:部分成交 32:全部成交     
                 <span class="s2">"fee"</span>:<span class="s2">"0.023"</span>,    //手续费
                 <span class="s2">"price"</span>:<span class="s2">"8500"</span>,   //价格
@@ -1349,7 +1348,182 @@ order_type等于1,price必填</p>
     <span class="s2">"msg"</span>:null,
     <span class="s2">"time"</span>:1568639823342
 <span class="o">}</span>
-</code></pre><h2 id='bbd4754907'>查询成交记录</h2><h1 id='cf68bca02a'>错误代码</h1>
+</code></pre><h2 id='bbd4754907'>查询成交记录</h2>
+<p><strong>查询成交记录</strong></p>
+
+<p><strong>示例</strong></p>
+
+<ul>
+<li>GTE <code>baseUrl/v1/api/pc/order/query</code></li>
+</ul>
+
+<p><strong>请求参数</strong></p>
+
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>asset</td>
+<td>string</td>
+<td>YES</td>
+<td>资产</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>YES</td>
+<td>交易对</td>
+</tr>
+<tr>
+<td>gt_trade_id</td>
+<td>string</td>
+<td>NO</td>
+<td>成交记录id,请求大于trade_id的数据,gt和lt都填,以gt为准</td>
+</tr>
+<tr>
+<td>lt_trade_id</td>
+<td>string</td>
+<td>NO</td>
+<td>成交记录id,请求小于trade_id的数据</td>
+</tr>
+<tr>
+<td>count</td>
+<td>string</td>
+<td>NO</td>
+<td>返回条数,最大100条</td>
+</tr>
+</tbody></table>
+<pre class="highlight shell tab-shell"><code><span class="c"># Response</span>
+<span class="o">{</span>
+  <span class="s2">"code"</span>: 0,
+  <span class="s2">"data"</span>: <span class="o">{</span>
+
+    <span class="s2">"rows"</span>: <span class="o">[</span>
+      <span class="o">{</span>
+        <span class="s2">"price"</span>: <span class="s2">"8999"</span>,    //成交价格
+        <span class="s2">"qty"</span>: <span class="s2">"4"</span>,         //成交数量张数
+        <span class="s2">"trade_id"</span>: <span class="s2">"115025316845580800"</span>, //成交记录id
+        <span class="s2">"asset"</span>: <span class="s2">"BTC"</span>,                   //资产    
+        <span class="s2">"symbol"</span>: <span class="s2">"BTC_USD"</span>,              //交易对
+        <span class="s2">"trade_time"</span>: <span class="s2">"1573696172596"</span>     //交易时间毫秒
+      <span class="o">}</span>
+    <span class="o">]</span>
+  <span class="o">}</span>,
+  <span class="s2">"input"</span>: null,
+  <span class="s2">"traceId"</span>: <span class="s2">""</span>,
+  <span class="s2">"cost"</span>: 0,
+  <span class="s2">"error"</span>: null,
+  <span class="s2">"msg"</span>: null,
+  <span class="s2">"time"</span>: 1573703825189
+<span class="o">}</span>
+</code></pre><h2 id='4215cf81c7'>调整杠杆</h2>
+<p><strong>调整杠杆</strong></p>
+
+<p><strong>示例</strong></p>
+
+<ul>
+<li>POST <code>baseUrl/v1/api/pc/leverage/change</code></li>
+</ul>
+
+<p><strong>请求头</strong></p>
+
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>api-key</td>
+<td>string</td>
+<td>YES</td>
+<td>apiKey</td>
+</tr>
+<tr>
+<td>api-expires</td>
+<td>string</td>
+<td>YES</td>
+<td>当前时间戳毫秒</td>
+</tr>
+<tr>
+<td>api-signature</td>
+<td>string</td>
+<td>YES</td>
+<td>api签名</td>
+</tr>
+</tbody></table>
+
+<p><strong>请求参数</strong></p>
+
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>asset</td>
+<td>string</td>
+<td>YES</td>
+<td>资产</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>YES</td>
+<td>交易对</td>
+</tr>
+<tr>
+<td>mode</td>
+<td>string</td>
+<td>YES</td>
+<td>仓位模式,1.全仓,2.逐仓</td>
+</tr>
+<tr>
+<td>long_flag</td>
+<td>string</td>
+<td>NO</td>
+<td>1.多仓,0.空仓,全仓模式可以不填</td>
+</tr>
+<tr>
+<td>leverage</td>
+<td>string</td>
+<td>YES</td>
+<td>调整杠杆数</td>
+</tr>
+</tbody></table>
+<pre class="highlight shell tab-shell"><code><span class="c"># Response</span>
+<span class="o">{</span>
+  <span class="s2">"code"</span>: 0,
+  <span class="s2">"data"</span>: <span class="o">{</span>
+
+    <span class="s2">"rows"</span>: <span class="o">[</span>
+      <span class="o">{</span>
+        <span class="s2">"asset"</span>: <span class="s2">"BTC"</span>,             //资产    
+        <span class="s2">"symbol"</span>: <span class="s2">"BTC_USD"</span>,        //交易对
+        <span class="s2">"mode"</span>: <span class="s2">"1"</span>,     //仓位模式,1.全仓,2.逐仓
+        <span class="s2">"leverage"</span>:<span class="s2">"3"</span>   //杠杆
+
+      <span class="o">}</span>
+    <span class="o">]</span>
+  <span class="o">}</span>,
+  <span class="s2">"input"</span>: null,
+  <span class="s2">"traceId"</span>: <span class="s2">""</span>,
+  <span class="s2">"cost"</span>: 0,
+  <span class="s2">"error"</span>: null,
+  <span class="s2">"msg"</span>: null,
+  <span class="s2">"time"</span>: 1573703825189
+<span class="o">}</span>
+</code></pre><h1 id='cf68bca02a'>错误代码</h1>
 <aside class="notice">
 Errors consist of two parts: an error code and a message.
 Codes are universal,but messages can vary.
