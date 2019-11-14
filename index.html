@@ -292,6 +292,9 @@
                     <a href="#b7afc2947f" class="toc-h2 toc-link" data-title="查询深度">查询深度</a>
                   </li>
                   <li>
+                    <a href="#c9b15d8639" class="toc-h2 toc-link" data-title="查询用户永续合约的配置">查询用户永续合约的配置</a>
+                  </li>
+                  <li>
                     <a href="#cf35401ecf" class="toc-h2 toc-link" data-title="创建活动委托">创建活动委托</a>
                   </li>
                   <li>
@@ -305,6 +308,12 @@
                   </li>
                   <li>
                     <a href="#4215cf81c7" class="toc-h2 toc-link" data-title="调整杠杆">调整杠杆</a>
+                  </li>
+                  <li>
+                    <a href="#0a2061f296" class="toc-h2 toc-link" data-title="追加仓位保证金">追加仓位保证金</a>
+                  </li>
+                  <li>
+                    <a href="#57d3e8fae7" class="toc-h2 toc-link" data-title="开关自动追加保证金">开关自动追加保证金</a>
                   </li>
               </ul>
           </li>
@@ -482,8 +491,6 @@ Via REST at /order/cancelAllAfter or via WebSocket via the example below, one ca
   * hmacSha256（apiSecret,message） 加密成api签名,由api-signature携带</p></li>
 </ul>
 <h2 id='85b6f6572b'>查询交易所支持的资产</h2>
-<p><strong>查询交易所支持的资产</strong></p>
-
 <p><strong>示例</strong></p>
 
 <ul>
@@ -510,8 +517,6 @@ Via REST at /order/cancelAllAfter or via WebSocket via the example below, one ca
   <span class="s2">"time"</span>: 1573640300898
 <span class="o">}</span>
 </code></pre><h2 id='f8972860b8'>查询资金账户</h2>
-<p><strong>查询资金账户</strong></p>
-
 <p><strong>示例</strong></p>
 
 <ul>
@@ -586,8 +591,6 @@ Via REST at /order/cancelAllAfter or via WebSocket via the example below, one ca
     <span class="s2">"time"</span>:1573639309095
 <span class="o">}</span>
 </code></pre><h2 id='dbc313625b'>查询永续合约账户</h2>
-<p><strong>查询永续合约账户</strong></p>
-
 <p><strong>示例</strong></p>
 
 <ul>
@@ -663,8 +666,6 @@ Via REST at /order/cancelAllAfter or via WebSocket via the example below, one ca
     <span class="s2">"time"</span>:1573639479143
 <span class="o">}</span>
 </code></pre><h2 id='6b248331a8'>账户划转</h2>
-<p><strong>账户划转</strong></p>
-
 <p><strong>示例</strong></p>
 
 <ul>
@@ -754,8 +755,6 @@ Via REST at /order/cancelAllAfter or via WebSocket via the example below, one ca
     <span class="s2">"time"</span>:1573639855769
 <span class="o">}</span>
 </code></pre><h2 id='e73d7c0566'>查询永续合约的交易对</h2>
-<p><strong>查询永续合约的交易对</strong></p>
-
 <p><strong>示例</strong></p>
 
 <ul>
@@ -801,8 +800,6 @@ Via REST at /order/cancelAllAfter or via WebSocket via the example below, one ca
   <span class="o">}</span>
 <span class="o">}</span>
 </code></pre><h2 id='instrument'>查询instrument数据</h2>
-<p><strong>查询instrument数据</strong></p>
-
 <p><strong>示例</strong></p>
 
 <ul>
@@ -865,8 +862,6 @@ Via REST at /order/cancelAllAfter or via WebSocket via the example below, one ca
   <span class="s2">"time"</span>: 1573635077085
 <span class="o">}</span>
 </code></pre><h2 id='k'>查询永续合约的k线</h2>
-<p><strong>查询永续合约的k线</strong></p>
-
 <p><strong>示例</strong></p>
 
 <ul>
@@ -951,8 +946,6 @@ size 最大1440</p>
   <span class="s2">"time"</span>: 1573641132755
 <span class="o">}</span>
 </code></pre><h2 id='b7afc2947f'>查询深度</h2>
-<p><strong>查询深度</strong></p>
-
 <p><strong>示例</strong></p>
 
 <ul>
@@ -1021,9 +1014,87 @@ size 最大1440</p>
     <span class="s2">"symbol"</span>: <span class="s2">"BTC_USD"</span>      //交易对
   <span class="o">}</span>,
 <span class="o">}</span>
-</code></pre><h2 id='cf35401ecf'>创建活动委托</h2>
-<p><strong>创建活动委托</strong></p>
+</code></pre><h2 id='c9b15d8639'>查询用户永续合约的配置</h2>
+<p><strong>示例</strong></p>
 
+<ul>
+<li>POST <code>baseUrl/v1/api/pc/setting/query</code></li>
+</ul>
+
+<p><strong>请求头</strong></p>
+
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>api-key</td>
+<td>string</td>
+<td>YES</td>
+<td>apiKey</td>
+</tr>
+<tr>
+<td>api-expires</td>
+<td>string</td>
+<td>YES</td>
+<td>当前时间戳毫秒</td>
+</tr>
+<tr>
+<td>api-signature</td>
+<td>string</td>
+<td>YES</td>
+<td>api签名</td>
+</tr>
+</tbody></table>
+
+<p><strong>请求参数</strong></p>
+
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>asset</td>
+<td>string</td>
+<td>YES</td>
+<td>资产</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>YES</td>
+<td>交易对</td>
+</tr>
+</tbody></table>
+<pre class="highlight shell tab-shell"><code><span class="c"># Response</span>
+<span class="o">{</span>
+    <span class="s2">"code"</span>:0,
+    <span class="s2">"data"</span>:<span class="o">{</span>
+        <span class="s2">"time"</span>:<span class="s2">"1573720738789"</span>,
+        <span class="s2">"asset"</span>:<span class="s2">"BTC"</span>,              //资产    
+        <span class="s2">"symbol"</span>:<span class="s2">"BTC_USD"</span>,         //交易对
+        <span class="s2">"max_leverage"</span>:<span class="s2">"100"</span>,       //最大杠杆
+        <span class="s2">"bid_leverage"</span>:<span class="s2">"5"</span>,         //买入杠杆
+        <span class="s2">"ask_leverage"</span>:<span class="s2">"5"</span>,         //卖出杠杆
+        <span class="s2">"cross_leverage"</span>:<span class="s2">"5"</span>,       //全仓杠杆
+        <span class="s2">"margin_mode"</span>:<span class="s2">"2"</span>           //1.全仓,2.逐仓
+    <span class="o">}</span>,
+    <span class="s2">"input"</span>:null,
+    <span class="s2">"traceId"</span>:<span class="s2">""</span>,
+    <span class="s2">"cost"</span>:0,
+    <span class="s2">"error"</span>:null,
+    <span class="s2">"msg"</span>:null,
+    <span class="s2">"time"</span>:1573720738789
+<span class="o">}</span>
+</code></pre><h2 id='cf35401ecf'>创建活动委托</h2>
 <p><strong>示例</strong></p>
 
 <ul>
@@ -1138,8 +1209,6 @@ order_type等于1,price必填</p>
     <span class="s2">"time"</span>:1573645810155
 <span class="o">}</span>
 </code></pre><h2 id='3a8264c8e2'>撤销委托</h2>
-<p><strong>撤销活动委托</strong></p>
-
 <p><strong>示例</strong></p>
 
 <ul>
@@ -1220,8 +1289,6 @@ order_type等于1,price必填</p>
   <span class="s2">"time"</span>: 1568639111359
 <span class="o">}</span>
 </code></pre><h2 id='6f17b241c4'>查询委托</h2>
-<p><strong>查询委托</strong></p>
-
 <p><strong>示例</strong></p>
 
 <ul>
@@ -1347,8 +1414,6 @@ order_type等于1,price必填</p>
     <span class="s2">"time"</span>:1568639823342
 <span class="o">}</span>
 </code></pre><h2 id='bbd4754907'>查询成交记录</h2>
-<p><strong>查询成交记录</strong></p>
-
 <p><strong>示例</strong></p>
 
 <ul>
@@ -1419,9 +1484,7 @@ order_type等于1,price必填</p>
   <span class="s2">"msg"</span>: null,
   <span class="s2">"time"</span>: 1573703825189
 <span class="o">}</span>
-</code></pre><h2 id='4215cf81c7'>调整杠杆</h2><h3 id='111'>调整杠杆111</h3>
-<p><strong>调整杠杆</strong></p>
-
+</code></pre><h2 id='4215cf81c7'>调整杠杆</h2>
 <p><strong>示例</strong></p>
 
 <ul>
@@ -1520,6 +1583,182 @@ order_type等于1,price必填</p>
   <span class="s2">"error"</span>: null,
   <span class="s2">"msg"</span>: null,
   <span class="s2">"time"</span>: 1573703825189
+<span class="o">}</span>
+</code></pre><h2 id='0a2061f296'>追加仓位保证金</h2>
+<p><strong>示例</strong></p>
+
+<ul>
+<li>POST <code>baseUrl/v1/api/pc/margin/increase</code></li>
+</ul>
+
+<p><strong>请求头</strong></p>
+
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>api-key</td>
+<td>string</td>
+<td>YES</td>
+<td>apiKey</td>
+</tr>
+<tr>
+<td>api-expires</td>
+<td>string</td>
+<td>YES</td>
+<td>当前时间戳毫秒</td>
+</tr>
+<tr>
+<td>api-signature</td>
+<td>string</td>
+<td>YES</td>
+<td>api签名</td>
+</tr>
+</tbody></table>
+
+<p><strong>请求参数</strong></p>
+
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>asset</td>
+<td>string</td>
+<td>YES</td>
+<td>资产</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>YES</td>
+<td>交易对</td>
+</tr>
+<tr>
+<td>long_flag</td>
+<td>string</td>
+<td>YES</td>
+<td>1.多仓,0.空仓</td>
+</tr>
+<tr>
+<td>increase_flag</td>
+<td>string</td>
+<td>YES</td>
+<td>1.增加,2.减少</td>
+</tr>
+<tr>
+<td>margin</td>
+<td>string</td>
+<td>YES</td>
+<td>保证金数量</td>
+</tr>
+</tbody></table>
+<pre class="highlight shell tab-shell"><code><span class="c"># Response</span>
+<span class="o">{</span>
+    <span class="s2">"code"</span>:0,
+    <span class="s2">"data"</span>:<span class="o">{</span>
+        <span class="s2">"time"</span>:<span class="s2">"1573715942669"</span>
+    <span class="o">}</span>,
+    <span class="s2">"input"</span>:null,
+    <span class="s2">"traceId"</span>:<span class="s2">""</span>,
+    <span class="s2">"cost"</span>:0,
+    <span class="s2">"error"</span>:null,
+    <span class="s2">"msg"</span>:null,
+    <span class="s2">"time"</span>:1573715942669
+<span class="o">}</span>
+</code></pre><h2 id='57d3e8fae7'>开关自动追加保证金</h2>
+<p><strong>示例</strong></p>
+
+<ul>
+<li>POST <code>baseUrl/v1/api/pc/margin/auto</code></li>
+</ul>
+
+<p><strong>请求头</strong></p>
+
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>api-key</td>
+<td>string</td>
+<td>YES</td>
+<td>apiKey</td>
+</tr>
+<tr>
+<td>api-expires</td>
+<td>string</td>
+<td>YES</td>
+<td>当前时间戳毫秒</td>
+</tr>
+<tr>
+<td>api-signature</td>
+<td>string</td>
+<td>YES</td>
+<td>api签名</td>
+</tr>
+</tbody></table>
+
+<p><strong>请求参数</strong></p>
+
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>asset</td>
+<td>string</td>
+<td>YES</td>
+<td>资产</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>YES</td>
+<td>交易对</td>
+</tr>
+<tr>
+<td>long_flag</td>
+<td>string</td>
+<td>YES</td>
+<td>1.多仓,0.空仓</td>
+</tr>
+<tr>
+<td>open_flag</td>
+<td>string</td>
+<td>YES</td>
+<td>1.开启,0.关闭</td>
+</tr>
+</tbody></table>
+<pre class="highlight shell tab-shell"><code><span class="c"># Response</span>
+<span class="o">{</span>
+    <span class="s2">"code"</span>:0,
+    <span class="s2">"data"</span>:<span class="o">{</span>
+        <span class="s2">"time"</span>:<span class="s2">"1573716528703"</span>
+    <span class="o">}</span>,
+    <span class="s2">"input"</span>:null,
+    <span class="s2">"traceId"</span>:<span class="s2">""</span>,
+    <span class="s2">"cost"</span>:0,
+    <span class="s2">"error"</span>:null,
+    <span class="s2">"msg"</span>:null,
+    <span class="s2">"time"</span>:1573716528705
 <span class="o">}</span>
 </code></pre><h1 id='cf68bca02a'>错误代码</h1>
 <aside class="notice">
