@@ -361,7 +361,7 @@
 <pre class="highlight shell tab-shell"><code><span class="c"># Response</span>
 <span class="o">{</span>
     <span class="s2">"data"</span>:<span class="o">{</span>
-        <span class="s2">"asset"</span>:<span class="s2">"BTC"</span>,    //资产
+        <span class="s2">"settle_currency"</span>:<span class="s2">"BTC"</span>,    //资产
         <span class="s2">"change_rate_24h"</span>:<span class="s2">"-0.1112"</span>,   //24小时价格变化幅度，-0.13代表跌了13%
         <span class="s2">"face_value"</span>:<span class="s2">"1"</span>,              //合约面值
         <span class="s2">"quote_currency"</span>:<span class="s2">"USD"</span>,        //面值计价货币
@@ -405,7 +405,7 @@
         <span class="o">{</span>
             <span class="s2">"rows"</span>:[
               <span class="o">{</span>
-                <span class="s2">"asset"</span>:<span class="s2">"BTC"</span>,                     //资产
+                <span class="s2">"settle_currency"</span>:<span class="s2">"BTC"</span>,                     //资产
                 <span class="s2">"symbol"</span>:<span class="s2">"BTC_USD"</span>,                //交易对
                 <span class="s2">"trade_time"</span>: <span class="s2">"1564295185000"</span>,     //成交时间 
                 <span class="s2">"side"</span>: <span class="s2">"sell"</span>,                    //sell,buy  
@@ -454,14 +454,14 @@
         <span class="s2">"action"</span>:<span class="s2">"partial"</span>,          
         <span class="s2">"rows"</span>:[
             <span class="o">{</span>
-                <span class="s2">"asset"</span>:<span class="s2">"BTC"</span>,       //资产
+                <span class="s2">"settle_currency"</span>:<span class="s2">"BTC"</span>,       //资产
                 <span class="s2">"price"</span>:<span class="s2">"9000"</span>,      //价格
                 <span class="s2">"side"</span>:<span class="s2">"sell"</span>,       //买卖方向
                 <span class="s2">"size"</span>:<span class="s2">"590"</span>,        //量<span class="o">(</span>张数<span class="o">)</span>
                 <span class="s2">"symbol"</span>:<span class="s2">"BTC_USD"</span>   //交易对
             <span class="o">}</span>,
             <span class="o">{</span>
-                <span class="s2">"asset"</span>:<span class="s2">"BTC"</span>,
+                <span class="s2">"settle_currency"</span>:<span class="s2">"BTC"</span>,
                 <span class="s2">"price"</span>:<span class="s2">"8990"</span>,
                 <span class="s2">"side"</span>:<span class="s2">"buy"</span>,
                 <span class="s2">"size"</span>:<span class="s2">"677"</span>,
@@ -493,7 +493,7 @@
 <pre class="highlight shell tab-shell"><code><span class="c"># Response</span>
 <span class="o">{</span>
     <span class="s2">"data"</span>:<span class="o">{</span>
-        <span class="s2">"asset"</span>:<span class="s2">"BTC"</span>,         //资产
+        <span class="s2">"settle_currency"</span>:<span class="s2">"BTC"</span>,         //资产
         <span class="s2">"symbol"</span>:<span class="s2">"BTC_USD"</span>,    //交易对
         <span class="s2">"asks"</span>:[               //ask卖出,bid买入
             <span class="o">[</span>
@@ -562,6 +562,8 @@
   * hmacSha256（apiSecret,message） 加密成api签名,由api-signature携带</p></li>
 </ul>
 <h2 id='85b6f6572b'>查询交易所支持的资产</h2>
+<p><strong>限速规则</strong>：1次/1s</p>
+
 <p><strong>示例</strong></p>
 
 <ul>
