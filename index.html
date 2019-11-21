@@ -378,7 +378,7 @@
         <span class="s2">"asset_class"</span>:<span class="s2">"pc"</span>          //交易资产类别,pc永续合约
         <span class="s2">"settle_currency"</span>:<span class="s2">"BTC"</span>,    //资产
         <span class="s2">"change_rate_24h"</span>:<span class="s2">"-0.1112"</span>,   //24小时价格变化幅度，-0.13代表跌了13%
-        <span class="s2">"lot_size"</span>:<span class="s2">"1"</span>,              //合约面值
+        <span class="s2">"lot_size"</span>:<span class="s2">"1"</span>,              //合约面值,1表示1张合约价格1个quote_currency
         <span class="s2">"quote_currency"</span>:<span class="s2">"USD"</span>,        //面值计价货币
         <span class="s2">"funding_rate"</span>:<span class="s2">"-0.0037"</span>,      //当期资金费率
         <span class="s2">"funding_rate_time"</span>:<span class="s2">"2"</span>,       //当期资金费率到期时间小时
@@ -449,11 +449,11 @@
 
 <p>insert 新增当前价格的深度</p>
 
-<p>id当前交易对唯一表示,id和价格相互反推</p>
+<p>id当前交易对唯一表示,id和price相互反推,symbol_id和tick_size可以在订阅instrument中获取</p>
 
 <p>计算公式
-id = (100000000 * symbolId) - (price / instrumentTickSize)
-price = ((100000000 * symbolId) - id) * instrumentTickSize</p>
+id = (100000000 * symbol_id) - (price / tick_size)
+price = ((100000000 * symbol_id) - id) * tick_size</p>
 
 <p><strong>订阅</strong></p>
 
@@ -475,23 +475,24 @@ price = ((100000000 * symbolId) - id) * instrumentTickSize</p>
     <span class="s2">"data"</span>:[
 
             <span class="o">{</span>
-                <span class="s2">"id"</span>:<span class="s2">"121231"</span>,
-                <span class="s2">"asset_class"</span>:<span class="s2">"pc"</span>,          //交易资产类别,pc永续合约             
+                <span class="s2">"id"</span>:<span class="s2">"399911110"</span>,               //唯一标识
+                <span class="s2">"asset_class"</span>:<span class="s2">"pc"</span>,            //交易资产类别,pc永续合约             
                 <span class="s2">"settle_currency"</span>:<span class="s2">"BTC"</span>,       //资产
-                <span class="s2">"price"</span>:<span class="s2">"9000"</span>,      //价格
-                <span class="s2">"side"</span>:<span class="s2">"sell"</span>,       //买卖方向
-                <span class="s2">"size"</span>:<span class="s2">"590"</span>,        //量<span class="o">(</span>张数<span class="o">)</span>
-                <span class="s2">"symbol"</span>:<span class="s2">"BTC_USD"</span>   //交易对
+                <span class="s2">"price"</span>:<span class="s2">"8889"</span>,               //价格
+                <span class="s2">"side"</span>:<span class="s2">"sell"</span>,                //买卖方向
+                <span class="s2">"size"</span>:<span class="s2">"590"</span>,                 //量<span class="o">(</span>张数<span class="o">)</span>
+                <span class="s2">"symbol"</span>:<span class="s2">"BTC_USD"</span>            //交易对
             <span class="o">}</span>,
             <span class="o">{</span>
-                <span class="s2">"id"</span>:<span class="s2">"121231"</span>,
+                <span class="s2">"id"</span>:<span class="s2">"399911200"</span>,
                 <span class="s2">"asset_class"</span>:<span class="s2">"pc"</span>,       
                 <span class="s2">"settle_currency"</span>:<span class="s2">"BTC"</span>,
-                <span class="s2">"price"</span>:<span class="s2">"8990"</span>,
+                <span class="s2">"price"</span>:<span class="s2">"8880"</span>,
                 <span class="s2">"side"</span>:<span class="s2">"buy"</span>,
                 <span class="s2">"size"</span>:<span class="s2">"677"</span>,
                 <span class="s2">"symbol"</span>:<span class="s2">"BTC_USD"</span>
             <span class="o">}</span>
+
 
     <span class="o">]</span>,
     <span class="s2">"event"</span>:<span class="s2">"pc#order_book#BTC#BTC_USD"</span>,
