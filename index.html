@@ -337,13 +337,23 @@
 </tr>
 </tbody></table>
 <h1 id='b122f813d5'>基本信息</h1><h1 id='websocket'>Websocket 接口</h1>
-<p>ws客户端连接到wss://testwss.gte.io</p>
+<p>ws客户端连接到 wss://testtd.gte.io</p>
 
 <p>客户端每20秒发送字符串{&quot;op&quot;:&quot;ping&quot;},服务端返回{&quot;op&quot;:&quot;pong&quot;},服务端2分钟没有收到客户端消息,自动断开客户端</p>
 <h2 id='instrument'>instrument</h2>
 <p><strong>说明</strong></p>
 
-<p>推送最新的各种价格,交易量等,pc为永续合约,instrument为订阅管道,BTC为资产,BTC_USD为交易对</p>
+<p>最新的各种价格,行情,交易量等,pc为永续合约,instrument为订阅管道,BTC为资产,BTC_USD为交易对</p>
+
+<p>订阅返回全量数据</p>
+
+<p>推送返回数据变更的字段</p>
+
+<p>action的值partial,update</p>
+
+<p>partial 订阅返回全量数据</p>
+
+<p>update 更新</p>
 
 <p><strong>订阅</strong></p>
 
@@ -360,10 +370,15 @@
 }</p>
 <pre class="highlight shell tab-shell"><code><span class="c"># Response</span>
 <span class="o">{</span>
-    <span class="s2">"data"</span>:<span class="o">{</span>
+    <span class="s2">"table"</span>:<span class="s2">"instrument"</span>,
+    <span class="s2">"action"</span>:<span class="s2">"action的值partial"</span>
+    <span class="s2">"key"</span>:[<span class="s2">"change_rate_24h"</span>,<span class="s2">"quote_currency"</span><span class="o">]</span> //data数据中的字段名
+    <span class="s2">"data"</span>:[
+      <span class="o">{</span>
+        <span class="s2">"asset_class"</span>:<span class="s2">"pc"</span>          //交易资产类别,pc永续合约
         <span class="s2">"settle_currency"</span>:<span class="s2">"BTC"</span>,    //资产
         <span class="s2">"change_rate_24h"</span>:<span class="s2">"-0.1112"</span>,   //24小时价格变化幅度，-0.13代表跌了13%
-        <span class="s2">"face_value"</span>:<span class="s2">"1"</span>,              //合约面值
+        <span class="s2">"lot_size"</span>:<span class="s2">"1"</span>,              //合约面值
         <span class="s2">"quote_currency"</span>:<span class="s2">"USD"</span>,        //面值计价货币
         <span class="s2">"funding_rate"</span>:<span class="s2">"-0.0037"</span>,      //当期资金费率
         <span class="s2">"funding_rate_time"</span>:<span class="s2">"2"</span>,       //当期资金费率到期时间小时
@@ -376,8 +391,9 @@
         <span class="s2">"symbol"</span>:<span class="s2">"BTC_USD"</span>,                   //交易对
         <span class="s2">"volume_24h"</span>:<span class="s2">"30022"</span>,                 //24小时成交量
         <span class="s2">"volume_pos_hold"</span>:<span class="s2">"269016"</span>            //未平仓的合约持仓量
-    <span class="o">}</span>,
-    <span class="s2">"event"</span>:<span class="s2">"pc#instrument#BTC1#BTC_USD1"</span>,
+      <span class="o">}</span>  
+    <span class="o">]</span>,
+    <span class="s2">"event"</span>:<span class="s2">"pc#instrument#BTC#BTC_USD"</span>,
     <span class="s2">"time"</span>:<span class="s2">"1573022591950"</span>
 <span class="o">}</span>
 </code></pre><h2 id='6a30a471cf'>成交记录</h2>
@@ -402,21 +418,19 @@
 <span class="o">{</span>
     <span class="s2">"event"</span>: <span class="s2">"pc#trade#BTC#BTC_USD"</span>,             //订阅的事件
     <span class="s2">"data"</span>: 
-        <span class="o">{</span>
-            <span class="s2">"rows"</span>:[
+        <span class="o">[</span>
+
               <span class="o">{</span>
-                <span class="s2">"settle_currency"</span>:<span class="s2">"BTC"</span>,                     //资产
+                <span class="s2">"asset_class"</span>:<span class="s2">"pc"</span>          //交易资产类别,pc永续合约
+                <span class="s2">"settle_currency"</span>:<span class="s2">"BTC"</span>,            //资产
                 <span class="s2">"symbol"</span>:<span class="s2">"BTC_USD"</span>,                //交易对
                 <span class="s2">"trade_time"</span>: <span class="s2">"1564295185000"</span>,     //成交时间 
                 <span class="s2">"side"</span>: <span class="s2">"sell"</span>,                    //sell,buy  
                 <span class="s2">"price"</span>: <span class="s2">"1000.00"</span>,                //成交价格
                 <span class="s2">"qty"</span>: <span class="s2">"3"</span>                         //成交量<span class="o">(</span>张数<span class="o">)</span>              
               <span class="o">}</span>
-            <span class="o">]</span>
 
-
-
-        <span class="o">}</span>
+        <span class="o">]</span>
      ,
    <span class="s2">"time"</span>: <span class="s2">"1564295185000"</span>        // 服务器返回数据的时间戳毫秒
 <span class="o">}</span>
@@ -435,6 +449,12 @@
 
 <p>insert 新增当前价格的深度</p>
 
+<p>id当前交易对唯一表示,id和价格相互反推</p>
+
+<p>计算公式
+id = (100000000 * symbolId) - (price / instrumentTickSize)
+price = ((100000000 * symbolId) - id) * instrumentTickSize</p>
+
 <p><strong>订阅</strong></p>
 
 <p>{
@@ -450,10 +470,13 @@
 }</p>
 <pre class="highlight shell tab-shell"><code><span class="c"># Response</span>
 <span class="o">{</span>
-    <span class="s2">"data"</span>:<span class="o">{</span>
-        <span class="s2">"action"</span>:<span class="s2">"partial"</span>,          
-        <span class="s2">"rows"</span>:[
+    <span class="s2">"action"</span>:<span class="s2">"partial"</span>,
+    <span class="s2">"table"</span>:<span class="s2">"order_book"</span>,     
+    <span class="s2">"data"</span>:[
+
             <span class="o">{</span>
+                <span class="s2">"id"</span>:<span class="s2">"121231"</span>,
+                <span class="s2">"asset_class"</span>:<span class="s2">"pc"</span>,          //交易资产类别,pc永续合约             
                 <span class="s2">"settle_currency"</span>:<span class="s2">"BTC"</span>,       //资产
                 <span class="s2">"price"</span>:<span class="s2">"9000"</span>,      //价格
                 <span class="s2">"side"</span>:<span class="s2">"sell"</span>,       //买卖方向
@@ -461,21 +484,23 @@
                 <span class="s2">"symbol"</span>:<span class="s2">"BTC_USD"</span>   //交易对
             <span class="o">}</span>,
             <span class="o">{</span>
+                <span class="s2">"id"</span>:<span class="s2">"121231"</span>,
+                <span class="s2">"asset_class"</span>:<span class="s2">"pc"</span>,       
                 <span class="s2">"settle_currency"</span>:<span class="s2">"BTC"</span>,
                 <span class="s2">"price"</span>:<span class="s2">"8990"</span>,
                 <span class="s2">"side"</span>:<span class="s2">"buy"</span>,
                 <span class="s2">"size"</span>:<span class="s2">"677"</span>,
                 <span class="s2">"symbol"</span>:<span class="s2">"BTC_USD"</span>
             <span class="o">}</span>
-        <span class="o">]</span>
-    <span class="o">}</span>,
+
+    <span class="o">]</span>,
     <span class="s2">"event"</span>:<span class="s2">"pc#order_book#BTC#BTC_USD"</span>,
     <span class="s2">"time"</span>:<span class="s2">"1573281525515"</span>
 <span class="o">}</span>
 </code></pre><h2 id='orderbook-2'>orderBook 全量</h2>
 <p><strong>说明</strong></p>
 
-<p>推送返回全量数据,pc为永续合约,order_book_full为订阅管道,BTC为资产,BTC_USD为交易对</p>
+<p>每次推送全量数据,pc为永续合约,order_book_full为订阅管道,BTC为资产,BTC_USD为交易对</p>
 
 <p><strong>订阅</strong></p>
 
@@ -487,18 +512,19 @@
 <p><strong>取消订阅</strong></p>
 
 <p>{
-    &quot;op&quot;:&quot;sub&quot;,
+    &quot;op&quot;:&quot;unsub&quot;,
      &quot;event&quot;:&quot;pc#order_book_full#BTC#BTC_USD&quot;
 }</p>
 <pre class="highlight shell tab-shell"><code><span class="c"># Response</span>
 <span class="o">{</span>
     <span class="s2">"data"</span>:<span class="o">{</span>
         <span class="s2">"settle_currency"</span>:<span class="s2">"BTC"</span>,         //资产
-        <span class="s2">"symbol"</span>:<span class="s2">"BTC_USD"</span>,    //交易对
-        <span class="s2">"asks"</span>:[               //ask卖出,bid买入
+        <span class="s2">"symbol"</span>:<span class="s2">"BTC_USD"</span>,              //交易对
+        <span class="s2">"asset_class"</span>:<span class="s2">"pc"</span>,              //交易资产类别,pc永续合约         
+        <span class="s2">"asks"</span>:[                         //ask卖出,bid买入
             <span class="o">[</span>
-                <span class="s2">"10009"</span>,      //价格   
-                <span class="s2">"2299"</span>        //量<span class="o">(</span>张数<span class="o">)</span>
+                <span class="s2">"10009"</span>,                 //价格   
+                <span class="s2">"2299"</span>                   //量<span class="o">(</span>张数<span class="o">)</span>
             <span class="o">]</span>,
             <span class="o">[</span>
                 <span class="s2">"10021"</span>,
