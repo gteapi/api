@@ -242,10 +242,7 @@
                     <a href="#trade" class="toc-h2 toc-link" data-title="trade 成交记录">trade 成交记录</a>
                   </li>
                   <li>
-                    <a href="#orderbook" class="toc-h2 toc-link" data-title="orderBook 增量">orderBook 增量</a>
-                  </li>
-                  <li>
-                    <a href="#orderbook-2" class="toc-h2 toc-link" data-title="orderBook 全量">orderBook 全量</a>
+                    <a href="#orderbook" class="toc-h2 toc-link" data-title="orderBook">orderBook</a>
                   </li>
               </ul>
           </li>
@@ -434,7 +431,7 @@
      ,
    <span class="s2">"time"</span>: <span class="s2">"1564295185000"</span>        // 服务器返回数据的时间戳毫秒
 <span class="o">}</span>
-</code></pre><h2 id='orderbook'>orderBook 增量</h2>
+</code></pre><h2 id='orderbook'>orderBook</h2>
 <p><strong>说明</strong></p>
 
 <p>订阅返回全量数据,推送返回增量数据,pc为永续合约,order_book为订阅管道,BTC为资产,BTC_USD为交易对</p>
@@ -497,55 +494,6 @@ price = ((100000000 * symbol_id) - id) * tick_size</p>
     <span class="o">]</span>,
     <span class="s2">"event"</span>:<span class="s2">"pc#order_book#BTC#BTC_USD"</span>,
     <span class="s2">"time"</span>:<span class="s2">"1573281525515"</span>
-<span class="o">}</span>
-</code></pre><h2 id='orderbook-2'>orderBook 全量</h2>
-<p><strong>说明</strong></p>
-
-<p>每次推送全量数据,pc为永续合约,order_book_full为订阅管道,BTC为资产,BTC_USD为交易对</p>
-
-<p><strong>订阅</strong></p>
-
-<p>{
-    &quot;op&quot;:&quot;sub&quot;,
-     &quot;event&quot;:&quot;pc#order_book_full#BTC#BTC_USD&quot;
-}</p>
-
-<p><strong>取消订阅</strong></p>
-
-<p>{
-    &quot;op&quot;:&quot;unsub&quot;,
-     &quot;event&quot;:&quot;pc#order_book_full#BTC#BTC_USD&quot;
-}</p>
-<pre class="highlight shell tab-shell"><code><span class="c"># Response</span>
-<span class="o">{</span>
-    <span class="s2">"data"</span>:<span class="o">{</span>
-        <span class="s2">"settle_currency"</span>:<span class="s2">"BTC"</span>,         //资产
-        <span class="s2">"symbol"</span>:<span class="s2">"BTC_USD"</span>,              //交易对
-        <span class="s2">"asset_class"</span>:<span class="s2">"pc"</span>,              //交易资产类别,pc永续合约         
-        <span class="s2">"asks"</span>:[                         //ask卖出,bid买入
-            <span class="o">[</span>
-                <span class="s2">"10009"</span>,                 //价格   
-                <span class="s2">"2299"</span>                   //量<span class="o">(</span>张数<span class="o">)</span>
-            <span class="o">]</span>,
-            <span class="o">[</span>
-                <span class="s2">"10021"</span>,
-                <span class="s2">"2555"</span>
-            <span class="o">]</span>
-        <span class="o">]</span>,
-
-        <span class="s2">"bids"</span>:[
-            <span class="o">[</span>
-                <span class="s2">"10007"</span>,
-                <span class="s2">"3946"</span>
-            <span class="o">]</span>,
-            <span class="o">[</span>
-                <span class="s2">"10006"</span>,
-                <span class="s2">"3000"</span>
-            <span class="o">]</span>
-        <span class="o">]</span>
-    <span class="o">}</span>,
-    <span class="s2">"event"</span>:<span class="s2">"pc#order_book_full#BTC1#BTC_USD1"</span>,
-    <span class="s2">"time"</span>:<span class="s2">"1573544168931"</span>
 <span class="o">}</span>
 </code></pre><h1 id='http-restful-api'>Http Restful API</h1><h2 id='url'>url</h2>
 <ul>
