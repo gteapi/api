@@ -337,6 +337,9 @@
 <p>ws客户端连接到 wss://testtd.gte.io</p>
 
 <p>客户端每20秒发送字符串{&quot;op&quot;:&quot;ping&quot;},服务端返回{&quot;op&quot;:&quot;pong&quot;},服务端2分钟没有收到客户端消息,自动断开客户端</p>
+
+<p>订阅成功或取消订阅会返回字符串,{&quot;status&quot;:&quot;0&quot;,&quot;request&quot;:&quot;客户端请求字符串&quot;},status等于0,表示成功,小于0
+表示错误,具体错误查看错误代码</p>
 <h2 id='instrument'>instrument</h2>
 <p><strong>说明</strong></p>
 
@@ -498,7 +501,7 @@ price = ((100000000 * symbol_id) - id) * tick_size</p>
 </code></pre><h1 id='http-restful-api'>Http Restful API</h1><h2 id='url'>url</h2>
 <ul>
 <li><p>baseUrl <code>http://testthirdapi.gte.io/</code></p></li>
-<li><p>baseUrl/v1/api/pc/asset/query v1为版本号</p></li>
+<li><p>/v1/api/pc/asset/query v1为版本号</p></li>
 <li><p>返回数据code等于0,表示请求成功,小于0表示错误,具体清查看错误代码</p></li>
 </ul>
 <h2 id='api-2'>API签名说明</h2>
