@@ -242,7 +242,7 @@
                     <a href="#instrument" class="toc-h2 toc-link" data-title="instrument">instrument</a>
                   </li>
                   <li>
-                    <a href="#trade" class="toc-h2 toc-link" data-title="trade 成交记录">trade 成交记录</a>
+                    <a href="#trade" class="toc-h2 toc-link" data-title="trade">trade</a>
                   </li>
                   <li>
                     <a href="#orderbook" class="toc-h2 toc-link" data-title="orderBook">orderBook</a>
@@ -340,7 +340,7 @@
 </tr>
 </tbody></table>
 <h1 id='b122f813d5'>基本信息</h1><h1 id='websocket'>Websocket 接口</h1>
-<p>ws连接地址 wss://td.gte.io</p>
+<p>ws连接地址 wss://td.gte.io/ws</p>
 
 <p>客户端每20秒发送字符串{&quot;op&quot;:&quot;ping&quot;},服务端返回{&quot;op&quot;:&quot;pong&quot;},服务端2分钟没有收到客户端消息,自动断开客户端</p>
 
@@ -360,7 +360,7 @@
 <p>加密方式: hmacSha256（apiSecret,url+expires） </p>
 
 <p>apiSecret:注册api_key时获取
-url:ws连接地址</p>
+url:GET/ws</p>
 
 <p><strong>验证</strong>
 {
@@ -427,7 +427,7 @@ url:ws连接地址</p>
     <span class="s2">"event"</span>:<span class="s2">"pc#instrument#BTC#BTC_USD"</span>,
     <span class="s2">"time"</span>:<span class="s2">"1573022591950"</span>
 <span class="o">}</span>
-</code></pre><h2 id='trade'>trade 成交记录</h2>
+</code></pre><h2 id='trade'>trade</h2>
 <p><strong>说明</strong></p>
 
 <p>推送最新的成交记录,pc为永续合约,trade为订阅管道,BTC为资产,BTC_USD为交易对</p>
