@@ -236,6 +236,9 @@
             <a href="#websocket" class="toc-h1 toc-link" data-title="Websocket 接口">Websocket 接口</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#auth" class="toc-h2 toc-link" data-title="auth 验证">auth 验证</a>
+                  </li>
+                  <li>
                     <a href="#instrument" class="toc-h2 toc-link" data-title="instrument">instrument</a>
                   </li>
                   <li>
@@ -243,6 +246,9 @@
                   </li>
                   <li>
                     <a href="#orderbook" class="toc-h2 toc-link" data-title="orderBook">orderBook</a>
+                  </li>
+                  <li>
+                    <a href="#order" class="toc-h2 toc-link" data-title="order">order</a>
                   </li>
               </ul>
           </li>
@@ -334,12 +340,37 @@
 </tr>
 </tbody></table>
 <h1 id='b122f813d5'>基本信息</h1><h1 id='websocket'>Websocket 接口</h1>
-<p>ws客户端连接到 wss://td.gte.io</p>
+<p>ws连接地址 wss://td.gte.io</p>
 
 <p>客户端每20秒发送字符串{&quot;op&quot;:&quot;ping&quot;},服务端返回{&quot;op&quot;:&quot;pong&quot;},服务端2分钟没有收到客户端消息,自动断开客户端</p>
 
 <p>订阅或取消等会返回字符串,{&quot;status&quot;:&quot;0&quot;,&quot;request&quot;:&quot;客户端请求字符串&quot;},status等于0,表示成功,小于0
 表示错误,具体错误查看错误代码</p>
+<h2 id='auth'>auth 验证</h2>
+<p><strong>参数说明</strong></p>
+
+<p>api_key:用户注册api_key获取</p>
+
+<p>expires：当前时间的时间戳(毫秒),推荐当前时间加上3~5秒,防止请求过期</p>
+
+<p>signature:签名 </p>
+
+<p><strong>签名说明</strong></p>
+
+<p>加密方式: hmacSha256（apiSecret,url+expires） </p>
+
+<p>apiSecret:注册api_key时获取
+url:ws连接地址</p>
+
+<p><strong>验证</strong>
+{
+  &quot;op&quot;:&quot;auth_key_expires&quot;,
+  &quot;args&quot;:{
+    &quot;api_key&quot;:&quot;XXXXX&quot;,
+    &quot;expires&quot;:&quot;1575029954231&quot;,
+    &quot;signature&quot;,&quot;xxxxxxx&quot;
+  }
+}</p>
 <h2 id='instrument'>instrument</h2>
 <p><strong>说明</strong></p>
 
@@ -497,6 +528,56 @@ price = ((100000000 * symbol_id) - id) * tick_size</p>
     <span class="o">]</span>,
     <span class="s2">"event"</span>:<span class="s2">"pc#order_book#BTC#BTC_USD"</span>,
     <span class="s2">"time"</span>:<span class="s2">"1573281525515"</span>
+<span class="o">}</span>
+</code></pre><h2 id='order'>order</h2>
+<p><strong>需要验证</strong></p>
+
+<p><strong>说明</strong></p>
+
+<p>推送当前当前用户的活动委托的变更信息</p>
+
+<p><strong>订阅</strong></p>
+
+<p>{
+    &quot;op&quot;:&quot;sub&quot;,
+     &quot;event&quot;:&quot;pc#order#BTC#BTC_USD&quot;
+}</p>
+
+<p><strong>取消订阅</strong></p>
+
+<p>{
+    &quot;op&quot;:&quot;unsub&quot;,
+     &quot;event&quot;:&quot;pc#order#BTC#BTC_USD&quot;
+}</p>
+<pre class="highlight shell tab-shell"><code><span class="c"># Response </span>
+<span class="o">{</span>
+    <span class="s2">"action"</span>:<span class="s2">"insert"</span>,
+    <span class="s2">"data"</span>:[
+        <span class="o">{</span>
+            <span class="s2">"avg_price"</span>:<span class="s2">"0"</span>,             //成交均价
+            <span class="s2">"close_flag"</span>:<span class="s2">"0"</span>,            //0.开仓,1.pc
+            <span class="s2">"ctime"</span>:<span class="s2">"1575353429226"</span>,     //委托创建时间
+            <span class="s2">"fee"</span>:<span class="s2">"0"</span>,                   //手续费
+            <span class="s2">"filled_qty"</span>:<span class="s2">"0"</span>,            //成交张数
+            <span class="s2">"leverage"</span>:<span class="s2">"15"</span>,             //杠杆
+            <span class="s2">"order_id"</span>:<span class="s2">"121976354928411008"</span>,  //order_id
+            <span class="s2">"order_margin"</span>:<span class="s2">"0.000878"</span>,        //委托保证金   
+            <span class="s2">"order_type"</span>:<span class="s2">"1"</span>,                 //委托类型1.限价委托
+            <span class="s2">"price"</span>:<span class="s2">"155"</span>,                    //委托价格
+            <span class="s2">"qty"</span>:<span class="s2">"2"</span>,                        //委托张数
+            <span class="s2">"settle_currency"</span>:<span class="s2">"ETH"</span>,          //资产
+            <span class="s2">"side"</span>:<span class="s2">"1"</span>,                       //1.买入,0.卖出
+            <span class="s2">"status"</span>:<span class="s2">"1"</span>,                     // //委托状态  1:待报 2:已报 4:待撤销 8:已撤销 16:部分成交 32:全部成交  
+            <span class="s2">"symbol"</span>:<span class="s2">"ETH_USD"</span>,               //交易对
+            <span class="s2">"client_oid"</span>:<span class="s2">"123456"</span>             //客户端自己定义的id
+        <span class="o">}</span>
+    <span class="o">]</span>,
+    <span class="s2">"event"</span>:<span class="s2">"pc#order#ETH#ETH_USD"</span>,
+    <span class="s2">"keys"</span>:[
+
+    <span class="o">]</span>,
+    <span class="s2">"table"</span>:<span class="s2">"order"</span>,
+    <span class="s2">"time"</span>:<span class="s2">"1575353430109"</span>
 <span class="o">}</span>
 </code></pre><h1 id='http-restful-api'>Http Restful API</h1><h2 id='url'>url</h2>
 <ul>
@@ -1461,7 +1542,7 @@ order_type等于1,price必填</p>
         <span class="s2">"rows"</span>:[
             <span class="o">{</span>    
                 <span class="s2">"order_id"</span>:<span class="s2">"114813904143597952"</span>, //委托id
-                <span class="s2">"status"</span>:<span class="s2">"4"</span>, //委托状态  1:已创建未匹配 2:新建未成交 4:待取消 8:已取消 16:部分成交 32:全部成交     
+                <span class="s2">"status"</span>:<span class="s2">"4"</span>, //委托状态  1:待报 2:已报 4:待撤销 8:已撤销 16:部分成交 32:全部成交     
                 <span class="s2">"fee"</span>:<span class="s2">"0.023"</span>,    //手续费
                 <span class="s2">"price"</span>:<span class="s2">"8500"</span>,   //价格
                 <span class="s2">"qty"</span>:<span class="s2">"1"</span>,        //张数
