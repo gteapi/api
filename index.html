@@ -349,7 +349,7 @@
 <h2 id='auth'>auth 验证</h2>
 <p><strong>参数说明</strong></p>
 
-<p>api_key:用户注册api_key获取</p>
+<p>api_key:用户注册api_key时获取</p>
 
 <p>expires：当前时间的时间戳(毫秒),推荐当前时间加上3~5秒,防止请求过期</p>
 
@@ -362,11 +362,12 @@
 <p>apiSecret:注册api_key时获取
 url:GET/ws</p>
 
-<p><strong>验证</strong>
-{
+<p><strong>验证</strong></p>
+
+<p>{
   &quot;op&quot;:&quot;auth_key_expires&quot;,
   &quot;args&quot;:{
-    &quot;api_key&quot;:&quot;XXXXX&quot;,
+    &quot;api_key&quot;:&quot;xxx&quot;,
     &quot;expires&quot;:&quot;1575029954231&quot;,
     &quot;signature&quot;,&quot;xxxxxxx&quot;
   }
