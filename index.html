@@ -250,6 +250,12 @@
                   <li>
                     <a href="#order" class="toc-h2 toc-link" data-title="order">order</a>
                   </li>
+                  <li>
+                    <a href="#execution" class="toc-h2 toc-link" data-title="execution">execution</a>
+                  </li>
+                  <li>
+                    <a href="#position" class="toc-h2 toc-link" data-title="position">position</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -367,9 +373,9 @@ url:GET/ws</p>
 <p>{
   &quot;op&quot;:&quot;auth_key_expires&quot;,
   &quot;args&quot;:{
-    &quot;api_key&quot;:&quot;xxx&quot;,
-    &quot;expires&quot;:&quot;1575029954231&quot;,
-    &quot;signature&quot;,&quot;xxxxxxx&quot;
+    &quot;api_key&quot;:&quot;UVpYHxxxIzdhcsTFFZuuHhIp&quot;,
+    &quot;expires&quot;:&quot;1575365733524&quot;,
+    &quot;signature&quot;,&quot;e36acaa887df38b1527e96234f5c730a56dcfc2a327cd269f2cf4a6e6515e00f&quot;
   }
 }</p>
 <h2 id='instrument'>instrument</h2>
@@ -535,20 +541,20 @@ price = ((100000000 * symbol_id) - id) * tick_size</p>
 
 <p><strong>说明</strong></p>
 
-<p>推送当前当前用户的活动委托的变更信息</p>
+<p>推送当前用户的活动委托的变更信息</p>
 
 <p><strong>订阅</strong></p>
 
 <p>{
     &quot;op&quot;:&quot;sub&quot;,
-     &quot;event&quot;:&quot;pc#order#BTC#BTC_USD&quot;
+     &quot;event&quot;:&quot;pc#order#BTC&quot;
 }</p>
 
 <p><strong>取消订阅</strong></p>
 
 <p>{
     &quot;op&quot;:&quot;unsub&quot;,
-     &quot;event&quot;:&quot;pc#order#BTC#BTC_USD&quot;
+     &quot;event&quot;:&quot;pc#order#BTC&quot;
 }</p>
 <pre class="highlight shell tab-shell"><code><span class="c"># Response </span>
 <span class="o">{</span>
@@ -579,6 +585,107 @@ price = ((100000000 * symbol_id) - id) * tick_size</p>
     <span class="o">]</span>,
     <span class="s2">"table"</span>:<span class="s2">"order"</span>,
     <span class="s2">"time"</span>:<span class="s2">"1575353430109"</span>
+<span class="o">}</span>
+</code></pre><h2 id='execution'>execution</h2>
+<p><strong>需要验证</strong></p>
+
+<p><strong>说明</strong></p>
+
+<p>推送当前用户的委托的执行信息</p>
+
+<p><strong>订阅</strong></p>
+
+<p>{
+    &quot;op&quot;:&quot;sub&quot;,
+     &quot;event&quot;:&quot;pc#execution#BTC&quot;
+}</p>
+
+<p><strong>取消订阅</strong></p>
+
+<p>{
+    &quot;op&quot;:&quot;unsub&quot;,
+     &quot;event&quot;:&quot;pc#execution#BTC&quot;
+}</p>
+<pre class="highlight shell tab-shell"><code><span class="c"># Response </span>
+<span class="o">{</span>
+    <span class="s2">"action"</span>:<span class="s2">"insert"</span>,
+    <span class="s2">"data"</span>:[
+        <span class="o">{</span>
+            <span class="s2">"ctime"</span>:<span class="s2">"1575526474231"</span>,              //execution时间
+            <span class="s2">"cum_qty"</span>:<span class="s2">"2"</span>,                        //累计成交量
+            <span class="s2">"exec_id"</span>:<span class="s2">"122702112030277888"</span>,       //执行id
+            <span class="s2">"exec_type"</span>:<span class="s2">"8"</span>,                      //执行类型 1.新增,2.未成交,4.成交,8,完成,16.撤销
+            <span class="s2">"last_qty"</span>:<span class="s2">"2"</span>,                       //上一次推送快照的委托量
+            <span class="s2">"leaves_qty"</span>:<span class="s2">"0"</span>,                     //委托未成交量
+            <span class="s2">"maker_flag"</span>:<span class="s2">"1"</span>,                     //1.当前委托执行是maker,0.taker
+            <span class="s2">"orderId"</span>:<span class="s2">"122702086658933120"</span>,       //委托id
+            <span class="s2">"order_price"</span>:<span class="s2">"7500"</span>,                 //委托价格
+            <span class="s2">"order_qty"</span>:<span class="s2">"2"</span>,                      //委托量
+            <span class="s2">"order_status"</span>:<span class="s2">"32"</span>,                  //委托状态
+            <span class="s2">"order_type"</span>:<span class="s2">"1"</span>,                     //委托类型
+            <span class="s2">"settle_currency"</span>:<span class="s2">"BTC"</span>,              //资产
+            <span class="s2">"side"</span>:<span class="s2">"1"</span>,                           //1.买入,0.卖出
+            <span class="s2">"close_flag"</span>:<span class="s2">"1"</span>,                     //1.平仓,0.开仓
+            <span class="s2">"symbol"</span>:<span class="s2">"BTC_USD"</span>,                   //交易对
+            <span class="s2">"trade_match_id"</span>:<span class="s2">"d6fb023b-2d31-4db2-8335-b6b0e6bf3570"</span>  //成交撮合id
+        <span class="o">}</span>
+    <span class="o">]</span>,
+    <span class="s2">"event"</span>:<span class="s2">"pc#execution#BTC"</span>,
+    <span class="s2">"keys"</span>:[
+
+    <span class="o">]</span>,
+    <span class="s2">"table"</span>:<span class="s2">"execution"</span>,
+    <span class="s2">"time"</span>:<span class="s2">"1575526474231"</span>
+<span class="o">}</span>
+</code></pre><h2 id='position'>position</h2>
+<p><strong>需要验证</strong></p>
+
+<p><strong>说明</strong></p>
+
+<p>定时推送用户的仓位信息</p>
+
+<p><strong>订阅</strong></p>
+
+<p>{
+    &quot;op&quot;:&quot;sub&quot;,
+     &quot;event&quot;:&quot;pc#position#BTC&quot;
+}</p>
+
+<p><strong>取消订阅</strong></p>
+
+<p>{
+    &quot;op&quot;:&quot;unsub&quot;,
+     &quot;event&quot;:&quot;pc#position#BTC&quot;
+}</p>
+<pre class="highlight shell tab-shell"><code><span class="c"># Response </span>
+<span class="o">{</span>
+    <span class="s2">"action"</span>:<span class="s2">"update"</span>,
+    <span class="s2">"data"</span>:[
+        <span class="o">{</span>
+            <span class="s2">"asset"</span>:<span class="s2">"BTC"</span>,                //资产
+            <span class="s2">"auto_increase_flag"</span>:<span class="s2">"0"</span>,     //当前仓位是否自动追加保证金 1.是,0.否
+            <span class="s2">"avail_qty"</span>:<span class="s2">"49"</span>,             //仓位可平量
+            <span class="s2">"entry_price"</span>:<span class="s2">"6711.6"</span>,       //开仓均价
+            <span class="s2">"leverage"</span>:<span class="s2">"15"</span>,              //仓位杠杆
+            <span class="s2">"liquidation_price"</span>:<span class="s2">"6368.2"</span>, //强平价
+            <span class="s2">"long_flag"</span>:<span class="s2">"1"</span>,              //1.多仓，0.空仓
+            <span class="s2">"maint_margin_ratio"</span>:<span class="s2">"0.005"</span>, //默认的维持保证金比率
+            <span class="s2">"margin_mode"</span>:<span class="s2">"2"</span>,            //保证金模式 1.全仓,2.逐仓
+            <span class="s2">"pnl"</span>:<span class="s2">"0.0006"</span>,               //未实现盈亏
+            <span class="s2">"pos_margin"</span>:<span class="s2">"0.000437"</span>,      //仓位保证金
+            <span class="s2">"pos_margin_ratio"</span>:<span class="s2">"0.1638"</span>,  //仓位保证金率
+            <span class="s2">"pos_pnl_ratio"</span>:<span class="s2">"0"</span>,          //收益率
+            <span class="s2">"qty"</span>:<span class="s2">"49"</span>,                   //仓位持仓量
+            <span class="s2">"realised_pnl"</span>:<span class="s2">"0"</span>,           //已实现盈亏
+            <span class="s2">"symbol"</span>:<span class="s2">"BTC_USD"</span>            //交易对
+        <span class="o">}</span>
+    <span class="o">]</span>,
+    <span class="s2">"event"</span>:<span class="s2">"pc#position#BTC"</span>,
+    <span class="s2">"keys"</span>:[
+
+    <span class="o">]</span>,
+    <span class="s2">"table"</span>:<span class="s2">"position"</span>,
+    <span class="s2">"time"</span>:<span class="s2">"1575528039621"</span>
 <span class="o">}</span>
 </code></pre><h1 id='http-restful-api'>Http Restful API</h1><h2 id='url'>url</h2>
 <ul>
