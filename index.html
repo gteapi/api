@@ -399,7 +399,7 @@ url:GET/ws</p>
 
 <p>{
     &quot;op&quot;:&quot;sub&quot;,
-     &quot;event&quot;:&quot;pc#instrument#BTC#BTC_USD&quot;
+    &quot;event&quot;:&quot;pc#instrument#BTC#BTC_USD&quot;
 }</p>
 
 <p><strong>取消订阅</strong></p>
@@ -415,7 +415,7 @@ url:GET/ws</p>
     <span class="s2">"key"</span>:[<span class="s2">"change_rate_24h"</span>,<span class="s2">"quote_currency"</span><span class="o">]</span> //data数据中的字段名
     <span class="s2">"data"</span>:[
       <span class="o">{</span>
-        <span class="s2">"asset_class"</span>:<span class="s2">"pc"</span>          //交易资产类别,pc永续合约
+        <span class="s2">"instrument_type"</span>:<span class="s2">"pc"</span>,          //交易资产类别,pc永续合约
         <span class="s2">"settle_currency"</span>:<span class="s2">"BTC"</span>,    //资产
         <span class="s2">"change_rate_24h"</span>:<span class="s2">"-0.1112"</span>,   //24小时价格变化幅度，-0.13代表跌了13%
         <span class="s2">"lot_size"</span>:<span class="s2">"1"</span>,              //合约面值,1表示1张合约价格1个quote_currency
@@ -461,7 +461,7 @@ url:GET/ws</p>
         <span class="o">[</span>
 
               <span class="o">{</span>
-                <span class="s2">"asset_class"</span>:<span class="s2">"pc"</span>          //交易资产类别,pc永续合约
+                <span class="s2">"instrument_type"</span>:<span class="s2">"pc"</span>,          //交易资产类别,pc永续合约
                 <span class="s2">"settle_currency"</span>:<span class="s2">"BTC"</span>,            //资产
                 <span class="s2">"symbol"</span>:<span class="s2">"BTC_USD"</span>,                //交易对
                 <span class="s2">"trade_time"</span>: <span class="s2">"1564295185000"</span>,     //成交时间 
@@ -516,7 +516,7 @@ price = ((100000000 * symbol_id) - id) * tick_size</p>
 
             <span class="o">{</span>
                 <span class="s2">"id"</span>:<span class="s2">"399911110"</span>,               //唯一标识
-                <span class="s2">"asset_class"</span>:<span class="s2">"pc"</span>,            //交易资产类别,pc永续合约             
+                <span class="s2">"instrument_type"</span>:<span class="s2">"pc"</span>,            //交易资产类别,pc永续合约             
                 <span class="s2">"settle_currency"</span>:<span class="s2">"BTC"</span>,       //资产
                 <span class="s2">"price"</span>:<span class="s2">"8889"</span>,               //价格
                 <span class="s2">"side"</span>:<span class="s2">"sell"</span>,                //买卖方向
@@ -525,7 +525,7 @@ price = ((100000000 * symbol_id) - id) * tick_size</p>
             <span class="o">}</span>,
             <span class="o">{</span>
                 <span class="s2">"id"</span>:<span class="s2">"399911200"</span>,
-                <span class="s2">"asset_class"</span>:<span class="s2">"pc"</span>,       
+                <span class="s2">"instrument_type"</span>:<span class="s2">"pc"</span>,       
                 <span class="s2">"settle_currency"</span>:<span class="s2">"BTC"</span>,
                 <span class="s2">"price"</span>:<span class="s2">"8880"</span>,
                 <span class="s2">"side"</span>:<span class="s2">"buy"</span>,
@@ -563,6 +563,7 @@ price = ((100000000 * symbol_id) - id) * tick_size</p>
     <span class="s2">"action"</span>:<span class="s2">"insert"</span>,
     <span class="s2">"data"</span>:[
         <span class="o">{</span>
+            <span class="s2">"instrument_type"</span>:<span class="s2">"pc"</span>,      //交易类型 pc永续合约
             <span class="s2">"avg_price"</span>:<span class="s2">"0"</span>,             //成交均价
             <span class="s2">"close_flag"</span>:<span class="s2">"0"</span>,            //0.开仓,1.pc
             <span class="s2">"ctime"</span>:<span class="s2">"1575353429226"</span>,     //委托创建时间
@@ -613,6 +614,7 @@ price = ((100000000 * symbol_id) - id) * tick_size</p>
     <span class="s2">"action"</span>:<span class="s2">"insert"</span>,
     <span class="s2">"data"</span>:[
         <span class="o">{</span>
+            <span class="s2">"instrument_type"</span>,:<span class="s2">"pc"</span>,      //交易类型 pc永续合约
             <span class="s2">"ctime"</span>:<span class="s2">"1575526474231"</span>,              //execution时间
             <span class="s2">"cum_qty"</span>:<span class="s2">"2"</span>,                        //累计成交量
             <span class="s2">"exec_id"</span>:<span class="s2">"122702112030277888"</span>,       //执行id
@@ -664,13 +666,14 @@ price = ((100000000 * symbol_id) - id) * tick_size</p>
     <span class="s2">"action"</span>:<span class="s2">"update"</span>,
     <span class="s2">"data"</span>:[
         <span class="o">{</span>
-            <span class="s2">"asset"</span>:<span class="s2">"BTC"</span>,                //资产
+            <span class="s2">"instrument_type"</span>,:<span class="s2">"pc"</span>,      //交易类型 pc永续合约
+            <span class="s2">"settle_currency"</span>:<span class="s2">"BTC"</span>,                //资产
             <span class="s2">"auto_increase_flag"</span>:<span class="s2">"0"</span>,     //当前仓位是否自动追加保证金 1.是,0.否
             <span class="s2">"avail_qty"</span>:<span class="s2">"49"</span>,             //仓位可平量
             <span class="s2">"entry_price"</span>:<span class="s2">"6711.6"</span>,       //开仓均价
             <span class="s2">"leverage"</span>:<span class="s2">"15"</span>,              //仓位杠杆
             <span class="s2">"liquidation_price"</span>:<span class="s2">"6368.2"</span>, //强平价
-            <span class="s2">"long_flag"</span>:<span class="s2">"1"</span>,              //1.多仓，0.空仓
+            <span class="s2">"side"</span>:<span class="s2">"1"</span>,                    //1.多仓，0.空仓
             <span class="s2">"maint_margin_ratio"</span>:<span class="s2">"0.005"</span>, //默认的维持保证金比率
             <span class="s2">"margin_mode"</span>:<span class="s2">"2"</span>,            //保证金模式 1.全仓,2.逐仓
             <span class="s2">"pnl"</span>:<span class="s2">"0.0006"</span>,               //未实现盈亏
