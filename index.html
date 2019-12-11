@@ -373,8 +373,9 @@
 
 <p>{</p>
 
-<p>&quot;op&quot;:&quot;auth_key_expires&quot;,
-    &quot;args&quot;:{
+<p>&quot;op&quot;:&quot;auth_key_expires&quot;,</p>
+
+<p>&quot;args&quot;:{
     &quot;api_key&quot;:&quot;UVpYHxxxIzdhcsTFFZuuHhIp&quot;,
     &quot;expires&quot;:&quot;1575365733524&quot;,
     &quot;signature&quot;:&quot;e36acaa887df38b1527e96234f5c730a56dcfc2a327cd269f2cf4a6e6515e00f&quot;
@@ -400,8 +401,9 @@
 
 <p>{</p>
 
-<p>&quot;op&quot;:&quot;sub&quot;,
-    &quot;args&quot;:{
+<p>&quot;op&quot;:&quot;sub&quot;,</p>
+
+<p>&quot;args&quot;:{
       &quot;instrument_type&quot;:&quot;pc&quot;,
       &quot;table&quot;:&quot;instrument&quot;,
       &quot;settle_currency&quot;:&quot;BTC&quot;,
@@ -412,8 +414,14 @@
 <p><strong>取消订阅</strong></p>
 
 <p>{
-    &quot;op&quot;:&quot;unsub&quot;,
-     &quot;event&quot;:&quot;pc#instrument#BTC#BTC_USD&quot;
+    &quot;op&quot;:&quot;unsub&quot;,</p>
+
+<p>&quot;args&quot;:{
+      &quot;instrument_type&quot;:&quot;pc&quot;,
+      &quot;table&quot;:&quot;instrument&quot;,
+      &quot;settle_currency&quot;:&quot;BTC&quot;,
+      &quot;symbol&quot;:&quot;BTC_USD&quot;
+      }
 }</p>
 <pre class="highlight shell tab-shell"><code><span class="c"># Response</span>
 <span class="o">{</span>
@@ -450,16 +458,20 @@
 
 <p><strong>订阅</strong></p>
 
-<p>{
-    &quot;op&quot;:&quot;sub&quot;,
-     &quot;event&quot;:&quot;pc#trade#BTC#BTC_USD&quot;
+<p>{</p>
+
+<p>&quot;op&quot;:&quot;sub&quot;,</p>
+
+<p>&quot;args&quot;:{&quot;instrument_type&quot;:&quot;pc&quot;,&quot;table&quot;:&quot;trade&quot;,&quot;settle_currency&quot;:&quot;BTC&quot;,&quot;symbol&quot;:&quot;BTC_USD&quot;}
 }</p>
 
 <p><strong>取消订阅</strong></p>
 
-<p>{
-    &quot;op&quot;:&quot;unsub&quot;,
-     &quot;event&quot;:&quot;pc#trade#BTC#BTC_USD&quot;
+<p>{</p>
+
+<p>&quot;op&quot;:&quot;unsub&quot;,</p>
+
+<p>&quot;args&quot;:{&quot;instrument_type&quot;:&quot;pc&quot;,&quot;table&quot;:&quot;trade&quot;,&quot;settle_currency&quot;:&quot;BTC&quot;,&quot;symbol&quot;:&quot;BTC_USD&quot;}
 }</p>
 <pre class="highlight shell tab-shell"><code><span class="c"># Response</span>
 <span class="o">{</span>
@@ -504,16 +516,20 @@ price = ((100000000 * symbol_id) - id) * tick_size</p>
 
 <p><strong>订阅</strong></p>
 
-<p>{
-    &quot;op&quot;:&quot;sub&quot;,
-     &quot;event&quot;:&quot;pc#order_book#BTC#BTC_USD&quot;
+<p>{</p>
+
+<p>&quot;op&quot;:&quot;sub&quot;,</p>
+
+<p>&quot;args&quot;:{&quot;instrument_type&quot;:&quot;pc&quot;,&quot;table&quot;:&quot;order_book&quot;,&quot;settle_currency&quot;:&quot;BTC&quot;,&quot;symbol&quot;:&quot;BTC_USD&quot;}
 }</p>
 
 <p><strong>取消订阅</strong></p>
 
-<p>{
-    &quot;op&quot;:&quot;sub&quot;,
-     &quot;event&quot;:&quot;pc#order_book#BTC#BTC_USD&quot;
+<p>{</p>
+
+<p>&quot;op&quot;:&quot;sub&quot;,</p>
+
+<p>&quot;args&quot;:{&quot;instrument_type&quot;:&quot;pc&quot;,&quot;table&quot;:&quot;order_book&quot;,&quot;settle_currency&quot;:&quot;BTC&quot;,&quot;symbol&quot;:&quot;BTC_USD&quot;}
 }</p>
 <pre class="highlight shell tab-shell"><code><span class="c"># Response</span>
 <span class="o">{</span>
@@ -554,16 +570,21 @@ price = ((100000000 * symbol_id) - id) * tick_size</p>
 
 <p><strong>订阅</strong></p>
 
-<p>{
-    &quot;op&quot;:&quot;sub&quot;,
-     &quot;event&quot;:&quot;pc#order#BTC&quot;
-}</p>
+<p>{</p>
+
+<p>&quot;op&quot;:&quot;sub&quot;,</p>
+
+<p>&quot;args&quot;:{&quot;instrument_type&quot;:&quot;pc&quot;,&quot;table&quot;:&quot;order&quot;,&quot;settle_currency&quot;:&quot;BTC&quot;}</p>
+
+<p>}</p>
 
 <p><strong>取消订阅</strong></p>
 
-<p>{
-    &quot;op&quot;:&quot;unsub&quot;,
-     &quot;event&quot;:&quot;pc#order#BTC&quot;
+<p>{</p>
+
+<p>&quot;op&quot;:&quot;unsub&quot;,</p>
+
+<p>&quot;args&quot;:{&quot;instrument_type&quot;:&quot;pc&quot;,&quot;table&quot;:&quot;order&quot;,&quot;settle_currency&quot;:&quot;BTC&quot;}
 }</p>
 <pre class="highlight shell tab-shell"><code><span class="c"># Response </span>
 <span class="o">{</span>
@@ -605,17 +626,22 @@ price = ((100000000 * symbol_id) - id) * tick_size</p>
 
 <p><strong>订阅</strong></p>
 
-<p>{
-    &quot;op&quot;:&quot;sub&quot;,
-     &quot;event&quot;:&quot;pc#execution#BTC&quot;
+<p>{</p>
+
+<p>&quot;op&quot;:&quot;sub&quot;,</p>
+
+<p>&quot;args&quot;:{&quot;instrument_type&quot;:&quot;pc&quot;,&quot;table&quot;:&quot;execution&quot;,&quot;settle_currency&quot;:&quot;BTC&quot;}
 }</p>
 
 <p><strong>取消订阅</strong></p>
 
-<p>{
-    &quot;op&quot;:&quot;unsub&quot;,
-     &quot;event&quot;:&quot;pc#execution#BTC&quot;
-}</p>
+<p>{</p>
+
+<p>&quot;op&quot;:&quot;unsub&quot;,</p>
+
+<p>&quot;args&quot;:{&quot;instrument_type&quot;:&quot;pc&quot;,&quot;table&quot;:&quot;execution&quot;,&quot;settle_currency&quot;:&quot;BTC&quot;</p>
+
+<p>}</p>
 <pre class="highlight shell tab-shell"><code><span class="c"># Response </span>
 <span class="o">{</span>
     <span class="s2">"action"</span>:<span class="s2">"insert"</span>,
@@ -657,16 +683,20 @@ price = ((100000000 * symbol_id) - id) * tick_size</p>
 
 <p><strong>订阅</strong></p>
 
-<p>{
-    &quot;op&quot;:&quot;sub&quot;,
-     &quot;event&quot;:&quot;pc#position#BTC&quot;
+<p>{</p>
+
+<p>&quot;op&quot;:&quot;sub&quot;,</p>
+
+<p>&quot;args&quot;:{&quot;instrument_type&quot;:&quot;pc&quot;,&quot;table&quot;:&quot;position&quot;,&quot;settle_currency&quot;:&quot;BTC&quot;}
 }</p>
 
 <p><strong>取消订阅</strong></p>
 
-<p>{
-    &quot;op&quot;:&quot;unsub&quot;,
-     &quot;event&quot;:&quot;pc#position#BTC&quot;
+<p>{</p>
+
+<p>&quot;op&quot;:&quot;unsub&quot;,</p>
+
+<p>&quot;args&quot;:{&quot;instrument_type&quot;:&quot;pc&quot;,&quot;table&quot;:&quot;position&quot;,&quot;settle_currency&quot;:&quot;BTC&quot;}
 }</p>
 <pre class="highlight shell tab-shell"><code><span class="c"># Response </span>
 <span class="o">{</span>
