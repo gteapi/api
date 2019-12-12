@@ -441,7 +441,6 @@
         <span class="s2">"volume_pos_hold"</span>:<span class="s2">"269016"</span>            //未平仓的合约持仓量
       <span class="o">}</span>  
     <span class="o">]</span>,
-    <span class="s2">"event"</span>:<span class="s2">"pc#instrument#BTC#BTC_USD"</span>,
     <span class="s2">"time"</span>:<span class="s2">"1573022591950"</span>
 <span class="o">}</span>
 </code></pre><h2 id='trade'>trade</h2>
@@ -470,7 +469,7 @@
 <p>}</p>
 <pre class="highlight shell tab-shell"><code><span class="c"># Response</span>
 <span class="o">{</span>
-    <span class="s2">"event"</span>: <span class="s2">"pc#trade#BTC#BTC_USD"</span>,             //订阅的事件
+    <span class="s2">"table"</span>:<span class="s2">"trade"</span>,
     <span class="s2">"data"</span>: 
         <span class="o">[</span>
 
@@ -555,7 +554,6 @@ price = ((100000000 * symbol_id) - id) * tick_size</p>
 
 
     <span class="o">]</span>,
-    <span class="s2">"event"</span>:<span class="s2">"pc#order_book#BTC#BTC_USD"</span>,
     <span class="s2">"time"</span>:<span class="s2">"1573281525515"</span>
 <span class="o">}</span>
 </code></pre><h2 id='order'>order</h2>
@@ -608,7 +606,6 @@ price = ((100000000 * symbol_id) - id) * tick_size</p>
             <span class="s2">"client_oid"</span>:<span class="s2">"123456"</span>             //客户端自己定义的id
         <span class="o">}</span>
     <span class="o">]</span>,
-    <span class="s2">"event"</span>:<span class="s2">"pc#order#ETH#ETH_USD"</span>,
     <span class="s2">"keys"</span>:[
 
     <span class="o">]</span>,
@@ -666,7 +663,6 @@ price = ((100000000 * symbol_id) - id) * tick_size</p>
             <span class="s2">"trade_match_id"</span>:<span class="s2">"d6fb023b-2d31-4db2-8335-b6b0e6bf3570"</span>  //成交撮合id
         <span class="o">}</span>
     <span class="o">]</span>,
-    <span class="s2">"event"</span>:<span class="s2">"pc#execution#BTC"</span>,
     <span class="s2">"keys"</span>:[
 
     <span class="o">]</span>,
@@ -723,7 +719,6 @@ price = ((100000000 * symbol_id) - id) * tick_size</p>
             <span class="s2">"symbol"</span>:<span class="s2">"BTC_USD"</span>            //交易对
         <span class="o">}</span>
     <span class="o">]</span>,
-    <span class="s2">"event"</span>:<span class="s2">"pc#position#BTC"</span>,
     <span class="s2">"keys"</span>:[
 
     <span class="o">]</span>,
@@ -1317,7 +1312,7 @@ size 最大1440</p>
 <p><strong>示例</strong></p>
 
 <ul>
-<li>POST <code>baseUrl/v1/api/pc/setting/query</code></li>
+<li>GET <code>baseUrl/v1/api/pc/setting/query</code></li>
 </ul>
 
 <p><strong>请求头</strong></p>
@@ -2096,6 +2091,10 @@ Codes are universal,but messages can vary.
 <th>描述</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>-10002</td>
+<td>服务器异常</td>
+</tr>
 <tr>
 <td>-10011</td>
 <td>参数不能为空异常</td>
