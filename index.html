@@ -256,6 +256,9 @@
                   <li>
                     <a href="#position" class="toc-h2 toc-link" data-title="position">position</a>
                   </li>
+                  <li>
+                    <a href="#margin" class="toc-h2 toc-link" data-title="margin">margin</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -438,7 +441,8 @@
         <span class="s2">"split_char"</span>:<span class="s2">"_"</span>,                     //交易对分隔符
         <span class="s2">"symbol"</span>:<span class="s2">"BTC_USD"</span>,                   //交易对
         <span class="s2">"volume_24h"</span>:<span class="s2">"30022"</span>,                 //24小时成交量
-        <span class="s2">"volume_pos_hold"</span>:<span class="s2">"269016"</span>            //未平仓的合约持仓量
+        <span class="s2">"volume_pos_hold"</span>:<span class="s2">"269016"</span>,            //未平仓的合约持仓量
+        <span class="s2">"price_precision"</span>: <span class="s2">"1"</span>,           //交易对价格小数位数
       <span class="o">}</span>  
     <span class="o">]</span>,
     <span class="s2">"time"</span>:<span class="s2">"1573022591950"</span>
@@ -724,6 +728,51 @@ price = ((100000000 * symbol_id) - id) * tick_size</p>
     <span class="o">]</span>,
     <span class="s2">"table"</span>:<span class="s2">"position"</span>,
     <span class="s2">"time"</span>:<span class="s2">"1575528039621"</span>
+<span class="o">}</span>
+</code></pre><h2 id='margin'>margin</h2>
+<p><strong>需要验证</strong></p>
+
+<p><strong>说明</strong></p>
+
+<p>定时推送用户的永续合约账户信息</p>
+
+<p><strong>订阅</strong></p>
+
+<p>{</p>
+
+<p>&quot;op&quot;:&quot;sub&quot;,</p>
+
+<p>&quot;args&quot;:{&quot;instrument_type&quot;:&quot;pc&quot;,&quot;table&quot;:&quot;margin&quot;,&quot;settle_currency&quot;:&quot;BTC&quot;}</p>
+
+<p>}</p>
+
+<p><strong>取消订阅</strong></p>
+
+<p>{</p>
+
+<p>&quot;op&quot;:&quot;unsub&quot;,</p>
+
+<p>&quot;args&quot;:{&quot;instrument_type&quot;:&quot;pc&quot;,&quot;table&quot;:&quot;margin&quot;,&quot;settle_currency&quot;:&quot;BTC&quot;}</p>
+
+<p>}</p>
+<pre class="highlight shell tab-shell"><code><span class="c"># Response </span>
+<span class="o">{</span>
+    <span class="s2">"action"</span>:<span class="s2">"partial"</span>,
+    <span class="s2">"data"</span>:[
+        <span class="o">{</span>
+            <span class="s2">"available"</span>:<span class="s2">"9.2392817"</span>,         //余额
+            <span class="s2">"instrument_type"</span>:<span class="s2">"pc"</span>,         //交易类型 pc永续合约
+            <span class="s2">"order_margin"</span>:<span class="s2">"0"</span>,             //委托保证金
+            <span class="s2">"pos_margin"</span>:<span class="s2">"0.4583322"</span>,       //仓位保证金
+            <span class="s2">"settle_currency"</span>:<span class="s2">"BTC"</span>,        //资产类别
+            <span class="s2">"total"</span>:<span class="s2">"9.6976139"</span>             //总额
+        <span class="o">}</span>
+    <span class="o">]</span>,
+    <span class="s2">"keys"</span>:[
+
+    <span class="o">]</span>,
+    <span class="s2">"table"</span>:<span class="s2">"margin"</span>,
+    <span class="s2">"time"</span>:<span class="s2">"1576573209743"</span>
 <span class="o">}</span>
 </code></pre><h1 id='http-restful-api'>Http Restful API</h1><h2 id='url'>url</h2>
 <ul>
