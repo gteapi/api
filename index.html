@@ -741,28 +741,33 @@ price = ((100000000 * symbol_id) - id) * tick_size</p>
 <li>api-expires : 当前时间的时间戳(毫秒)</li>
 <li>api-signature ： api签名</li>
 </ul></li>
-<li><p>签名规则</p>
+<li><p>签名规则  </p>
 
 <ul>
-<li> 构建签名的明文message分三部分</li>
-</ul>
-
-<p>1 api-key:请求头携带</p>
+<li><p>构建签名的明文message：分三部分构成<br>
+1 api-key:请求头携带</p>
 
 <p>2 api-expires：请求头携带</p>
 
 <p>3 请求参数组成的字符串 paras_string:  </p>
 
 <p>* 根据参数名称(key)按照ascii值排序, 例如查询委托,排序后的字符串为 <code>{&quot;count&quot;:&quot;20&quot;,&quot;end_time&quot;:&quot;1570701726000&quot;,&quot;filter&quot;:&quot;{&quot;status&quot;:[&quot;1&quot;],&quot;order_id&quot;:&quot;123000001&quot;}&quot;,&quot;start_time&quot;:&quot;1570788306000&quot;,&quot;symbol&quot;:&quot;BTC_USD&quot;}</code><br>
-     * 如果参数count为空或为null,不需要加入排序<br>
-     * 复杂数据类型字段，例如filter字段 {key:value} json类型字符串,filter字段本身参加排序,字段内容不需要排序<br>
-     * 构造字符串paras_string时建议统一去除空格，例如上例中 <code>...filter&quot;:&quot;{&quot;status&quot;:[&quot;1&quot;],&quot;order_id&quot;:&quot;123000001&quot;}...</code> 和 <code>...filter&quot;:&quot;{&quot;status&quot;: [&quot;1&quot;],&quot;order_id&quot;: &quot;123000001&quot;}...</code>(带有空格)将导致不同的签名<br>
-     * 发送给服务端的参数字符串(例如带空格或反斜杠)，和参加签名的重构字符串 paras_string（例如不带空格或反斜杠）不一致，也是签名错误的常见原因<br>
-* 秘钥
-   * apiSecret为创建api-key时显示的对应秘钥
-* 加密成api签名
-  * message等于api-key+api-expires+请求参数排序后的字符串
-  * hmacSha256（apiSecret,message） 加密成api签名,由api-signature携带</p></li>
+    * 如果参数count为空或为null,不需要加入排序<br>
+    * 复杂数据类型字段，例如filter字段 {key:value} json类型字符串,filter字段本身参加排序,字段内容不需要排序<br>
+    * 构造字符串paras_string时建议统一去除空格，例如上例中 <code>...filter&quot;:&quot;{&quot;status&quot;:[&quot;1&quot;],&quot;order_id&quot;:&quot;123000001&quot;}...</code> 和 <code>...filter&quot;:&quot;{&quot;status&quot;: [&quot;1&quot;],&quot;order_id&quot;: &quot;123000001&quot;}...</code>(带有空格)将导致不同的签名<br>
+    * 发送给服务端的参数字符串(例如带空格或反斜杠)，和参加签名的重构字符串 paras_string（例如不带空格或反斜杠）不一致，也是签名错误的常见原因  </p></li>
+<li><p>秘钥   </p>
+
+<ul>
+<li>apiSecret为创建api-key时显示的对应秘钥<br></li>
+</ul></li>
+<li><p>加密成api签名   </p>
+
+<ul>
+<li>message等于api-key+api-expires+请求参数排序后的字符串<br></li>
+<li>hmacSha256（apiSecret,message） 加密成api签名,由api-signature携带<br></li>
+</ul></li>
+</ul></li>
 </ul>
 <h2 id='85b6f6572b'>查询交易所支持的资产</h2>
 <p><strong>限速规则</strong>：5次/1s</p>
