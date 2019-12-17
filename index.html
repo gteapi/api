@@ -367,7 +367,7 @@
 
 <p>apiSecret:注册api_key时获取</p>
 
-<p>url:GET/ws</p>
+<p>url = &quot;GET/ws&quot;   </p>
 
 <p><strong>验证</strong></p>
 
@@ -751,15 +751,13 @@ price = ((100000000 * symbol_id) - id) * tick_size</p>
 
 <p>2 api-expires：请求头携带</p>
 
-<p>3 请求参数组成的字符串</p>
+<p>3 请求参数组成的字符串 paras_string:  </p>
 
-<p>* 请求参数根据参数名称按照ascii值排序,</p>
-
-<p>* 例如查询委托,排序后的字符串为 {&quot;count&quot;:&quot;20&quot;,&quot;end_time&quot;:&quot;1570701726000&quot;,&quot;filter&quot;:&quot;{&quot;status&quot;:&quot;1&quot;,&quot;order_id&quot;:&quot;123000001&quot;}&quot;,&quot;start_time&quot;:&quot;1570788306000&quot;,&quot;symbol&quot;:&quot;BTC_USD&quot;}</p>
-
-<p>* 如果参数count为空或为null,不需要加入排序</p>
-
-<p>* filter字段 {key:value} json类型字符串,filter字段参加排序,字段内容不需要排序
+<p>* 根据参数名称(key)按照ascii值排序, 例如查询委托,排序后的字符串为 <code>{&quot;count&quot;:&quot;20&quot;,&quot;end_time&quot;:&quot;1570701726000&quot;,&quot;filter&quot;:&quot;{&quot;status&quot;:[&quot;1&quot;],&quot;order_id&quot;:&quot;123000001&quot;}&quot;,&quot;start_time&quot;:&quot;1570788306000&quot;,&quot;symbol&quot;:&quot;BTC_USD&quot;}</code><br>
+     * 如果参数count为空或为null,不需要加入排序<br>
+     * 复杂数据类型字段，例如filter字段 {key:value} json类型字符串,filter字段本身参加排序,字段内容不需要排序<br>
+     * 构造字符串paras_string时建议统一去除空格，例如上例中 <code>...filter&quot;:&quot;{&quot;status&quot;:[&quot;1&quot;],&quot;order_id&quot;:&quot;123000001&quot;}...</code> 和 <code>...filter&quot;:&quot;{&quot;status&quot;: [&quot;1&quot;],&quot;order_id&quot;: &quot;123000001&quot;}...</code>(带有空格)将导致不同的签名<br>
+     * 发送给服务端的参数字符串(例如带空格或反斜杠)，和参加签名的重构字符串 paras_string（例如不带空格或反斜杠）不一致，也是签名错误的常见原因<br>
 * 秘钥
    * apiSecret为创建api-key时显示的对应秘钥
 * 加密成api签名
@@ -2129,7 +2127,11 @@ Codes are universal,but messages can vary.
 </tr>
 <tr>
 <td>-10201</td>
-<td>wss事件已经订阅</td>
+<td>ws事件已经订阅</td>
+</tr>
+<tr>
+<td>-10202</td>
+<td>ws没有认证</td>
 </tr>
 <tr>
 <td>-11001</td>
