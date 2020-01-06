@@ -1430,10 +1430,12 @@ size 最大1440</p>
         <span class="s2">"time"</span>:<span class="s2">"1573720738789"</span>,
         <span class="s2">"asset"</span>:<span class="s2">"BTC"</span>,              //资产    
         <span class="s2">"symbol"</span>:<span class="s2">"BTC_USD"</span>,         //交易对
-        <span class="s2">"max_leverage"</span>:<span class="s2">"100"</span>,       //最大杠杆
-        <span class="s2">"bid_leverage"</span>:<span class="s2">"5"</span>,         //买入杠杆
-        <span class="s2">"ask_leverage"</span>:<span class="s2">"5"</span>,         //卖出杠杆
-        <span class="s2">"cross_leverage"</span>:<span class="s2">"5"</span>,       //全仓杠杆
+        <span class="s2">"cross_max_leverage"</span>: <span class="s2">"100"</span>,      //满仓最大杠杆
+        <span class="s2">"bid_max_leverage"</span>:<span class="s2">"100"</span>,     //逐仓做多最大杠杆
+        <span class="s2">"ask_max_leverage"</span>: <span class="s2">"66.66"</span>,  //逐仓做空最大杠杆
+        <span class="s2">"bid_leverage"</span>: <span class="s2">"5"</span>,          //逐仓做多杠杆
+        <span class="s2">"ask_leverage"</span>: <span class="s2">"5"</span>,          //逐仓做空杠杆
+        <span class="s2">"cross_leverage"</span>: <span class="s2">"5"</span>,        //满仓杠杆
         <span class="s2">"margin_mode"</span>:<span class="s2">"2"</span>           //1.全仓,2.逐仓
     <span class="o">}</span>,
     <span class="s2">"input"</span>:null,
