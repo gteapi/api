@@ -278,11 +278,8 @@
               </ul>
           </li>
           <li>
-            <a href="#http-2" class="toc-h1 toc-link" data-title="http 永续合约">http 永续合约</a>
+            <a href="#http-2" class="toc-h1 toc-link" data-title="http 账户">http 账户</a>
               <ul class="toc-list-h2">
-                  <li>
-                    <a href="#85b6f6572b" class="toc-h2 toc-link" data-title="查询交易所支持的资产">查询交易所支持的资产</a>
-                  </li>
                   <li>
                     <a href="#f8972860b8" class="toc-h2 toc-link" data-title="查询资金账户">查询资金账户</a>
                   </li>
@@ -291,6 +288,14 @@
                   </li>
                   <li>
                     <a href="#6b248331a8" class="toc-h2 toc-link" data-title="账户划转">账户划转</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#http-3" class="toc-h1 toc-link" data-title="http 永续合约">http 永续合约</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#85b6f6572b" class="toc-h2 toc-link" data-title="查询交易所支持的资产">查询交易所支持的资产</a>
                   </li>
                   <li>
                     <a href="#e73d7c0566" class="toc-h2 toc-link" data-title="查询永续合约的交易对">查询永续合约的交易对</a>
@@ -371,17 +376,17 @@
 <h2 id='auth'>auth 验证</h2>
 <p><strong>参数说明</strong></p>
 
-<p>api_key:用户注册api_key时获取</p>
+<p>api_key: 用户注册api_key时获取</p>
 
-<p>expires：当前时间的时间戳(毫秒),推荐当前时间加上3~5秒,防止请求过期</p>
+<p>expires: 当前时间的时间戳(毫秒),推荐当前时间加上3~5秒,防止请求过期</p>
 
-<p>signature:签名 </p>
+<p>signature: 签名 </p>
 
 <p><strong>签名说明</strong></p>
 
 <p>加密方式: hmacSha256（apiSecret,url+expires） </p>
 
-<p>apiSecret:注册api_key时获取</p>
+<p>apiSecret: 注册api_key时获取</p>
 
 <p>url = &quot;GET/ws&quot;   </p>
 
@@ -831,35 +836,7 @@ price = ((100000000 * symbol_id) - id) * tick_size</p>
 </ul></li>
 </ul></li>
 </ul>
-<h1 id='http-2'>http 永续合约</h1><h2 id='85b6f6572b'>查询交易所支持的资产</h2>
-<p><strong>限速规则</strong>：5次/1s</p>
-
-<p><strong>示例</strong></p>
-
-<ul>
-<li>GET <code>baseUrl/v1/api/asset/query</code></li>
-</ul>
-<pre class="highlight shell tab-shell"><code><span class="c"># Response</span>
-<span class="o">{</span>
-  <span class="s2">"code"</span>: 0,
-  <span class="s2">"data"</span>: <span class="o">{</span>
-    <span class="s2">"rows"</span>: <span class="o">[</span>
-      <span class="o">{</span>
-        <span class="s2">"asset"</span>: <span class="s2">"BTC"</span>
-      <span class="o">}</span>,
-      <span class="o">{</span>
-        <span class="s2">"asset"</span>: <span class="s2">"ETH"</span>
-      <span class="o">}</span>
-    <span class="o">]</span>
-  <span class="o">}</span>,
-  <span class="s2">"input"</span>: null,
-  <span class="s2">"traceId"</span>: <span class="s2">""</span>,
-  <span class="s2">"cost"</span>: 0,
-  <span class="s2">"error"</span>: null,
-  <span class="s2">"msg"</span>: null,
-  <span class="s2">"time"</span>: 1573640300898
-<span class="o">}</span>
-</code></pre><h2 id='f8972860b8'>查询资金账户</h2>
+<h1 id='http-2'>http 账户</h1><h2 id='f8972860b8'>查询资金账户</h2>
 <p><strong>限速规则</strong>：10次/1s</p>
 
 <p><strong>示例</strong></p>
@@ -1102,6 +1079,34 @@ price = ((100000000 * symbol_id) - id) * tick_size</p>
     <span class="s2">"error"</span>:null,
     <span class="s2">"msg"</span>:null,
     <span class="s2">"time"</span>:1573639855769
+<span class="o">}</span>
+</code></pre><h1 id='http-3'>http 永续合约</h1><h2 id='85b6f6572b'>查询交易所支持的资产</h2>
+<p><strong>限速规则</strong>：5次/1s</p>
+
+<p><strong>示例</strong></p>
+
+<ul>
+<li>GET <code>baseUrl/v1/api/asset/query</code></li>
+</ul>
+<pre class="highlight shell tab-shell"><code><span class="c"># Response</span>
+<span class="o">{</span>
+  <span class="s2">"code"</span>: 0,
+  <span class="s2">"data"</span>: <span class="o">{</span>
+    <span class="s2">"rows"</span>: <span class="o">[</span>
+      <span class="o">{</span>
+        <span class="s2">"asset"</span>: <span class="s2">"BTC"</span>
+      <span class="o">}</span>,
+      <span class="o">{</span>
+        <span class="s2">"asset"</span>: <span class="s2">"ETH"</span>
+      <span class="o">}</span>
+    <span class="o">]</span>
+  <span class="o">}</span>,
+  <span class="s2">"input"</span>: null,
+  <span class="s2">"traceId"</span>: <span class="s2">""</span>,
+  <span class="s2">"cost"</span>: 0,
+  <span class="s2">"error"</span>: null,
+  <span class="s2">"msg"</span>: null,
+  <span class="s2">"time"</span>: 1573640300898
 <span class="o">}</span>
 </code></pre><h2 id='e73d7c0566'>查询永续合约的交易对</h2>
 <p><strong>限速规则</strong>：5次/1s</p>
