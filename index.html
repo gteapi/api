@@ -233,11 +233,16 @@
             <a href="#b122f813d5" class="toc-h1 toc-link" data-title="基本信息">基本信息</a>
           </li>
           <li>
-            <a href="#websocket" class="toc-h1 toc-link" data-title="websocket 永续合约">websocket 永续合约</a>
+            <a href="#websocket" class="toc-h1 toc-link" data-title="websocket 验证">websocket 验证</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#auth" class="toc-h2 toc-link" data-title="auth 验证">auth 验证</a>
                   </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#websocket-2" class="toc-h1 toc-link" data-title="websocket 永续合约">websocket 永续合约</a>
+              <ul class="toc-list-h2">
                   <li>
                     <a href="#instrument" class="toc-h2 toc-link" data-title="instrument">instrument</a>
                   </li>
@@ -356,7 +361,7 @@
 <td>-新增委托、深度、行情接口</td>
 </tr>
 </tbody></table>
-<h1 id='b122f813d5'>基本信息</h1><h1 id='websocket'>websocket 永续合约</h1>
+<h1 id='b122f813d5'>基本信息</h1><h1 id='websocket'>websocket 验证</h1>
 <p>ws连接地址 wss://td.gte.io/ws</p>
 
 <p>客户端每20秒发送字符串{&quot;op&quot;:&quot;ping&quot;},服务端返回{&quot;op&quot;:&quot;pong&quot;},服务端2分钟没有收到客户端消息,自动断开客户端</p>
@@ -393,7 +398,7 @@
     }</p>
 
 <p>}</p>
-<h2 id='instrument'>instrument</h2>
+<h1 id='websocket-2'>websocket 永续合约</h1><h2 id='instrument'>instrument</h2>
 <p><strong>说明</strong></p>
 
 <p>最新的各种价格,行情,交易量等,pc为永续合约,instrument为订阅管道,BTC为资产,BTC_USD为交易对</p>
