@@ -233,7 +233,7 @@
             <a href="#b122f813d5" class="toc-h1 toc-link" data-title="基本信息">基本信息</a>
           </li>
           <li>
-            <a href="#websocket" class="toc-h1 toc-link" data-title="Websocket 接口">Websocket 接口</a>
+            <a href="#websocket" class="toc-h1 toc-link" data-title="Websocket 永续合约">Websocket 永续合约</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#auth" class="toc-h2 toc-link" data-title="auth 验证">auth 验证</a>
@@ -262,7 +262,7 @@
               </ul>
           </li>
           <li>
-            <a href="#http-restful-api" class="toc-h1 toc-link" data-title="Http Restful API">Http Restful API</a>
+            <a href="#http" class="toc-h1 toc-link" data-title="Http 永续合约">Http 永续合约</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#url" class="toc-h2 toc-link" data-title="url">url</a>
@@ -351,7 +351,7 @@
 <td>-新增委托、深度、行情接口</td>
 </tr>
 </tbody></table>
-<h1 id='b122f813d5'>基本信息</h1><h1 id='websocket'>Websocket 接口</h1>
+<h1 id='b122f813d5'>基本信息</h1><h1 id='websocket'>Websocket 永续合约</h1>
 <p>ws连接地址 wss://td.gte.io/ws</p>
 
 <p>客户端每20秒发送字符串{&quot;op&quot;:&quot;ping&quot;},服务端返回{&quot;op&quot;:&quot;pong&quot;},服务端2分钟没有收到客户端消息,自动断开客户端</p>
@@ -777,7 +777,7 @@ price = ((100000000 * symbol_id) - id) * tick_size</p>
     <span class="s2">"table"</span>:<span class="s2">"margin"</span>,
     <span class="s2">"time"</span>:<span class="s2">"1576573209743"</span>
 <span class="o">}</span>
-</code></pre><h1 id='http-restful-api'>Http Restful API</h1><h2 id='url'>url</h2>
+</code></pre><h1 id='http'>Http 永续合约</h1><h2 id='url'>url</h2>
 <ul>
 <li><p>baseUrl <code>https://api.gte.io/</code></p></li>
 <li><p>/v1/api/pc/asset/query v1为版本号</p></li>
