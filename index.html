@@ -353,6 +353,9 @@
                   <li>
                     <a href="#instrument-3" class="toc-h2 toc-link" data-title="查询instrument数据">查询instrument数据</a>
                   </li>
+                  <li>
+                    <a href="#b7afc2947f-2" class="toc-h2 toc-link" data-title="查询深度">查询深度</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -2476,6 +2479,77 @@ size 最大1440</p>
     <span class="o">]</span>
   <span class="o">}</span>,
   <span class="s2">"time"</span>: 1573635077085
+<span class="o">}</span>
+</code></pre><h2 id='b7afc2947f-2'>查询深度</h2>
+<p><strong>限速规则</strong>：10次/1s</p>
+
+<p><strong>示例</strong></p>
+
+<ul>
+<li>GET <code>baseUrl/v1/api/bb/order/book/query</code></li>
+</ul>
+
+<p><strong>请求参数</strong></p>
+
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>asset</td>
+<td>string</td>
+<td>YES</td>
+<td>资产</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>YES</td>
+<td>交易对</td>
+</tr>
+<tr>
+<td>size</td>
+<td>string</td>
+<td>NO</td>
+<td>返回数量</td>
+</tr>
+</tbody></table>
+
+<p><strong>说明</strong></p>
+
+<p>size 填写15,买卖共30条,最大50</p>
+<pre class="highlight shell tab-shell"><code><span class="c"># Response</span>
+<span class="o">{</span>
+  <span class="s2">"code"</span>: 0,
+  <span class="s2">"data"</span>: <span class="o">{</span>
+    <span class="s2">"time"</span>: <span class="s2">"1573643118030"</span>,
+    <span class="s2">"bids"</span>: <span class="o">[</span>             //bid 买入
+      <span class="o">[</span>
+        <span class="s2">"8888"</span>,           //价格
+        <span class="s2">"136"</span>             //量
+      <span class="o">]</span>,
+      <span class="o">[</span>
+        <span class="s2">"8000"</span>,
+        <span class="s2">"96"</span>
+      <span class="o">]</span>
+    <span class="o">]</span>,
+    <span class="s2">"asks"</span>: <span class="o">[</span>            //ask 
+      <span class="o">[</span>
+        <span class="s2">"10009"</span>,
+        <span class="s2">"229"</span>
+      <span class="o">]</span>,
+      <span class="o">[</span>
+        <span class="s2">"10021"</span>,
+        <span class="s2">"188"</span>
+      <span class="o">]</span>
+    <span class="o">]</span>,
+    <span class="s2">"asset"</span>: <span class="s2">"BTC"</span>,          //资产
+    <span class="s2">"symbol"</span>: <span class="s2">"BTC_USD"</span>      //交易对
+  <span class="o">}</span>,
 <span class="o">}</span>
 </code></pre><h1 id='cf68bca02a'>错误代码</h1>
 <aside class="notice">
