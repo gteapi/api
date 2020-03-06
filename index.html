@@ -347,6 +347,9 @@
                   <li>
                     <a href="#58a5e927e0-2" class="toc-h2 toc-link" data-title="查询交易的资产区">查询交易的资产区</a>
                   </li>
+                  <li>
+                    <a href="#k-2" class="toc-h2 toc-link" data-title="查询的k线">查询的k线</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -2336,6 +2339,87 @@ order_type等于1,price必填</p>
   <span class="s2">"time"</span>: 1573640300898
 <span class="o">}</span>
 
+</code></pre><h2 id='k-2'>查询的k线</h2>
+<p><strong>限速规则</strong>：2次/1s</p>
+
+<p><strong>示例</strong></p>
+
+<ul>
+<li>GET <code>baseUrl/v1/api/bb/candle/query</code></li>
+</ul>
+
+<p><strong>请求参数</strong></p>
+
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>asset</td>
+<td>string</td>
+<td>YES</td>
+<td>资产</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>YES</td>
+<td>交易对</td>
+</tr>
+<tr>
+<td>start_time</td>
+<td>string</td>
+<td>NO</td>
+<td>开始时间,时间戳毫秒</td>
+</tr>
+<tr>
+<td>end_time</td>
+<td>string</td>
+<td>NO</td>
+<td>结束时间,时间戳毫秒</td>
+</tr>
+<tr>
+<td>interval</td>
+<td>string</td>
+<td>NO</td>
+<td>k线时间间隔,分钟</td>
+</tr>
+<tr>
+<td>size</td>
+<td>string</td>
+<td>NO</td>
+<td>返回条数</td>
+</tr>
+</tbody></table>
+
+<p><strong>说明</strong>
+interval值 1 5 15 30 60 120 240 360 720 1440 10080 43200
+size 最大1440</p>
+<pre class="highlight shell tab-shell"><code><span class="c"># Response</span>
+<span class="o">{</span>
+  <span class="s2">"code"</span>: 0,
+  <span class="s2">"data"</span>: <span class="o">{</span>
+    <span class="s2">"time"</span>: <span class="s2">"1573641132754"</span>,
+    <span class="s2">"interval"</span>: <span class="s2">"1"</span>,         
+    <span class="s2">"rows"</span>: <span class="o">[</span>
+      <span class="o">[</span>
+        <span class="s2">"1573640940000"</span>,    //k线的时间戳毫秒
+        <span class="s2">"10009"</span>,            //开盘价
+        <span class="s2">"10009"</span>,            //最高价
+        <span class="s2">"10009"</span>,            //最低价
+        <span class="s2">"10009"</span>,            //收盘价
+        <span class="s2">"2"</span>                 //量<span class="o">(</span>张数<span class="o">)</span> 
+      <span class="o">]</span>
+    <span class="o">]</span>,
+    <span class="s2">"asset"</span>: <span class="s2">"BTC"</span>,
+    <span class="s2">"symbol"</span>: <span class="s2">"BTC_USD"</span>
+  <span class="o">}</span>,
+  <span class="s2">"time"</span>: 1573641132755
+<span class="o">}</span>
 </code></pre><h1 id='cf68bca02a'>错误代码</h1>
 <aside class="notice">
 Errors consist of two parts: an error code and a message.
