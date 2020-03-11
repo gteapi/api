@@ -362,6 +362,12 @@
                   <li>
                     <a href="#3a8264c8e2-2" class="toc-h2 toc-link" data-title="撤销委托">撤销委托</a>
                   </li>
+                  <li>
+                    <a href="#6f17b241c4-2" class="toc-h2 toc-link" data-title="查询委托">查询委托</a>
+                  </li>
+                  <li>
+                    <a href="#d88400ae3b" class="toc-h2 toc-link" data-title="查询币币的交易对">查询币币的交易对</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -2740,6 +2746,164 @@ order_type等于1,price必填</p>
   <span class="s2">"code"</span>: 0,
   <span class="s2">"data"</span>: <span class="o">{</span>
     <span class="s2">"time"</span>: <span class="s2">"1568639111357"</span>,
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre><h2 id='6f17b241c4-2'>查询委托</h2>
+<p><strong>限速规则</strong>：10次/1s</p>
+
+<p><strong>示例</strong></p>
+
+<ul>
+<li>GET <code>baseUrl/v1/api/bb/order/query</code></li>
+</ul>
+
+<p><strong>请求头</strong></p>
+
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>api-key</td>
+<td>string</td>
+<td>YES</td>
+<td>apiKey</td>
+</tr>
+<tr>
+<td>api-expires</td>
+<td>string</td>
+<td>YES</td>
+<td>当前时间戳毫秒</td>
+</tr>
+<tr>
+<td>api-signature</td>
+<td>string</td>
+<td>YES</td>
+<td>api签名</td>
+</tr>
+</tbody></table>
+
+<p><strong>请求参数</strong></p>
+
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>asset</td>
+<td>string</td>
+<td>YES</td>
+<td>资产</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>NO</td>
+<td>交易对</td>
+</tr>
+<tr>
+<td>filter</td>
+<td>string</td>
+<td>NO</td>
+<td>过滤器, json格式的字符串</td>
+</tr>
+<tr>
+<td>gt_order_id</td>
+<td>string</td>
+<td>NO</td>
+<td>order_id,请求大于order_id的数据,gt和lt都填,以gt为准</td>
+</tr>
+<tr>
+<td>lt_order_id</td>
+<td>string</td>
+<td>NO</td>
+<td>order_id,请求小于order_id的数据</td>
+</tr>
+<tr>
+<td>count</td>
+<td>string</td>
+<td>NO</td>
+<td>返回条数最大100条</td>
+</tr>
+</tbody></table>
+
+<p><strong>filter</strong></p>
+
+<ul>
+<li><p>json格式的字符串</p></li>
+<li><p>支持 status(委托状态) , 类型 字符串数组</p></li>
+<li><p>例如{&quot;status&quot;:[&quot;1&quot;,&quot;8&quot;]}</p></li>
+</ul>
+<pre class="highlight shell tab-shell"><code><span class="c"># Response</span>
+<span class="o">{</span>
+    <span class="s2">"code"</span>:0,
+    <span class="s2">"data"</span>:<span class="o">{</span>
+        <span class="s2">"time"</span>:<span class="s2">"1568639823340"</span>,
+        <span class="s2">"rows"</span>:[
+            <span class="o">{</span>    
+              <span class="s2">"id"</span>: <span class="s2">"1"</span>,
+              <span class="s2">"status"</span>: <span class="s2">"1"</span>,                 //委托状态  1:已创建未匹配 2:新建未成交 4:待取消 8:已取消 16:部分成交 32:全部成交           
+              <span class="s2">"fee"</span>: <span class="s2">"0.001"</span>,                //手续费     
+              <span class="s2">"price"</span>: <span class="s2">"10035"</span>,              //委托价            
+              <span class="s2">"qty"</span>: <span class="s2">"2"</span>,                    //量
+              <span class="s2">"bid_flag"</span>: <span class="s2">"1"</span>,               //1.多 0.空
+              <span class="s2">"asset"</span>:<span class="s2">"USD"</span>,                  //资产
+              <span class="s2">"symbol"</span>: <span class="s2">"BTC_USD"</span>,            //交易对
+              <span class="s2">"ctime"</span>: <span class="s2">"1564482914569"</span>,      //委托创建时间
+              <span class="s2">"avg_price"</span>: <span class="s2">"10025"</span>,          //平均价
+              <span class="s2">"filled_qty"</span>: <span class="s2">"1.1"</span>,           //已成交量
+              <span class="s2">"trade_ratio"</span>: <span class="s2">"0.01"</span>,         //成交比例,表示 1%
+              <span class="s2">"order_type"</span>: <span class="s2">"1"</span>              //委托类型 1:限价
+            <span class="o">}</span>
+        <span class="o">]</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre><h2 id='d88400ae3b'>查询币币的交易对</h2>
+<p><strong>限速规则</strong>：5次/1s</p>
+
+<p><strong>示例</strong></p>
+
+<ul>
+<li>GET <code>baseUrl/v1/api/bb/symbol/query</code></li>
+</ul>
+
+<p><strong>请求参数</strong></p>
+
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>asset</td>
+<td>string</td>
+<td>yes</td>
+<td>资产</td>
+</tr>
+</tbody></table>
+<pre class="highlight shell tab-shell"><code><span class="c"># Response</span>
+<span class="o">{</span>
+  <span class="s2">"code"</span>: 0,
+  <span class="s2">"data"</span>: <span class="o">{</span>
+    <span class="s2">"time"</span>: <span class="s2">"1573642959704"</span>,
+    <span class="s2">"rows"</span>: <span class="o">[</span>
+      <span class="o">{</span>
+        <span class="s2">"symbol"</span>: <span class="s2">"BTC_USD"</span>,    //交易对
+        <span class="s2">"price_precision"</span>: <span class="s2">"1"</span>  //价格的最大小数位
+        <span class="s2">"number_precision"</span>: <span class="s2">"1"</span>  //数量的最大小数位
+      <span class="o">}</span>
+    <span class="o">]</span>
   <span class="o">}</span>
 <span class="o">}</span>
 </code></pre><h1 id='cf68bca02a'>错误代码</h1>
