@@ -365,9 +365,6 @@
                   <li>
                     <a href="#6f17b241c4-2" class="toc-h2 toc-link" data-title="查询委托">查询委托</a>
                   </li>
-                  <li>
-                    <a href="#d88400ae3b" class="toc-h2 toc-link" data-title="查询币币的交易对">查询币币的交易对</a>
-                  </li>
               </ul>
           </li>
           <li>
@@ -2357,6 +2354,39 @@ order_type等于1,price必填</p>
   <span class="s2">"time"</span>: 1573640300898
 <span class="o">}</span>
 
+</code></pre><pre class="highlight plaintext"><code>
+## 查询币币的交易对
+
+**限速规则**：5次/1s
+
+**示例**
+
+* GET `baseUrl/v1/api/bb/symbol/query`
+
+
+**请求参数**
+
+名称 | 类型 | 是否必须 | 描述
+----- | ---- | ----- | -----
+asset | string | NO | 资产
+
+```shell
+# Response
+{
+  "code": 0,
+  "data": {
+    "time": "1573642959704",
+    "rows": [
+      {
+        "asset":"USDT",               //资产交易区
+        "symbol": "BTC_USD",          //交易对
+        "min_trade_number": "0.0001", //最小交易量
+        "price_precision": "2"        //价格的小数位精度
+        "number_precision": "4"       //数量的小数位精度
+      }
+    ]
+  }
+}
 </code></pre><h2 id='k-2'>查询币币的k线</h2>
 <p><strong>限速规则</strong>：2次/1s</p>
 
@@ -2866,46 +2896,8 @@ order_type等于1,price必填</p>
         <span class="o">]</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre><h2 id='d88400ae3b'>查询币币的交易对</h2>
-<p><strong>限速规则</strong>：5次/1s</p>
 
-<p><strong>示例</strong></p>
 
-<ul>
-<li>GET <code>baseUrl/v1/api/bb/symbol/query</code></li>
-</ul>
-
-<p><strong>请求参数</strong></p>
-
-<table><thead>
-<tr>
-<th>名称</th>
-<th>类型</th>
-<th>是否必须</th>
-<th>描述</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>asset</td>
-<td>string</td>
-<td>yes</td>
-<td>资产</td>
-</tr>
-</tbody></table>
-<pre class="highlight shell tab-shell"><code><span class="c"># Response</span>
-<span class="o">{</span>
-  <span class="s2">"code"</span>: 0,
-  <span class="s2">"data"</span>: <span class="o">{</span>
-    <span class="s2">"time"</span>: <span class="s2">"1573642959704"</span>,
-    <span class="s2">"rows"</span>: <span class="o">[</span>
-      <span class="o">{</span>
-        <span class="s2">"symbol"</span>: <span class="s2">"BTC_USD"</span>,    //交易对
-        <span class="s2">"price_precision"</span>: <span class="s2">"1"</span>  //价格的最大小数位
-        <span class="s2">"number_precision"</span>: <span class="s2">"1"</span>  //数量的最大小数位
-      <span class="o">}</span>
-    <span class="o">]</span>
-  <span class="o">}</span>
-<span class="o">}</span>
 </code></pre><h1 id='cf68bca02a'>错误代码</h1>
 <aside class="notice">
 Errors consist of two parts: an error code and a message.
