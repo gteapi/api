@@ -267,6 +267,17 @@
               </ul>
           </li>
           <li>
+            <a href="#websocket-3" class="toc-h1 toc-link" data-title="websocket 币币交易">websocket 币币交易</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#orderbook-2" class="toc-h2 toc-link" data-title="orderBook">orderBook</a>
+                  </li>
+                  <li>
+                    <a href="#trade-2" class="toc-h2 toc-link" data-title="trade">trade</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#http" class="toc-h1 toc-link" data-title="http 基本信息">http 基本信息</a>
               <ul class="toc-list-h2">
                   <li>
@@ -573,7 +584,7 @@ price = ((100000000 * symbol_id) - id) * tick_size</p>
 
 <p>{</p>
 
-<p>&quot;op&quot;:&quot;sub&quot;,</p>
+<p>&quot;op&quot;:&quot;unsub&quot;,</p>
 
 <p>&quot;args&quot;:{&quot;instrument_type&quot;:&quot;pc&quot;,&quot;table&quot;:&quot;order_book&quot;,&quot;settle_currency&quot;:&quot;BTC&quot;,&quot;symbol&quot;:&quot;BTC_USD&quot;}</p>
 
@@ -820,6 +831,119 @@ price = ((100000000 * symbol_id) - id) * tick_size</p>
     <span class="o">]</span>,
     <span class="s2">"table"</span>:<span class="s2">"margin"</span>,
     <span class="s2">"time"</span>:<span class="s2">"1576573209743"</span>
+<span class="o">}</span>
+</code></pre><h1 id='websocket-3'>websocket 币币交易</h1><h2 id='orderbook-2'>orderBook</h2>
+<p><strong>说明</strong></p>
+
+<p>订阅返回全量数据,推送返回增量数据,bb为币币交易,order_book为订阅管道,USDT为资产,BTC/USDT为交易对</p>
+
+<p>action的值partial,delete,update,insert</p>
+
+<p>partial 订阅返回全量数据</p>
+
+<p>delete 删除当前价格的深度</p>
+
+<p>update 更新当前价格的深度,量为最终值</p>
+
+<p>insert 新增当前价格的深度</p>
+
+<p>id当前交易对唯一表示,id和price相互反推,symbol_id和tick_size可以在订阅instrument中获取</p>
+
+<p>计算公式
+id = (100000000 * symbol_id) - (price / tick_size)
+price = ((100000000 * symbol_id) - id) * tick_size</p>
+
+<p><strong>订阅</strong></p>
+
+<p>{</p>
+
+<p>&quot;op&quot;:&quot;sub&quot;,</p>
+
+<p>&quot;args&quot;:{&quot;instrument_type&quot;:&quot;bb&quot;,&quot;table&quot;:&quot;order_book&quot;,&quot;settle_currency&quot;:&quot;USDT&quot;,&quot;symbol&quot;:&quot;BTC/USDT&quot;}</p>
+
+<p>}</p>
+
+<p><strong>取消订阅</strong></p>
+
+<p>{</p>
+
+<p>&quot;op&quot;:&quot;unsub&quot;,</p>
+
+<p>&quot;args&quot;:{&quot;instrument_type&quot;:&quot;bb&quot;,&quot;table&quot;:&quot;order_book&quot;,&quot;settle_currency&quot;:&quot;USDT&quot;,&quot;symbol&quot;:&quot;BTC/USDT&quot;}</p>
+
+<p>}</p>
+<pre class="highlight shell tab-shell"><code><span class="c"># Response</span>
+<span class="o">{</span>
+    <span class="s2">"action"</span>:<span class="s2">"partial"</span>,
+    <span class="s2">"table"</span>:<span class="s2">"order_book"</span>,     
+    <span class="s2">"data"</span>:[
+
+            <span class="o">{</span>
+                <span class="s2">"id"</span>:<span class="s2">"399911110"</span>,               //唯一标识
+                <span class="s2">"instrument_type"</span>:<span class="s2">"bb"</span>,     //交易资产类别,bb币币交易             
+                <span class="s2">"settle_currency"</span>:<span class="s2">"USDT"</span>,      //资产,交易区
+                <span class="s2">"price"</span>:<span class="s2">"8889"</span>,               //价格
+                <span class="s2">"side"</span>:<span class="s2">"sell"</span>,                //买卖方向
+                <span class="s2">"size"</span>:<span class="s2">"590"</span>,                 //量<span class="o">(</span>张数<span class="o">)</span>
+                <span class="s2">"symbol"</span>:<span class="s2">"BTC/USDT"</span>            //交易对
+            <span class="o">}</span>,
+            <span class="o">{</span>
+                <span class="s2">"id"</span>:<span class="s2">"399911200"</span>,
+                <span class="s2">"instrument_type"</span>:<span class="s2">"pc"</span>,       
+                <span class="s2">"settle_currency"</span>:<span class="s2">"USDT"</span>,
+                <span class="s2">"price"</span>:<span class="s2">"8880"</span>,
+                <span class="s2">"side"</span>:<span class="s2">"buy"</span>,
+                <span class="s2">"size"</span>:<span class="s2">"677"</span>,
+                <span class="s2">"symbol"</span>:<span class="s2">"BTC/USDT"</span>
+            <span class="o">}</span>
+
+
+    <span class="o">]</span>,
+    <span class="s2">"time"</span>:<span class="s2">"1573281525515"</span>
+<span class="o">}</span>
+</code></pre><h2 id='trade-2'>trade</h2>
+<p><strong>说明</strong></p>
+
+<p>推送最新的成交记录,bb为币币交易,trade为订阅管道,USDT为资产,BTC/USDT为交易对</p>
+
+<p><strong>订阅</strong></p>
+
+<p>{</p>
+
+<p>&quot;op&quot;:&quot;sub&quot;,</p>
+
+<p>&quot;args&quot;:{&quot;instrument_type&quot;:&quot;bb&quot;,&quot;table&quot;:&quot;trade&quot;,&quot;settle_currency&quot;:&quot;USDT&quot;,&quot;symbol&quot;:&quot;BTC/USDT&quot;}</p>
+
+<p>}</p>
+
+<p><strong>取消订阅</strong></p>
+
+<p>{</p>
+
+<p>&quot;op&quot;:&quot;unsub&quot;,</p>
+
+<p>&quot;args&quot;:{&quot;instrument_type&quot;:&quot;bb&quot;,&quot;table&quot;:&quot;trade&quot;,&quot;settle_currency&quot;:&quot;USDT&quot;,&quot;symbol&quot;:&quot;BTC/USDT&quot;}</p>
+
+<p>}</p>
+<pre class="highlight shell tab-shell"><code><span class="c"># Response</span>
+<span class="o">{</span>
+    <span class="s2">"table"</span>:<span class="s2">"trade"</span>,
+    <span class="s2">"data"</span>: 
+        <span class="o">[</span>
+
+              <span class="o">{</span>
+                <span class="s2">"instrument_type"</span>:<span class="s2">"bb"</span>,          //交易资产类别
+                <span class="s2">"settle_currency"</span>:<span class="s2">"USDT"</span>,            //资产
+                <span class="s2">"symbol"</span>:<span class="s2">"BTC/USDT"</span>,                //交易对
+                <span class="s2">"trade_time"</span>: <span class="s2">"1564295185000"</span>,     //成交时间 
+                <span class="s2">"side"</span>: <span class="s2">"sell"</span>,                    //sell,buy  
+                <span class="s2">"price"</span>: <span class="s2">"1000.00"</span>,                //成交价格
+                <span class="s2">"qty"</span>: <span class="s2">"3"</span>                         //成交量<span class="o">(</span>张数<span class="o">)</span>              
+              <span class="o">}</span>
+
+        <span class="o">]</span>
+     ,
+   <span class="s2">"time"</span>: <span class="s2">"1564295185000"</span>        // 服务器返回数据的时间戳毫秒
 <span class="o">}</span>
 </code></pre><h1 id='http'>http 基本信息</h1><h2 id='url'>url</h2>
 <ul>
