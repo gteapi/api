@@ -270,6 +270,9 @@
             <a href="#websocket-3" class="toc-h1 toc-link" data-title="websocket 币币交易">websocket 币币交易</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#instrument-2" class="toc-h2 toc-link" data-title="instrument">instrument</a>
+                  </li>
+                  <li>
                     <a href="#orderbook-2" class="toc-h2 toc-link" data-title="orderBook">orderBook</a>
                   </li>
                   <li>
@@ -315,7 +318,7 @@
                     <a href="#e73d7c0566" class="toc-h2 toc-link" data-title="查询永续合约的交易对">查询永续合约的交易对</a>
                   </li>
                   <li>
-                    <a href="#instrument-2" class="toc-h2 toc-link" data-title="查询instrument数据">查询instrument数据</a>
+                    <a href="#instrument-3" class="toc-h2 toc-link" data-title="查询instrument数据">查询instrument数据</a>
                   </li>
                   <li>
                     <a href="#k" class="toc-h2 toc-link" data-title="查询永续合约的k线">查询永续合约的k线</a>
@@ -362,7 +365,7 @@
                     <a href="#k-2" class="toc-h2 toc-link" data-title="查询币币的k线">查询币币的k线</a>
                   </li>
                   <li>
-                    <a href="#instrument-3" class="toc-h2 toc-link" data-title="查询instrument数据">查询instrument数据</a>
+                    <a href="#instrument-4" class="toc-h2 toc-link" data-title="查询instrument数据">查询instrument数据</a>
                   </li>
                   <li>
                     <a href="#b7afc2947f-2" class="toc-h2 toc-link" data-title="查询深度">查询深度</a>
@@ -832,7 +835,65 @@ price = ((100000000 * symbol_id) - id) * tick_size</p>
     <span class="s2">"table"</span>:<span class="s2">"margin"</span>,
     <span class="s2">"time"</span>:<span class="s2">"1576573209743"</span>
 <span class="o">}</span>
-</code></pre><h1 id='websocket-3'>websocket 币币交易</h1><h2 id='orderbook-2'>orderBook</h2>
+</code></pre><h1 id='websocket-3'>websocket 币币交易</h1><h2 id='instrument-2'>instrument</h2>
+<p><strong>说明</strong></p>
+
+<p>最新的各种价格,行情,交易量等,bb为币币交易,instrument为订阅管道,USDT为资产,BTC/USDT为交易对</p>
+
+<p>订阅返回全量数据</p>
+
+<p>推送返回数据变更的字段</p>
+
+<p>action的值partial,update</p>
+
+<p>partial 订阅返回全量数据</p>
+
+<p>update 更新</p>
+
+<p><strong>订阅</strong></p>
+
+<p>{</p>
+
+<p>&quot;op&quot;:&quot;sub&quot;,</p>
+
+<p>&quot;args&quot;:{&quot;instrument_type&quot;:&quot;bb&quot;,&quot;table&quot;:&quot;instrument&quot;,&quot;settle_currency&quot;:&quot;USDT&quot;,&quot;symbol&quot;:&quot;BTC/USDT&quot;}</p>
+
+<p>}</p>
+
+<p><strong>取消订阅</strong></p>
+
+<p>{</p>
+
+<p>&quot;op&quot;:&quot;unsub&quot;,</p>
+
+<p>&quot;args&quot;:{&quot;instrument_type&quot;:&quot;bb&quot;,&quot;table&quot;:&quot;instrument&quot;,&quot;settle_currency&quot;:&quot;USDT&quot;,&quot;symbol&quot;:&quot;BTC/USDT&quot;}</p>
+
+<p>}</p>
+<pre class="highlight shell tab-shell"><code><span class="c"># Response</span>
+<span class="o">{</span>
+    <span class="s2">"table"</span>:<span class="s2">"instrument"</span>,
+    <span class="s2">"action"</span>:<span class="s2">"partial"</span>
+    <span class="s2">"data"</span>:[
+      <span class="o">{</span>
+        <span class="s2">"instrument_type"</span>:<span class="s2">"bb"</span>,            //交易资产类别
+        <span class="s2">"settle_currency"</span>:<span class="s2">"USDT"</span>,          //资产
+        <span class="s2">"change_rate_24h"</span>:<span class="s2">"-0.1112"</span>,       //24小时价格变化幅度
+        <span class="s2">"high_price"</span>:<span class="s2">"7748.35"</span>,            //24小时最高价
+        <span class="s2">"low_price"</span>:<span class="s2">"7513.73"</span>,             //24小时最低价  
+        <span class="s2">"last_price"</span>:<span class="s2">"7800"</span>,               //最新成交价
+        <span class="s2">"min_trade_number"</span>:<span class="s2">"0.0001"</span>,       //最小交易量
+        <span class="s2">"split_char"</span>:<span class="s2">"/"</span>,                  //交易对分隔符
+        <span class="s2">"symbol"</span>:<span class="s2">"BTC/USDT"</span>,               //交易对
+        <span class="s2">"volume_24h"</span>:<span class="s2">"30022"</span>,              //24小时成交量
+        <span class="s2">"number_precision"</span>:<span class="s2">"4"</span>,            //交易对数量小数位数
+        <span class="s2">"price_precision"</span>: <span class="s2">"1"</span>,            //交易对价格小数位数
+        <span class="s2">"symbol_id"</span>:<span class="s2">"44"</span>,                  //交易对id
+        <span class="s2">"tick_size"</span>:<span class="s2">"0.01"</span>                 //tick_size
+       <span class="o">}</span>  
+    <span class="o">]</span>,
+    <span class="s2">"time"</span>:<span class="s2">"1573022591950"</span>
+<span class="o">}</span>
+</code></pre><h2 id='orderbook-2'>orderBook</h2>
 <p><strong>说明</strong></p>
 
 <p>订阅返回全量数据,推送返回增量数据,bb为币币交易,order_book为订阅管道,USDT为资产,BTC/USDT为交易对</p>
@@ -1379,7 +1440,7 @@ price = ((100000000 * symbol_id) - id) * tick_size</p>
     <span class="o">]</span>
   <span class="o">}</span>
 <span class="o">}</span>
-</code></pre><h2 id='instrument-2'>查询instrument数据</h2>
+</code></pre><h2 id='instrument-3'>查询instrument数据</h2>
 <p><strong>限速规则</strong>：20次/1s</p>
 
 <p><strong>示例</strong></p>
@@ -2592,7 +2653,7 @@ size 最大1440</p>
   <span class="o">}</span>,
   <span class="s2">"time"</span>: 1573641132755
 <span class="o">}</span>
-</code></pre><h2 id='instrument-3'>查询instrument数据</h2>
+</code></pre><h2 id='instrument-4'>查询instrument数据</h2>
 <p><strong>限速规则</strong>：20次/1s</p>
 
 <p><strong>示例</strong></p>
