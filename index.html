@@ -390,7 +390,7 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='5ea2e0cde2'>简介</h1><h2 id='api'>API简介</h2>
-<p>欢迎使用GTE API！ 你可以使用此 API 获得市场行情数据，进行交易，并且管理你的账户。 </p>
+<p>欢迎使用 API！ 你可以使用此 API 获得市场行情数据，进行交易，并且管理你的账户。 </p>
 
 <p>在文档的右侧是代码，目前我们仅提供针对 shell 的代码示例。</p>
 <h1 id='185368440e'>更新日志</h1>
@@ -410,7 +410,7 @@
 </tr>
 </tbody></table>
 <h1 id='b122f813d5'>基本信息</h1><h1 id='websocket'>websocket 验证</h1>
-<p>ws连接地址 wss://td.gte.io/ws</p>
+<p>ws连接地址 wss://td.lianhj.com</p>
 
 <p>客户端每20秒发送字符串{&quot;op&quot;:&quot;ping&quot;},服务端返回{&quot;op&quot;:&quot;pong&quot;},服务端2分钟没有收到客户端消息,自动断开客户端</p>
 
@@ -1008,7 +1008,7 @@ price = ((100000000 * symbol_id) - id) * tick_size</p>
 <span class="o">}</span>
 </code></pre><h1 id='http'>http 基本信息</h1><h2 id='url'>url</h2>
 <ul>
-<li><p>baseUrl <code>https://api.gte.io/</code></p></li>
+<li><p>baseUrl <code>https://api.lianhj.com</code></p></li>
 <li><p>/v1/api/pc/asset/query v1为版本号</p></li>
 <li><p>返回数据code等于0,表示请求成功,小于0表示错误,具体清查看错误代码</p></li>
 </ul>
@@ -3064,7 +3064,7 @@ order_type等于1,price必填</p>
         <span class="s2">"time"</span>:<span class="s2">"1568639823340"</span>,
         <span class="s2">"rows"</span>:[
             <span class="o">{</span>    
-              <span class="s2">"id"</span>: <span class="s2">"1"</span>,
+              <span class="s2">"order_id"</span>: <span class="s2">"10001"</span>,
               <span class="s2">"status"</span>: <span class="s2">"1"</span>,                 //委托状态  1:已创建未匹配 2:新建未成交 4:待取消 8:已取消 16:部分成交 32:全部成交           
               <span class="s2">"fee"</span>: <span class="s2">"0.001"</span>,                //手续费     
               <span class="s2">"price"</span>: <span class="s2">"10035"</span>,              //委托价            
